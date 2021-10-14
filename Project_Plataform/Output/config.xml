@@ -1,0 +1,22 @@
+<!-- Config file for the game -->
+<!-- L01: DONE 1: Create configuration file-->
+<config>
+  <app>
+    <title>Game Development Testbed</title>
+    <organization>UPC</organization>
+  </app>
+  <renderer>
+    <vsync value="false"/>
+  </renderer>
+  <window>
+    <resolution width="1280" height="720" scale="1"/>
+    <fullscreen value="false"/>
+    <borderless value="false"/>
+    <resizable value="false"/>
+    <fullscreen_window value="false"/>
+  </window>
+  <audio>
+    <music_volume value="50"/>
+    <fx_volume value ="50"/>
+  </audio>
+</config>
