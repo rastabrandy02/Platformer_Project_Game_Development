@@ -3,6 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Don't ignore SDL
+!\cfg\SDL\libx86\SDL2.lib
+!\cfg\SDL\libx86\SDL2main.lib
+!\cfg\SDL_image\libx86\SDL2_image.lib
+!\cfg\SDL_mixer\libx86\SDL2_mixer.lib
+
+
 # User-specific files
 *.rsuser
 *.suo
