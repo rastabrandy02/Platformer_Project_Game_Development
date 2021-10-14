@@ -5,6 +5,7 @@
 #include "App.h"
 #include "Point.h"
 #include "SDL_image/include/SDL_image.h"
+#include "SDL/include/SDL.h"
 
 
 
