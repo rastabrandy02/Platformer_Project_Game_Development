@@ -1,4 +1,8 @@
 #pragma once
+#ifndef __PLAYER_H__
+#define __PLAYER_H__
+
+
 #include "Module.h"
 #include "App.h"
 #include "p2Point.h"
@@ -24,18 +28,20 @@ public:
 	bool Awake(pugi::xml_node& config);
 	bool Start();
 	bool PreUpdate();
-	bool Update();
+	bool Update(float dt);
 	bool PostUpdate();
 	bool CleanUp();
 
-public:
+
+	p2Point <float> position;
+private:
 	SDL_Texture* wizard;
 
-	p2Point <int> position;
+	
 	
 	SDL_Rect playerRec;
 	SDL_Rect* r;
-	int speedX = 10;
+	float speedX = 0.3f;
 	int speedY = 20;
 	bool isFalling;
 	bool isJumping = false;
@@ -43,3 +49,5 @@ public:
 	int maxJump = 150;
 	
 };
+
+#endif // !__PLAYER_H__

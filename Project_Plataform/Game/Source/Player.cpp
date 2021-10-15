@@ -2,6 +2,9 @@
 #include "App.h"
 #include "Defs.h"
 #include "Log.h"
+#include "Textures.h"
+#include "Render.h"
+#include "Window.h"
 
 Player::Player() :  Module()
 {
@@ -17,14 +20,15 @@ bool Player::Awake(pugi::xml_node &config)
 	
 	position.x = 0;
 	position.y = SCREEN_HEIGHT - 150;
-	playerRec = { position.x, position.y, 50, 50 };
+	//playerRec = { position.x, position.y, 50, 50 };
 	return true;
 }
 bool Player::Start()
 {
 	bool ret = true;
+	//wizard = app->tex->Load("Assets/sprites/mago01.png");
 	wizard = app->tex->Load("Assets/sprites/mago01.png");
-	if (wizard == NULL) LOG("----------------NO CARGA----------");
+	//if (wizard == NULL) LOG("----------------NO CARGA----------");
 	return ret;
 }
 
@@ -72,12 +76,13 @@ bool Player::PreUpdate()
 
 	return true;
 }
-bool Player::Update()
+bool Player::Update(float dt)
 {
 	bool ret = true;
-	app->render->DrawTexture(wizard, 380, 110);
 	/*playerRec.x = position.x;
 	playerRec.y = position.y;*/
+	app->render->DrawTexture(wizard, (int)position.x,(int) position.y);
+	
 	/*SDL_SetRenderDrawColor(app->render->renderer, 255, 0, 0, 255);
 	SDL_RenderFillRect(app->render->renderer, &playerRec);*/
 	
