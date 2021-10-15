@@ -20,6 +20,13 @@ bool Player::Awake(pugi::xml_node &config)
 	playerRec = { position.x, position.y, 50, 50 };
 	return true;
 }
+bool Player::Start()
+{
+	bool ret = true;
+	wizard = app->tex->Load("Assets/sprites/mago01.png");
+	if (wizard == NULL) LOG("----------------NO CARGA----------");
+	return ret;
+}
 
 // Unload assets
 bool Player::CleanUp()
@@ -33,7 +40,7 @@ bool Player::CleanUp()
 bool Player::PreUpdate()
 {
 	bool ret = true;
-	//For the moment, the gravity (bool isFalling) is applyed depending on the Y position with respect to the white ground, this should be changed in the future
+	//For the moment, the gravity (bool isFalling) is applyed depending on the Y position with respect to the  ground, this should be changed in the future
 	isFalling = false;
 	
 	/*if (position.y < (app->scene->ground.y - playerRec.h)) isFalling = true;
@@ -68,6 +75,7 @@ bool Player::PreUpdate()
 bool Player::Update()
 {
 	bool ret = true;
+	app->render->DrawTexture(wizard, 380, 110);
 	/*playerRec.x = position.x;
 	playerRec.y = position.y;*/
 	/*SDL_SetRenderDrawColor(app->render->renderer, 255, 0, 0, 255);
@@ -79,9 +87,10 @@ bool Player::PostUpdate()
 {
 	bool ret = true;
 	
+	
 	//SDL_SetRenderDrawColor(app->render->renderer, 255, 0, 0, 255);
 	//SDL_RenderDrawRect(app->render->renderer, &playerRec);
-	app->render->DrawRectangle(playerRec, 255, 0, 0, 255);
+	//app->render->DrawRectangle(playerRec, 255, 0, 0, 255);
 	//app->render->DrawCircle(0, 0, 50, 255, 0, 0, 255);
 	//SDL_SetRenderDrawColor(app->render->renderer, 0, 255, 0, 255);
 	

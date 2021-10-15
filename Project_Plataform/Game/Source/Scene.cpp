@@ -66,6 +66,7 @@ bool Scene::Update(float dt)
 		app->SaveGameRequest();
 
 	app->render->DrawTexture(img, 380, 100);
+	//app->render->DrawTexture(app->player->wizard, position.x, position.y);
 	
 	//app->render->DrawRectangle();
 
