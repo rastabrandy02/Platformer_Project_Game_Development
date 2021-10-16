@@ -8,6 +8,14 @@
 
 Player::Player() :  Module()
 {
+	idleAnimation.PushBack({ 30, 16, 90, 120 });
+	idleAnimation.PushBack({ 140,16,90,120 });
+	idleAnimation.PushBack({ 260,16,90,120 });
+	idleAnimation.PushBack({ 380,16,90,120 });
+	idleAnimation.speed = 0.0005f;
+	idleAnimation.loop = true;
+	currentAnimation = &idleAnimation;
+	
 }
 
 Player::~Player()
@@ -27,8 +35,8 @@ bool Player::Start()
 {
 	bool ret = true;
 	//wizard = app->tex->Load("Assets/sprites/mago01.png");
-	wizard = app->tex->Load("Assets/sprites/mago01.png");
-	//if (wizard == NULL) LOG("----------------NO CARGA----------");
+	wizard = app->tex->Load("Assets/sprites/wizard_spritesheet.png");
+	
 	return ret;
 }
 
@@ -79,25 +87,18 @@ bool Player::PreUpdate()
 bool Player::Update(float dt)
 {
 	bool ret = true;
-	/*playerRec.x = position.x;
-	playerRec.y = position.y;*/
-	app->render->DrawTexture(wizard, (int)position.x,(int) position.y);
 	
-	/*SDL_SetRenderDrawColor(app->render->renderer, 255, 0, 0, 255);
-	SDL_RenderFillRect(app->render->renderer, &playerRec);*/
 	
+	currentAnimation->Update();
 	return ret;
 }
 bool Player::PostUpdate()
 {
 	bool ret = true;
+	SDL_Rect section = currentAnimation->GetCurrentFrame();
+	app->render->DrawTexture(wizard, (int)position.x, (int)position.y, &section);
 	
 	
-	//SDL_SetRenderDrawColor(app->render->renderer, 255, 0, 0, 255);
-	//SDL_RenderDrawRect(app->render->renderer, &playerRec);
-	//app->render->DrawRectangle(playerRec, 255, 0, 0, 255);
-	//app->render->DrawCircle(0, 0, 50, 255, 0, 0, 255);
-	//SDL_SetRenderDrawColor(app->render->renderer, 0, 255, 0, 255);
 	
 		
 	return ret;

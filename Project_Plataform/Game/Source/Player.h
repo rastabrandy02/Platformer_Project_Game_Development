@@ -6,6 +6,8 @@
 #include "Module.h"
 #include "App.h"
 #include "p2Point.h"
+#include "Animation.h"
+
 
 class PhysBody;
 
@@ -40,7 +42,7 @@ private:
 	
 	
 	SDL_Rect playerRec;
-	SDL_Rect* r;
+	
 	float speedX = 0.3f;
 	int speedY = 20;
 	bool isFalling;
@@ -48,6 +50,8 @@ private:
 	int jumpStartPos;
 	int maxJump = 150;
 	
+	Animation* currentAnimation = nullptr;
+	Animation idleAnimation;
 };
 
 #endif // !__PLAYER_H__

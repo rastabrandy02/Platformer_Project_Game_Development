@@ -66,10 +66,9 @@ bool Scene::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		app->SaveGameRequest();
 
-	app->render->DrawTexture(img, 380, 100);
+	//app->render->DrawTexture(img, 380, 100);
 	//app->render->DrawTexture(app->player->wizard, position.x, position.y);
 	
-	//app->render->DrawRectangle();
 
 	return true;
 }
@@ -78,7 +77,8 @@ bool Scene::Update(float dt)
 bool Scene::PostUpdate()
 {
 	bool ret = true;
-
+	SDL_Rect r = { 0, 700, 1500, 20 };
+	app->render->DrawRectangle(r, 0, 255, 0, 255);
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 

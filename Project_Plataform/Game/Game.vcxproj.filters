@@ -52,6 +52,7 @@
     </ClInclude>
     <ClInclude Include="Source\p2Point.h" />
     <ClInclude Include="Source\Player.h" />
+    <ClInclude Include="Animation.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

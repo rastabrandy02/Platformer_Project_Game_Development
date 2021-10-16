@@ -5,8 +5,8 @@
 	<textures />
 	<audio />
 	<scene />
-	<renderer>
-		<camera x="-77" y="15" />
-	</renderer>
 	<:anonymous />
+	<renderer>
+		<camera x="0" y="0" />
+	</renderer>
 </game_state>

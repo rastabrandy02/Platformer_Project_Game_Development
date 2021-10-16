@@ -6,6 +6,7 @@
 #include "Audio.h"
 #include "Scene.h"
 #include "Player.h"
+#include "Animation.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -33,11 +34,11 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(scene);
-
+	AddModule(player);
 	// Render last to swap buffer
 	AddModule(render);
 
-	AddModule(player);
+	
 }
 
 // Destructor

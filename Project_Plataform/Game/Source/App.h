@@ -9,6 +9,7 @@
 #include "Render.h"
 #include "Window.h"
 #include "Scene.h"
+#include "Animation.h"
 
 #include "Defs.h"
 #include "Log.h"
