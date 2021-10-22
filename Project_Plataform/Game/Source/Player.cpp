@@ -96,7 +96,7 @@ bool Player::PostUpdate()
 {
 	bool ret = true;
 	SDL_Rect section = currentAnimation->GetCurrentFrame();
-	app->render->DrawTexture(wizard, (int)position.x, (int)position.y, &section);
+	app->render->DrawTexture(wizard, 0,0, &section);
 	
 	
 	

@@ -30,7 +30,8 @@ bool Scene::Awake()
 // Called before the first frame
 bool Scene::Start()
 {
-	img = app->tex->Load("Assets/textures/test.png");
+	//img = app->tex->Load("Assets/textures/test.png");
+	app->map->Load("hello.tmx");
 	//img = app->tex->Load("Assets/sprites/mago01.png");
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	return true;
@@ -68,7 +69,7 @@ bool Scene::Update(float dt)
 
 	//app->render->DrawTexture(img, 380, 100);
 	//app->render->DrawTexture(app->player->wizard, position.x, position.y);
-	
+	app->map->Draw();
 
 	return true;
 }
