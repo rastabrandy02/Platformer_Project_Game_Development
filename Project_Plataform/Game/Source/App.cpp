@@ -25,6 +25,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	tex = new Textures();
 	audio = new Audio();
 	scene = new Scene();
+	map = new Map();
 	player = new Player();
 
 	// Ordered for awake / Start / Update
@@ -34,6 +35,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(scene);
+	AddModule(map);
 	AddModule(player);
 	// Render last to swap buffer
 	AddModule(render);
@@ -73,7 +75,7 @@ bool App::Awake()
 	if(ret == true)
 	{
 		// L01: DONE 4: Read the title from the config file
-		title.create(configApp.child("title").child_value());
+		title.Create(configApp.child("title").child_value());
 		win->SetTitle(title.GetString());
 
 		ListItem<Module*>* item;

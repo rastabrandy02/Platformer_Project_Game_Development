@@ -16,6 +16,7 @@
       <Filter>External\PugiXml</Filter>
     </ClCompile>
     <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="Source\p2Point.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Source\Map.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

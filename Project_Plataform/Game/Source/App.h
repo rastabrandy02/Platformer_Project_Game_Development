@@ -10,6 +10,7 @@
 #include "Window.h"
 #include "Scene.h"
 #include "Animation.h"
+#include "Map.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -27,6 +28,7 @@ class Textures;
 class Audio;
 class Scene;
 class Player;
+class Map;
 
 class App
 {
@@ -95,6 +97,7 @@ public:
 	Audio* audio;
 	Scene* scene;
 	Player* player;
+	Map* map;
 
 #define SCREEN_HEIGHT 758
 #define SCREEN_WIDTH 1024
