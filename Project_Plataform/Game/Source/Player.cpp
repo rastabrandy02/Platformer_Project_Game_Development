@@ -27,7 +27,7 @@ bool Player::Awake(pugi::xml_node &config)
 	LOG("Loading player");
 	
 	position.x = 0;
-	position.y = SCREEN_HEIGHT - 150;
+	position.y = 10;
 	//playerRec = { position.x, position.y, 50, 50 };
 	return true;
 }
@@ -96,7 +96,7 @@ bool Player::PostUpdate()
 {
 	bool ret = true;
 	SDL_Rect section = currentAnimation->GetCurrentFrame();
-	app->render->DrawTexture(wizard, 0,0, &section);
+	app->render->DrawTexture(wizard, position.x,position.y, &section);
 	
 	
 	

@@ -31,7 +31,8 @@ bool Scene::Awake()
 bool Scene::Start()
 {
 	//img = app->tex->Load("Assets/textures/test.png");
-	app->map->Load("hello.tmx");
+	//app->map->Load("hello.tmx");
+	app->map->Load("WizardMap.tmx");
 	//img = app->tex->Load("Assets/sprites/mago01.png");
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	return true;
