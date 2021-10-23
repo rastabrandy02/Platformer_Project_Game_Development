@@ -35,7 +35,7 @@ public:
 	bool CleanUp();
 
 
-	p2Point <float> position;
+	p2Point <int> position;
 private:
 	SDL_Texture* wizard;
 
@@ -43,7 +43,7 @@ private:
 	
 	SDL_Rect playerRec;
 	
-	float speedX = 0.3f;
+	int speedX = 1;
 	int speedY = 20;
 	bool isFalling;
 	bool isJumping = false;

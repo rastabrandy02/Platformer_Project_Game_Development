@@ -12,7 +12,7 @@ Player::Player() :  Module()
 	idleAnimation.PushBack({ 140,16,90,120 });
 	idleAnimation.PushBack({ 260,16,90,120 });
 	idleAnimation.PushBack({ 380,16,90,120 });
-	idleAnimation.speed = 0.0005f;
+	idleAnimation.speed = 0.003f;
 	idleAnimation.loop = true;
 	currentAnimation = &idleAnimation;
 	
@@ -27,7 +27,7 @@ bool Player::Awake(pugi::xml_node &config)
 	LOG("Loading player");
 	
 	position.x = 0;
-	position.y = 10;
+	position.y = 215;
 	//playerRec = { position.x, position.y, 50, 50 };
 	return true;
 }

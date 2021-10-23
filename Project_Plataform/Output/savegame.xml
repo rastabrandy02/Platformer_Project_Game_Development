@@ -5,6 +5,7 @@
 	<textures />
 	<audio />
 	<scene />
+	<map />
 	<:anonymous />
 	<renderer>
 		<camera x="0" y="0" />
