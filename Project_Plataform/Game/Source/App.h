@@ -29,6 +29,7 @@ class Audio;
 class Scene;
 class Player;
 class Map;
+class Physics;
 
 class App
 {
@@ -98,6 +99,7 @@ public:
 	Scene* scene;
 	Player* player;
 	Map* map;
+	Physics* physics;
 
 #define SCREEN_HEIGHT 758
 #define SCREEN_WIDTH 1024

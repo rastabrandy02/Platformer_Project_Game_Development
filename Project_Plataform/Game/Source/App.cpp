@@ -7,7 +7,7 @@
 #include "Scene.h"
 #include "Player.h"
 #include "Animation.h"
-
+#include "Physics.h"
 #include "Defs.h"
 #include "Log.h"
 
@@ -27,6 +27,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new Scene();
 	map = new Map();
 	player = new Player();
+	physics = new Physics(app);
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -34,6 +35,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
+	AddModule(physics);
 	AddModule(scene);
 	AddModule(map);
 	AddModule(player);
