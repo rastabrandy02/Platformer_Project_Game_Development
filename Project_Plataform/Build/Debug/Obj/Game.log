@@ -1,18 +1,51 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(477,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  Main.cpp
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  App.cpp
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Audio.cpp
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Input.cpp
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Map.cpp
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   Physics.cpp
 A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
 A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(42,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(123,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(124,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(167,20): warning C4018: '<': signed/unsigned mismatch
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(317,82): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(317,64): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(317,46): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(317,34): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(396,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(43,8): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(124,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(125,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(168,20): warning C4018: '<': signed/unsigned mismatch
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(318,82): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(318,64): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(318,46): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(318,34): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
 A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(397,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(403,27): warning C4244: 'return': conversion from 'float32' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(398,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(404,27): warning C4244: 'return': conversion from 'float32' to 'int', possible loss of data
+  Player.cpp
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Scene.cpp
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Render.cpp
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Textures.cpp
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Window.cpp
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Log.cpp
+  pugixml.cpp
+  Generating Code...
 Box2D.lib(b2CircleShape.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Main.obj
 Box2D.lib(b2CircleShape.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Main.obj
 Box2D.lib(b2ChainShape.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Main.obj
@@ -77,4 +110,5 @@ Box2D.lib(b2ChainAndCircleContact.obj) : error LNK2038: mismatch detected for '_
 Box2D.lib(b2ChainAndCircleContact.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Main.obj
 Box2D.lib(b2ChainAndPolygonContact.obj) : error LNK2038: mismatch detected for '_ITERATOR_DEBUG_LEVEL': value '2' doesn't match value '0' in Main.obj
 Box2D.lib(b2ChainAndPolygonContact.obj) : error LNK2038: mismatch detected for 'RuntimeLibrary': value 'MDd_DynamicDebug' doesn't match value 'MD_DynamicRelease' in Main.obj
-LINK : fatal error LNK1104: cannot open file 'Box2D/libx86/Release/Box2D.lib'
+LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Build\Debug\Game.exe : fatal error LNK1319: 64 mismatches detected

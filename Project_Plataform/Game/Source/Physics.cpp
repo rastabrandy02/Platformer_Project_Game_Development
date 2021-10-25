@@ -5,13 +5,13 @@
 #include "Physics.h"
 #include "p2Point.h"
 #include "math.h"
+#include "Box2D/Box2D/Box2D.h"
 
-
-#ifdef _DEBUG
-#pragma comment( lib, "Box2D/libx86/Debug/Box2D.lib" )
-#else
-#pragma comment( lib, "Box2D/libx86/Release/Box2D.lib" )
-#endif
+//#ifdef _DEBUG
+//#pragma comment( lib, "Box2D/libx86/Debug/Box2D.lib" )
+//#else
+//#pragma comment( lib, "Box2D/libx86/Release/Box2D.lib" )
+//#endif
 
 
 
