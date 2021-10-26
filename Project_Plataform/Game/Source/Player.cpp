@@ -109,5 +109,17 @@ bool Player::PostUpdate()
 	return ret;
 }
 
-
-
+bool Player::LoadState(pugi::xml_node& node)
+{
+	position.x = node.child("position").attribute("x").as_int();
+	position.y = node.child("position").attribute("y").as_int();
+	return true;
+}
+bool Player::SaveState(pugi::xml_node& node)
+{
+	pugi::xml_node pos = node.append_child("position");
+	pos.append_attribute("x").set_value(position.x);
+	pos.append_attribute("y").set_value(position.y);
+	
+	return true;
+}

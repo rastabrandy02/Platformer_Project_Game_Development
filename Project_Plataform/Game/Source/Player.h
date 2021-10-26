@@ -34,6 +34,8 @@ public:
 	bool PostUpdate();
 	bool CleanUp();
 
+	bool LoadState(pugi::xml_node&) override;
+	bool SaveState(pugi::xml_node&) override;
 
 	p2Point <int> position;
 private:

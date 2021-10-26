@@ -27,7 +27,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new Scene();
 	map = new Map();
 	player = new Player();
-	physics = new Physics(app);
+	physics = new Physics();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
