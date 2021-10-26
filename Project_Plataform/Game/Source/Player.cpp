@@ -16,6 +16,10 @@ Player::Player() :  Module()
 	idleAnimation.loop = true;
 	currentAnimation = &idleAnimation;
 	
+	jumpAnimation.PushBack({ 30, 150, 90, 120 });
+	jumpAnimation.PushBack({ 140, 150, 90, 120 });
+	jumpAnimation.speed = 0.003f;
+	jumpAnimation.loop = true;
 }
 
 Player::~Player()
@@ -76,6 +80,7 @@ bool Player::PreUpdate()
 	{
 		
 		isJumping = true;
+		currentAnimation = &jumpAnimation;
 		jumpStartPos = position.y;
 	}
 	
