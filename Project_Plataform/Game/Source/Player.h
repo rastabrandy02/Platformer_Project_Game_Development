@@ -52,6 +52,7 @@ private:
 	
 	Animation* currentAnimation = nullptr;
 	Animation idleAnimation;
+	Animation jumpAnimation;
 };
 
 #endif // !__PLAYER_H__
