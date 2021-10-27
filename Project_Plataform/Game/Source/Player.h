@@ -50,7 +50,7 @@ private:
 	bool isFalling;
 	bool isJumping = false;
 	int jumpStartPos;
-	int maxJump = 150;
+	int maxJump = 110;
 	
 	Animation* currentAnimation = nullptr;
 	Animation idleAnimation;
