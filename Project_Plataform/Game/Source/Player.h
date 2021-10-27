@@ -44,11 +44,11 @@ private:
 	SDL_Rect playerRec;
 	
 	int speedX = 1;
-	int speedY = 20;
+	int speedY = 1;
 	bool isFalling;
 	bool isJumping = false;
 	int jumpStartPos;
-	int maxJump = 150;
+	int maxJump = 110;
 	
 	Animation* currentAnimation = nullptr;
 	Animation idleAnimation;
