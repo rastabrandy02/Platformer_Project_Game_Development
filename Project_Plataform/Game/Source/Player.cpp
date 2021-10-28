@@ -5,10 +5,13 @@
 #include "Textures.h"
 #include "Render.h"
 #include "Window.h"
+#include "Physics.h"
 
 Player::Player() :  Module()
 {
 	idleAnimation.PushBack({ 10, 8, 85, 95 });
+	idleAnimation.speed = 0.003f;
+	idleAnimation.loop = true;
 	currentAnimation = &idleAnimation;
 
 	runAnimationRight.PushBack({ 10, 8, 85, 95 });
@@ -50,6 +53,20 @@ bool Player::Start()
 	bool ret = true;
 	//wizard = app->tex->Load("Assets/sprites/mago01.png");
 	wizard = app->tex->Load("Assets/sprites/wizard_spritesheet.png");
+	player = app->physics->CreateRectangle(position.x, position.y, 50, 50);
+	player->body->SetGravityScale(0.3f);
+	//player->body->GetFixtureList()->SetSensor(true);
+	/*playerSensor = app->physics->CreateRectangle(position.x, position.y, 51, 51);
+	playerSensor->body->GetFixtureList()->SetSensor(true);*/
+	b2PolygonShape sensorShape;
+	sensorShape.SetAsBox(PIXEL_TO_METERS(30),PIXEL_TO_METERS (30));
+	b2FixtureDef sensorFixture;
+	sensorFixture.shape = &sensorShape;
+	sensorFixture.isSensor = true;
+	playerSensor = player->body->CreateFixture(&sensorFixture);
+	playerSensor->SetUserData((void*)1);
+	
+	PhysBody* ground = app->physics->CreateStaticRectangle(500, 390, 1100, 200);
 	
 	return ret;
 }
@@ -80,25 +97,40 @@ bool Player::PreUpdate()
 	{
 		position.x += speedX;
 		currentAnimation = &runAnimationRight;
+		
+		player->body->SetLinearVelocity({ 1, player->body->GetLinearVelocity().y });
+		//playerVelocity = player->body->GetLinearVelocity();
 	}
 	
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
 		position.x -= speedX;
+		
+		player->body->SetLinearVelocity({ -1, player->body->GetLinearVelocity().y });
+		//playerVelocity = player->body->GetLinearVelocity();
 		currentAnimation = &runAnimationLeft;
 	}
-	
-	if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN))
+	if (canJump || canDoubleJump)
 	{
-		
-		isJumping = true;
-		currentAnimation = &jumpAnimation;
-		jumpStartPos = position.y;
+		if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN))
+		{
+			
+
+
+			player->body->SetLinearVelocity({ player->body->GetLinearVelocity().x , -4, });
+			//playerVelocity = player->body->GetLinearVelocity();
+			currentAnimation = &jumpAnimation;
+			if (canJump == false)
+			{
+				canDoubleJump = false;
+			}
+			canJump = false;
+		}
 	}
 	
-	if(isJumping) position.y -= speedY;
-	if (position.y < (jumpStartPos - maxJump)) isJumping = false;
-
+	
+	
+	
 	return true;
 }
 bool Player::Update(float dt)
@@ -113,14 +145,40 @@ bool Player::PostUpdate()
 {
 	bool ret = true;
 	SDL_Rect section = currentAnimation->GetCurrentFrame();
-	app->render->DrawTexture(wizard, position.x,position.y, &section);
+	//app->render->DrawTexture(wizard, position.x,position.y, &section);
+	app->render->DrawTexture(wizard, METERS_TO_PIXELS(player->body->GetPosition().x) -50,METERS_TO_PIXELS( player->body->GetPosition().y)-50, &section);
 	
 	
 	
 		
 	return ret;
 }
+void Player::BeginContact(b2Contact* contact)
+{
+	void* fixtureUserData = contact->GetFixtureA()->GetUserData();
+	if (((int)fixtureUserData == 1))
+	{
+		canJump = true;
+		canDoubleJump = true;
+	}
+	 fixtureUserData = contact->GetFixtureB()->GetUserData();
+	if (((int)fixtureUserData == 1))
+	{
+		canJump = true;
+		canDoubleJump = true;
+	}
 
+
+	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
+	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
+
+	if (physA && physA->listener != NULL)
+		physA->listener->OnCollision(physA, physB);
+
+	if (physB && physB->listener != NULL)
+		physB->listener->OnCollision(physB, physA);
+
+}
 bool Player::LoadState(pugi::xml_node& node)
 {
 	position.x = node.child("position").attribute("x").as_int();

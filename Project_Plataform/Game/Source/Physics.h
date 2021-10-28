@@ -1,6 +1,8 @@
 #pragma once
 #include "Module.h"
 #include "Box2D/Box2D/Box2D.h"
+#include "App.h"
+#include "Player.h"
 
 #define GRAVITY_X 0.0f
 #define GRAVITY_Y -7.0f
@@ -46,11 +48,16 @@ public:
 
 	PhysBody* CreateCircle(int x, int y, int radius);
 	PhysBody* CreateRectangle(int x, int y, int width, int height);
+	PhysBody* CreateStaticRectangle(int x, int y, int width, int height);
 	PhysBody* CreateRectangleSensor(int x, int y, int width, int height);
 	PhysBody* CreateChain(int x, int y, int* points, int size);
 
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
+	void Test()
+	{
+		
+	}
 
 private:
 

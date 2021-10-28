@@ -2,7 +2,7 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-
+#include "Physics.h"
 #include "Module.h"
 #include "App.h"
 #include "p2Point.h"
@@ -10,6 +10,7 @@
 
 
 class PhysBody;
+struct b2MassData;
 
 struct Object
 {
@@ -21,7 +22,7 @@ struct Object
 	{}
 };
 
-class Player : public Module
+class Player : public Module, public b2ContactListener
 {
 public:
 	Player();
@@ -37,10 +38,18 @@ public:
 	bool LoadState(pugi::xml_node&) override;
 	bool SaveState(pugi::xml_node&) override;
 
-	p2Point <int> position;
-private:
-	SDL_Texture* wizard;
 
+	void BeginContact(b2Contact* contact);
+
+	p2Point <int> position;
+	
+private:
+	
+
+	PhysBody* player;
+	//PhysBody* playerSensor;
+	b2Fixture* playerSensor;
+	b2MassData* playerMass;
 	
 	
 	SDL_Rect playerRec;
@@ -48,11 +57,16 @@ private:
 	int speedX = 1;
 	int speedY = 10;
 	bool isFalling;
-	bool isJumping = false;
+	
 	int jumpStartPos;
 	int maxJump = 100;
+	bool canJump = false;
+	bool canDoubleJump = false;
 	
-	Animation* currentAnimation = nullptr;
+	
+
+	SDL_Texture* wizard;
+	Animation* currentAnimation;
 	Animation idleAnimation;
 	Animation runAnimationRight;
 	Animation runAnimationLeft;

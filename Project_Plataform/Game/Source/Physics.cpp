@@ -32,8 +32,8 @@ bool Physics::Start()
 	LOG("Creating Physics 2D environment");
 
 	world = new b2World(b2Vec2(GRAVITY_X, -GRAVITY_Y));
-	world->SetContactListener(this);
-
+	//world->SetContactListener(this);
+	world->SetContactListener(app->player);
 	// needed to create joints like mouse joint
 	
 
@@ -87,6 +87,30 @@ PhysBody* Physics::CreateRectangle(int x, int y, int width, int height)
 {
 	b2BodyDef body;
 	body.type = b2_dynamicBody;
+	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
+
+	b2Body* b = world->CreateBody(&body);
+	b2PolygonShape box;
+	box.SetAsBox(PIXEL_TO_METERS(width) * 0.5f, PIXEL_TO_METERS(height) * 0.5f);
+
+	b2FixtureDef fixture;
+	fixture.shape = &box;
+	fixture.density = 1.0f;
+
+	b->CreateFixture(&fixture);
+
+	PhysBody* pbody = new PhysBody();
+	pbody->body = b;
+	b->SetUserData(pbody);
+	pbody->width = width * 0.5f;
+	pbody->height = height * 0.5f;
+
+	return pbody;
+}
+PhysBody* Physics::CreateStaticRectangle(int x, int y, int width, int height)
+{
+	b2BodyDef body;
+	body.type = b2_staticBody;
 	body.position.Set(PIXEL_TO_METERS(x), PIXEL_TO_METERS(y));
 
 	b2Body* b = world->CreateBody(&body);
@@ -390,8 +414,27 @@ int PhysBody::RayCast(int x1, int y1, int x2, int y2, float& normal_x, float& no
 	return ret;
 }
 
+//void Physics::BeginContact(b2Contact* contact)
+//{
+//	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
+//	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
+//
+//	if(physA && physA->listener != NULL)
+//		physA->listener->OnCollision(physA, physB);
+//
+//	if(physB && physB->listener != NULL)
+//		physB->listener->OnCollision(physB, physA);
+//}
 void Physics::BeginContact(b2Contact* contact)
 {
+	void* fixtureUserData = contact->GetFixtureA()->GetUserData();
+	if (((int)fixtureUserData == 3))
+	{
+		//app->player->isJumping = true;
+	}
+
+
+
 	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
 	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
 
@@ -400,4 +443,5 @@ void Physics::BeginContact(b2Contact* contact)
 
 	if(physB && physB->listener != NULL)
 		physB->listener->OnCollision(physB, physA);
+	
 }
