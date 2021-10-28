@@ -54,7 +54,7 @@ bool Player::Start()
 	//wizard = app->tex->Load("Assets/sprites/mago01.png");
 	wizard = app->tex->Load("Assets/sprites/wizard_spritesheet.png");
 	player = app->physics->CreateRectangle(position.x, position.y, 50, 50);
-	player->body->SetGravityScale(0.3f);
+	player->body->SetGravityScale(0.2f);
 	//player->body->GetFixtureList()->SetSensor(true);
 	/*playerSensor = app->physics->CreateRectangle(position.x, position.y, 51, 51);
 	playerSensor->body->GetFixtureList()->SetSensor(true);*/
@@ -117,9 +117,9 @@ bool Player::PreUpdate()
 			
 
 
-			player->body->SetLinearVelocity({ player->body->GetLinearVelocity().x , -4, });
+			player->body->SetLinearVelocity({ player->body->GetLinearVelocity().x , -3});
 			//playerVelocity = player->body->GetLinearVelocity();
-			currentAnimation = &jumpAnimation;
+			if (currentAnimation != &jumpAnimation) currentAnimation = &jumpAnimation;
 			if (canJump == false)
 			{
 				canDoubleJump = false;
@@ -160,12 +160,14 @@ void Player::BeginContact(b2Contact* contact)
 	{
 		canJump = true;
 		canDoubleJump = true;
+		currentAnimation = &idleAnimation;
 	}
 	 fixtureUserData = contact->GetFixtureB()->GetUserData();
 	if (((int)fixtureUserData == 1))
 	{
 		canJump = true;
 		canDoubleJump = true;
+		currentAnimation = &idleAnimation;
 	}
 
 
@@ -183,6 +185,7 @@ bool Player::LoadState(pugi::xml_node& node)
 {
 	position.x = node.child("position").attribute("x").as_int();
 	position.y = node.child("position").attribute("y").as_int();
+	player->body->SetTransform({ (float)position.x,(float)position.y }, 0);
 	return true;
 }
 bool Player::SaveState(pugi::xml_node& node)

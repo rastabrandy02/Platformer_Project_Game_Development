@@ -51,7 +51,7 @@ void Map::Draw()
 
 	for (int x = 0; x < mapData.maplayers.start->data->width; x++)
 	{
-		for (int y = 0; y< mapData.maplayers.start->data->heigth; y++)
+		for (int y = 0; y< mapData.maplayers.start->data->height; y++)
 		{
 			// L04: TODO 9: Complete the draw function (inside the loop from TODO 5)
 			// Find which tile id is on x, y coordinates 
@@ -271,11 +271,11 @@ bool Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	//Load the attributes and assign to the layer variables
 	layer->id = node.attribute("id").as_int();
 	layer->name = node.attribute("name").as_string();
-	layer->heigth = node.attribute("height").as_int();
+	layer->height = node.attribute("height").as_int();
 	layer->width = node.attribute("width").as_int();
 	//Initialize the tile array and reserve the memory 
-	layer->data = new uint[layer->heigth * layer->width];
-	memset(layer->data, 0, layer->heigth * layer->width);
+	layer->data = new uint[layer->height * layer->width];
+	memset(layer->data, 0, layer->height * layer->width);
 
 	//Iterate over all the tiles in the xml and assign the values
 	int i = 0;
@@ -303,3 +303,38 @@ bool Map::LoadAllLayers(pugi::xml_node mapNode) {
 	}
 	return ret;
 }
+//bool Map::SetMapColliders()
+//{
+//	bool ret = true;
+//
+//	ListItem<MapLayer*>* mapLayerItem;
+//	mapLayerItem = mapData.maplayers.start;
+//	LOG("--------!!!SETTING COLLIDERS!!!---------");
+//	while (mapLayerItem != NULL) {
+//
+//		if (mapLayerItem->data->properties.GetProperty("Collider") == 1) {
+//
+//			for (int x = 0; x < mapLayerItem->data->width; x++)
+//			{
+//				for (int y = 0; y < mapLayerItem->data->height; y++)
+//				{
+//					int gid = mapLayerItem->data->Get(x, y);
+//
+//					if (gid > 0) {
+//
+//						TileSet* tileset = GetTilesetFromTileId(gid);
+//
+//						SDL_Rect r = tileset->GetTileRect(gid);
+//						iPoint pos;
+//						pos = MapToWorld(x, y);
+//
+//						app->physics->groundColliders.add(app->physics->CreateRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight, b2_staticBody));
+//					}
+//
+//				}
+//			}
+//		}
+//		mapLayerItem = mapLayerItem->next;
+//	}
+//	return ret;
+//}

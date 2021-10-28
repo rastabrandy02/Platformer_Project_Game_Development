@@ -45,7 +45,7 @@ struct MapLayer
 	int id;
 	SString name;
 	int width;
-	int heigth;
+	int height;
 	uint* data;
 
 	MapLayer()
@@ -115,6 +115,7 @@ private:
 	// L04
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
 	bool LoadAllLayers(pugi::xml_node mapNode);
+	bool SetMapColliders();
 
 public:
 
