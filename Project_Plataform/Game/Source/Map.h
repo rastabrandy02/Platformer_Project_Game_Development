@@ -38,6 +38,36 @@ enum MapTypes
 	MAPTYPE_STAGGERED
 };
 
+struct Properties
+{
+	struct Property
+	{
+		//...
+		SString name;
+		int value;
+	};
+
+	~Properties()
+	{
+		//...
+		ListItem<Property*>* item;
+		item = list.start;
+
+		while (item != NULL)
+		{
+			RELEASE(item->data);
+			item = item->next;
+		}
+
+		list.clear();
+	}
+
+	// L06: TODO 7: Method to ask for the value of a custom property
+	int GetProperty(const char* name, int default_value = 0) const;
+
+	List<Property*> list;
+};
+
 // L04: TODO 1: Create a struct for the map layer
 struct MapLayer
 {
@@ -47,6 +77,9 @@ struct MapLayer
 	int width;
 	int height;
 	uint* data;
+
+	// L06: DONE 1: Support custom properties
+	Properties properties;
 
 	MapLayer()
 	{}
@@ -103,6 +136,9 @@ public:
 	// L04: DONE 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint MapToWorld(int x, int y) const;
 
+	// L05: DONE 2: Add orthographic world to map coordinates
+	iPoint WorldToMap(int x, int y) const;
+
 private:
 
 	bool LoadMap(pugi::xml_node mapFile);
@@ -116,6 +152,12 @@ private:
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
 	bool LoadAllLayers(pugi::xml_node mapNode);
 	bool SetMapColliders();
+
+	// L06: TODO 6: Load a group of properties 
+	bool LoadProperties(pugi::xml_node& node, Properties& properties);
+
+	// L06: TODO 3: Pick the right Tileset based on a tile id
+	TileSet* GetTilesetFromTileId(int id) const;
 
 public:
 
