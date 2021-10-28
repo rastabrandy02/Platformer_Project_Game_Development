@@ -8,9 +8,9 @@
 	<scene />
 	<map />
 	<:anonymous>
-		<position x="2081" y="30" />
+		<position x="0" y="0" />
 	</:anonymous>
 	<renderer>
-		<camera x="-1891" y="45" />
+		<camera x="-11" y="45" />
 	</renderer>
 </game_state>
