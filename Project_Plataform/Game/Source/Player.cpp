@@ -10,7 +10,6 @@
 Player::Player() :  Module()
 {
 	idleAnimation.PushBack({ 10, 8, 85, 95 });
-	idleAnimation.speed = 0.003f;
 	idleAnimation.loop = true;
 	currentAnimation = &idleAnimation;
 
@@ -18,20 +17,20 @@ Player::Player() :  Module()
 	runAnimationRight.PushBack({ 85,8,85,95 });
 	runAnimationRight.PushBack({ 167,8,85,95 });
 	runAnimationRight.PushBack({ 248,8,85,95 });
-	runAnimationRight.speed = 0.003f;
+	runAnimationRight.speed = 0.0009f;
 	runAnimationRight.loop = true;
 
 	runAnimationLeft.PushBack({ 330,8,85,95 });
 	runAnimationLeft.PushBack({ 405,8,85,95 });
 	runAnimationLeft.PushBack({ 485,8,85,95 });
 	runAnimationLeft.PushBack({ 566,8,85,95 });
-	runAnimationLeft.speed = 0.003f;
+	runAnimationLeft.speed = 0.0009f;
 	runAnimationLeft.loop = true;
 	
 	
 	jumpAnimation.PushBack({ 10, 100, 85, 95 });
 	jumpAnimation.PushBack({ 100, 100, 85, 95 });
-	jumpAnimation.speed = 0.003f;
+	jumpAnimation.speed = 0.0009f;
 	jumpAnimation.loop = true;
 }
 

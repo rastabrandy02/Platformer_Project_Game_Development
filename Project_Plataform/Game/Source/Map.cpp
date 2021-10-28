@@ -18,6 +18,24 @@ Map::Map() : Module(), mapLoaded(false)
 Map::~Map()
 {}
 
+// L06: TODO 7: Ask for the value of a custom property
+int Properties::GetProperty(const char* value, int defaultValue) const
+{
+	//...
+
+	ListItem<Property*>* item = list.start;
+
+	while (item)
+	{
+		if (item->data->name == value)
+			return item->data->value;
+		item = item->next;
+	}
+
+	return defaultValue;
+}
+
+
 // Called before render is available
 bool Map::Awake(pugi::xml_node& config)
 {
@@ -34,6 +52,52 @@ void Map::Draw()
 {
 	if (mapLoaded == false) return;
 
+	// L04: DONE 5: Prepare the loop to draw all tilesets + DrawTexture()
+	ListItem<MapLayer*>* mapLayerItem;
+	mapLayerItem = mapData.maplayers.start;
+
+	// L06: TODO 4: Make sure we draw all the layers and not just the first one
+	while (mapLayerItem != NULL) {
+
+		if (mapLayerItem->data->properties.GetProperty("Draw") == 1) {
+
+			for (int x = 0; x < mapLayerItem->data->width; x++)
+			{
+				for (int y = 0; y < mapLayerItem->data->height; y++)
+				{
+					// L04: DONE 9: Complete the draw function
+					int gid = mapLayerItem->data->Get(x, y);
+
+					if (gid > 0) {
+
+						//L06: TODO 4: Obtain the tile set using GetTilesetFromTileId
+						//now we always use the firt tileset in the list
+						//TileSet* tileset = mapData.tilesets.start->data;
+						TileSet* tileset = GetTilesetFromTileId(gid);
+
+						SDL_Rect r = tileset->GetTileRect(gid);
+						iPoint pos = MapToWorld(x, y);
+
+						app->render->DrawTexture(tileset->texture,
+							pos.x,
+							pos.y,
+							&r);
+					}
+
+				}
+			}
+		}
+
+		mapLayerItem = mapLayerItem->next;
+	}
+}
+
+
+/*Draw the map (all requried layers)
+void Map::Draw()
+{
+	if (mapLoaded == false) return;
+
     // L03: DONE 6: Iterate all tilesets and draw all their 
     // images in 0,0 (you should have only one tileset for now)
 	/*
@@ -45,7 +109,7 @@ void Map::Draw()
         app->render->DrawTexture(tileset->data->texture,0,0);
         tileset = tileset->next;
     }
-	*/
+	
 	
 	// L04: TODO 5: Prepare the loop to draw all tiles in a layer + DrawTexture()
 
@@ -65,11 +129,7 @@ void Map::Draw()
 
 		}
 	}
-
-	
-
-
-}
+}*/
 
 // L04: TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 iPoint Map::MapToWorld(int x, int y) const
@@ -80,6 +140,54 @@ iPoint Map::MapToWorld(int x, int y) const
 	ret.y = y * mapData.tileHeight;
 
 	return ret;
+}
+
+// L05: DON 2: Add orthographic world to map coordinates
+iPoint Map::WorldToMap(int x, int y) const
+{
+	iPoint ret(0, 0);
+
+	// L05: DONE 3: Add the case for isometric maps to WorldToMap
+	if (mapData.type == MAPTYPE_ORTHOGONAL)
+	{
+		ret.x = x / mapData.tileWidth;
+		ret.y = y / mapData.tileHeight;
+	}
+	else if (mapData.type == MAPTYPE_ISOMETRIC)
+	{
+
+		float half_width = mapData.tileWidth * 0.5f;
+		float half_height = mapData.tileHeight * 0.5f;
+		ret.x = int((x / half_width + y / half_height) / 2);
+		ret.y = int((y / half_height - (x / half_width)) / 2);
+	}
+	else
+	{
+		LOG("Unknown map type");
+		ret.x = x; ret.y = y;
+	}
+
+	return ret;
+}
+
+// L06: TODO 3: Pick the right Tileset based on a tile id
+TileSet* Map::GetTilesetFromTileId(int id) const
+{
+	ListItem<TileSet*>* item = mapData.tilesets.start;
+	TileSet* set = item->data;
+
+	while (item)
+	{
+		if (id < item->data->firstgid)
+		{
+			set = item->prev->data;
+			break;
+		}
+		set = item->data;
+		item = item->next;
+	}
+
+	return set;
 }
 
 // L04: TODO 7:Implement the method that receives a tile id and returns it's Rectfind the Rect associated with a specific tile id
@@ -273,6 +381,7 @@ bool Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	layer->name = node.attribute("name").as_string();
 	layer->height = node.attribute("height").as_int();
 	layer->width = node.attribute("width").as_int();
+
 	//Initialize the tile array and reserve the memory 
 	layer->data = new uint[layer->height * layer->width];
 	memset(layer->data, 0, layer->height * layer->width);
@@ -303,6 +412,7 @@ bool Map::LoadAllLayers(pugi::xml_node mapNode) {
 	}
 	return ret;
 }
+
 //bool Map::SetMapColliders()
 //{
 //	bool ret = true;
