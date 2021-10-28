@@ -8,16 +8,26 @@
 
 Player::Player() :  Module()
 {
-	idleAnimation.PushBack({ 30, 16, 90, 120 });
-	idleAnimation.PushBack({ 140,16,90,120 });
-	idleAnimation.PushBack({ 260,16,90,120 });
-	idleAnimation.PushBack({ 380,16,90,120 });
-	idleAnimation.speed = 0.003f;
-	idleAnimation.loop = true;
+	idleAnimation.PushBack({ 10, 8, 85, 95 });
 	currentAnimation = &idleAnimation;
+
+	runAnimationRight.PushBack({ 10, 8, 85, 95 });
+	runAnimationRight.PushBack({ 85,8,85,95 });
+	runAnimationRight.PushBack({ 167,8,85,95 });
+	runAnimationRight.PushBack({ 248,8,85,95 });
+	runAnimationRight.speed = 0.003f;
+	runAnimationRight.loop = true;
+
+	runAnimationLeft.PushBack({ 330,8,85,95 });
+	runAnimationLeft.PushBack({ 405,8,85,95 });
+	runAnimationLeft.PushBack({ 485,8,85,95 });
+	runAnimationLeft.PushBack({ 566,8,85,95 });
+	runAnimationLeft.speed = 0.003f;
+	runAnimationLeft.loop = true;
 	
-	jumpAnimation.PushBack({ 30, 150, 120, 130 });
-	jumpAnimation.PushBack({ 140, 150, 120, 130 });
+	
+	jumpAnimation.PushBack({ 10, 100, 85, 95 });
+	jumpAnimation.PushBack({ 100, 100, 85, 95 });
 	jumpAnimation.speed = 0.003f;
 	jumpAnimation.loop = true;
 }
@@ -31,7 +41,7 @@ bool Player::Awake(pugi::xml_node &config)
 	LOG("Loading player");
 	
 	position.x = 0;
-	position.y = 215;
+	position.y = 250;
 	//playerRec = { position.x, position.y, 50, 50 };
 	return true;
 }
@@ -69,11 +79,13 @@ bool Player::PreUpdate()
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
 		position.x += speedX;
+		currentAnimation = &runAnimationRight;
 	}
 	
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
 		position.x -= speedX;
+		currentAnimation = &runAnimationLeft;
 	}
 	
 	if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN))
