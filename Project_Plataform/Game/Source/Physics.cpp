@@ -35,7 +35,7 @@ bool Physics::Start()
 	//world->SetContactListener(this);
 	world->SetContactListener(app->player);
 	// needed to create joints like mouse joint
-	
+	name.Create("physics");
 
 	return true;
 }

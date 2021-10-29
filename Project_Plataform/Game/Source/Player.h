@@ -54,8 +54,9 @@ private:
 	
 	SDL_Rect playerRec;
 	
-	int speedX = 1;
-	int speedY = 10;
+	
+	b2Vec2 speed = { 1.0f, -3.0f };
+	
 	bool isFalling;
 	
 	int jumpStartPos;

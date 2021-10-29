@@ -11,13 +11,14 @@ Player::Player() :  Module()
 {
 	idleAnimation.PushBack({ 10, 8, 85, 95 });
 	idleAnimation.loop = true;
+	idleAnimation.speed = 10.0f;
 	currentAnimation = &idleAnimation;
 
 	runAnimationRight.PushBack({ 10, 8, 85, 95 });
 	runAnimationRight.PushBack({ 85,8,85,95 });
 	runAnimationRight.PushBack({ 167,8,85,95 });
 	runAnimationRight.PushBack({ 248,8,85,95 });
-	runAnimationRight.speed = 0.0009f;
+	runAnimationRight.speed = 0.09f;
 	runAnimationRight.loop = true;
 
 	runAnimationLeft.PushBack({ 330,8,85,95 });
@@ -32,6 +33,8 @@ Player::Player() :  Module()
 	jumpAnimation.PushBack({ 100, 100, 85, 95 });
 	jumpAnimation.speed = 0.0009f;
 	jumpAnimation.loop = true;
+
+	name.Create("player");
 }
 
 Player::~Player()
@@ -99,19 +102,21 @@ bool Player::PreUpdate()
 	}
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		position.x += speedX;
+		//position.x += speedX;
+		//player->body->SetTransform({ player->body->GetPosition().x + speed.x, player->body->GetPosition().y }, 0);
 		currentAnimation = &runAnimationRight;
 		
-		player->body->SetLinearVelocity({ 1, player->body->GetLinearVelocity().y });
+		player->body->SetLinearVelocity({ speed.x, player->body->GetLinearVelocity().y });
 		//playerVelocity = player->body->GetLinearVelocity();
 	}
 	
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
-		position.x -= speedX;
 		
-		player->body->SetLinearVelocity({ -1, player->body->GetLinearVelocity().y });
+		
+		player->body->SetLinearVelocity({ -speed.x, player->body->GetLinearVelocity().y });
 		//playerVelocity = player->body->GetLinearVelocity();
+		position.x = player->body->GetPosition().x;
 		currentAnimation = &runAnimationLeft;
 	}
 	if (canJump || canDoubleJump)
@@ -121,7 +126,7 @@ bool Player::PreUpdate()
 			
 
 
-			player->body->SetLinearVelocity({ player->body->GetLinearVelocity().x , -3});
+			player->body->SetLinearVelocity({ player->body->GetLinearVelocity().x , speed.y});
 			//playerVelocity = player->body->GetLinearVelocity();
 			if (currentAnimation != &jumpAnimation) currentAnimation = &jumpAnimation;
 			if (canJump == false)
@@ -131,7 +136,8 @@ bool Player::PreUpdate()
 			canJump = false;
 		}
 	}
-	
+	if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE) && (app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE) && (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE))
+		currentAnimation = &idleAnimation;
 	
 	
 	
@@ -141,7 +147,7 @@ bool Player::Update(float dt)
 {
 	bool ret = true;
 	
-	
+	//player->body->SetTransform({(float) position.x,(float) position.y }, 0);
 	currentAnimation->Update();
 	return ret;
 }
@@ -195,8 +201,8 @@ bool Player::LoadState(pugi::xml_node& node)
 bool Player::SaveState(pugi::xml_node& node)
 {
 	pugi::xml_node pos = node.append_child("position");
-	pos.append_attribute("x").set_value(position.x);
-	pos.append_attribute("y").set_value(position.y);
+	pos.append_attribute("x").set_value(player->body->GetPosition().x);
+	pos.append_attribute("y").set_value(player->body->GetPosition().y +1);
 	
 	return true;
 }
