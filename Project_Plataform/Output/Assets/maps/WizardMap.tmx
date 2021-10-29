@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" width="100" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" name="Untitled-1" tilewidth="32" tileheight="32" tilecount="792" columns="24">
   <image source="Untitled-1.png" trans="969696" width="768" height="1063"/>
  </tileset>
@@ -11,7 +11,7 @@
  </tileset>
  <layer id="2" name="Background" width="100" height="15">
   <properties>
-   <property name="NoDraw" value="1"/>
+   <property name="Draw" value="1"/>
   </properties>
   <data>
    <tile gid="793"/>
@@ -1518,8 +1518,8 @@
  </layer>
  <layer id="4" name="Collider" width="100" height="15">
   <properties>
-   <property name="Navigation" value="1"/>
-   <property name="NoDraw" value="1"/>
+   <property name="Collider" value="1"/>
+   <property name="Draw" value="0"/>
   </properties>
   <data>
    <tile/>

@@ -3,6 +3,7 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Map.h"
+#include "Physics.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -24,6 +25,7 @@ int Properties::GetProperty(const char* value, int defaultValue) const
 	//...
 
 	ListItem<Property*>* item = list.start;
+	
 
 	while (item)
 	{
@@ -196,10 +198,10 @@ SDL_Rect TileSet::GetTileRect(int id) const
 	SDL_Rect rect = { 0 };
 	int relativeIndex = id - firstgid;
 
-	rect.x = margin + (tile_width + spacing) * (relativeIndex % columns);
-	rect.y = margin + (tile_height + spacing) * (relativeIndex / columns);
-	rect.w = tile_width;
-	rect.h = tile_height;
+	rect.x = margin + (tileWidth + spacing) * (relativeIndex % columns);
+	rect.y = margin + (tileHeight + spacing) * (relativeIndex / columns);
+	rect.w = tileWidth;
+	rect.h = tileHeight;
 
 	return rect;
 }
@@ -265,6 +267,7 @@ bool Map::Load(const char* filename)
     }
 
 	// L04: TODO 4: Iterate all layers and load each of them
+	
 	if (ret == true)
 	{
 		ret = LoadAllLayers(mapFile.child("map"));
@@ -334,8 +337,8 @@ bool Map::LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set)
 	// L03: DONE 4: Load Tileset attributes
 	set->name.Create(tileset_node.attribute("name").as_string());
 	set->firstgid = tileset_node.attribute("firstgid").as_int();
-	set->tile_width = tileset_node.attribute("tilewidth").as_int();
-	set->tile_height = tileset_node.attribute("tileheight").as_int();
+	set->tileWidth = tileset_node.attribute("tilewidth").as_int();
+	set->tileHeight = tileset_node.attribute("tileheight").as_int();
 	set->margin = tileset_node.attribute("margin").as_int();
 	set->spacing = tileset_node.attribute("spacing").as_int();
 	set->tilecount = tileset_node.attribute("tilecount").as_int();
@@ -381,6 +384,9 @@ bool Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	layer->name = node.attribute("name").as_string();
 	layer->height = node.attribute("height").as_int();
 	layer->width = node.attribute("width").as_int();
+	
+	
+	LoadProperties(node, layer->properties);
 
 	//Initialize the tile array and reserve the memory 
 	layer->data = new uint[layer->height * layer->width];
@@ -412,39 +418,53 @@ bool Map::LoadAllLayers(pugi::xml_node mapNode) {
 	}
 	return ret;
 }
+bool Map::LoadProperties(pugi::xml_node& node, Properties& properties)
+{
+	bool ret = false;
 
-//bool Map::SetMapColliders()
-//{
-//	bool ret = true;
-//
-//	ListItem<MapLayer*>* mapLayerItem;
-//	mapLayerItem = mapData.maplayers.start;
-//	LOG("--------!!!SETTING COLLIDERS!!!---------");
-//	while (mapLayerItem != NULL) {
-//
-//		if (mapLayerItem->data->properties.GetProperty("Collider") == 1) {
-//
-//			for (int x = 0; x < mapLayerItem->data->width; x++)
-//			{
-//				for (int y = 0; y < mapLayerItem->data->height; y++)
-//				{
-//					int gid = mapLayerItem->data->Get(x, y);
-//
-//					if (gid > 0) {
-//
-//						TileSet* tileset = GetTilesetFromTileId(gid);
-//
-//						SDL_Rect r = tileset->GetTileRect(gid);
-//						iPoint pos;
-//						pos = MapToWorld(x, y);
-//
-//						app->physics->groundColliders.add(app->physics->CreateRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight, b2_staticBody));
-//					}
-//
-//				}
-//			}
-//		}
-//		mapLayerItem = mapLayerItem->next;
-//	}
-//	return ret;
-//}
+	for (pugi::xml_node propertieNode = node.child("properties").child("property"); propertieNode; propertieNode = propertieNode.next_sibling("property"))
+	{
+		Properties::Property* p = new Properties::Property();
+		p->name = propertieNode.attribute("name").as_string();
+		p->value = propertieNode.attribute("value").as_int();
+
+		properties.list.add(p);
+	}
+
+	return ret;
+}
+bool Map::SetMapColliders()
+{
+	bool ret = true;
+
+	ListItem<MapLayer*>* mapLayerItem;
+	mapLayerItem = mapData.maplayers.start;
+	LOG("--------!!!SETTING COLLIDERS!!!---------");
+	while (mapLayerItem != NULL) {
+
+		if (mapLayerItem->data->properties.GetProperty("Collider") == 1) {
+
+			for (int x = 0; x < mapLayerItem->data->width; x++)
+			{
+				for (int y = 0; y < mapLayerItem->data->height; y++)
+				{
+					int gid = mapLayerItem->data->Get(x, y);
+
+					if (gid > 0) {
+
+						TileSet* tileset = GetTilesetFromTileId(gid);
+
+						SDL_Rect r = tileset->GetTileRect(gid);
+						iPoint pos;
+						pos = MapToWorld(x, y);
+
+						app->physics->groundColliders.add(app->physics->CreateStaticRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight));
+					}
+
+				}
+			}
+		}
+		mapLayerItem = mapLayerItem->next;
+	}
+	return ret;
+}

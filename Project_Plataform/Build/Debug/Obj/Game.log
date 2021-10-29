@@ -1,45 +1,7 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(477,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  Main.cpp
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Audio.cpp
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Input.cpp
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
   Map.cpp
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Physics.cpp
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(105,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(106,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(129,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(130,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(173,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(323,82): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(323,64): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(323,46): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(323,34): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(402,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(403,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Physics.cpp(409,27): warning C4244: 'return': conversion from 'float32' to 'int', possible loss of data
-  Player.cpp
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Scene.cpp
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Render.cpp
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Textures.cpp
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Window.cpp
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-  Game.vcxproj -> C:\Users\Nitropc\Documents\GitHu\Project_Plataform\Build\Debug\Game.exe
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Map.cpp(461,120): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Map.cpp(461,83): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  Game.vcxproj -> C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Build\Debug\Game.exe

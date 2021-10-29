@@ -54,11 +54,9 @@ public:
 
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
-	void Test()
-	{
-		
-	}
+	
 
+	List<PhysBody*> groundColliders;
 private:
 
 	bool debug;
@@ -66,4 +64,5 @@ private:
 	b2MouseJoint* mouseJoint;
 	b2Body* ground;
 	b2Vec2 clickedBodyPos;
+	
 };
