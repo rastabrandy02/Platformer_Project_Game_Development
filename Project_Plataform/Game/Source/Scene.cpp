@@ -60,13 +60,17 @@ bool Scene::Update(float dt)
 
 	if(app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		app->render->camera.x += 1;
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	{
 
+	}
+	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+		app->SaveGameRequest();
 
-	if (app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		app->LoadGameRequest();
 
-	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
-		app->SaveGameRequest();
+	
 
 	//app->render->DrawTexture(img, 380, 100);
 	//app->render->DrawTexture(app->player->wizard, position.x, position.y);

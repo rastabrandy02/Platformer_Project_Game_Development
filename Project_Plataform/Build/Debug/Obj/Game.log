@@ -1,5 +1,9 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
-  Render.cpp
+  Map.cpp
 C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Map.cpp(102,21): warning C4244: 'inicializando': conversión de 'Uint32' a 'float'; posible pérdida de datos
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Map.cpp(105,23): warning C4244: 'argumento': conversión de 'float' a 'Uint32'; posible pérdida de datos
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Map.cpp(480,120): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Map.cpp(480,83): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
   Game.vcxproj -> C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Build\Debug\Game.exe

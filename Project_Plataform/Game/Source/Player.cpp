@@ -57,7 +57,7 @@ bool Player::Start()
 	wizard = app->tex->Load("Assets/sprites/wizard_spritesheet.png");
 	//player = app->physics->CreateRectangle(position.x, position.y, 50, 50);
 	player = app->physics->CreateCircle(position.x, position.y, 25);
-	player->body->SetGravityScale(0.2f);
+	//player->body->SetGravityScale(0.2f);
 	player->body->SetFixedRotation(true);
 	//player->body->GetFixtureList()->SetSensor(true);
 	/*playerSensor = app->physics->CreateRectangle(position.x, position.y, 51, 51);

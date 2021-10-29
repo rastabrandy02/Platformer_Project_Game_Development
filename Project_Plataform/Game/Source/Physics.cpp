@@ -43,6 +43,7 @@ bool Physics::Start()
 
 bool Physics::PreUpdate()
 {
+
 	world->Step(1.0f / 60.0f, 6, 2);
 
 	for(b2Contact* c = world->GetContactList(); c; c = c->GetNext())
@@ -196,7 +197,7 @@ PhysBody* Physics::CreateChain(int x, int y, int* points, int size)
 // 
 bool Physics::PostUpdate()
 {
-	if(app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	if(app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
 		debug = !debug;
 
 	if(!debug)

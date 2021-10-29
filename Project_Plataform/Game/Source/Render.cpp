@@ -31,6 +31,7 @@ bool Render::Awake(pugi::xml_node& config)
 	if(config.child("vsync").attribute("value").as_bool(true) == true)
 	{
 		flags |= SDL_RENDERER_PRESENTVSYNC;
+		VsyncActive = true;
 		LOG("Using vsync");
 	}
 
@@ -249,7 +250,7 @@ bool Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, Uin
 		//result = SDL_RenderDrawLine(renderer, camera.x + x * scale, camera.y + y * scale);
 		for (uint i = 0; i < 360; ++i)
 		{
-			points[i].x = (int)((x + camera.x) + radius   * cos(i * factor));
+			points[i].x = (int)((x + camera.x) + radius  * cos(i * factor));
 			points[i].y = (int)((y + camera.y )+ radius  * sin(i * factor));
 		}
 		

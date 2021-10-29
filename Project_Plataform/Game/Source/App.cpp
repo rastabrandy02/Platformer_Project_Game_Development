@@ -122,6 +122,8 @@ bool App::Update()
 	if(input->GetWindowEvent(WE_QUIT) == true)
 		ret = false;
 
+	
+
 	if(ret == true)
 		ret = PreUpdate();
 
@@ -131,6 +133,7 @@ bool App::Update()
 	if(ret == true)
 		ret = PostUpdate();
 
+	
 	FinishUpdate();
 	return ret;
 }
@@ -296,6 +299,10 @@ void App:: LoadGameRequest()
 void App::SaveGameRequest() const
 {
 	saveRequest = true;
+}
+void App::LoadLevel1Request()
+{
+
 }
 
 // L02: TODO 5: Implement the method LoadFromFile() to actually load an xml file

@@ -55,7 +55,7 @@ private:
 	SDL_Rect playerRec;
 	
 	
-	b2Vec2 speed = { 1.0f, -3.0f };
+	b2Vec2 speed = { 5.0f, -5.0f };
 	
 	bool isFalling;
 	

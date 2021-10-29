@@ -52,6 +52,8 @@ bool Map::Awake(pugi::xml_node& config)
 // Draw the map (all requried layers)
 void Map::Draw()
 {
+	Uint32 timeStep = 1000 / 60;
+	Uint32 initTime = SDL_GetTicks();
 	if (mapLoaded == false) return;
 
 	// L04: DONE 5: Prepare the loop to draw all tilesets + DrawTexture()
@@ -92,6 +94,19 @@ void Map::Draw()
 		
 
 		mapLayerItem = mapLayerItem->next;
+	}
+	Uint32 finishTime = SDL_GetTicks();
+	if (app->render->VsyncActive == false)
+	{
+		
+		float elapsedTime = finishTime - initTime;
+		if (timeStep - elapsedTime > 0.0f)
+		{
+			SDL_Delay(timeStep - elapsedTime);
+		}
+			
+		
+		
 	}
 }
 

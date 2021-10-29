@@ -68,6 +68,8 @@ public:
 	bool LoadFromFile();
 	bool SaveToFile() const;
 
+	void LoadLevel1Request();
+
 private:
 
 	// Load config file
