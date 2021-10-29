@@ -89,6 +89,7 @@ void Map::Draw()
 				}
 			}
 		}
+		
 
 		mapLayerItem = mapLayerItem->next;
 	}
@@ -280,7 +281,10 @@ bool Map::Load(const char* filename)
 
 		// L04: TODO 4: LOG the info for each loaded layer
     }
-	
+	if (ret == true)
+	{
+		ret = SetMapColliders();
+	}
 	// Clean up the pugui tree
 	if(mapFile) mapFile.reset();
 

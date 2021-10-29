@@ -52,20 +52,25 @@ bool Player::Start()
 	bool ret = true;
 	//wizard = app->tex->Load("Assets/sprites/mago01.png");
 	wizard = app->tex->Load("Assets/sprites/wizard_spritesheet.png");
-	player = app->physics->CreateRectangle(position.x, position.y, 50, 50);
+	//player = app->physics->CreateRectangle(position.x, position.y, 50, 50);
+	player = app->physics->CreateCircle(position.x, position.y, 25);
 	player->body->SetGravityScale(0.2f);
+	player->body->SetFixedRotation(true);
 	//player->body->GetFixtureList()->SetSensor(true);
 	/*playerSensor = app->physics->CreateRectangle(position.x, position.y, 51, 51);
 	playerSensor->body->GetFixtureList()->SetSensor(true);*/
 	b2PolygonShape sensorShape;
-	sensorShape.SetAsBox(PIXEL_TO_METERS(30),PIXEL_TO_METERS (30));
+	sensorShape.SetAsBox(PIXEL_TO_METERS(26),PIXEL_TO_METERS (26));
+	
+	
 	b2FixtureDef sensorFixture;
 	sensorFixture.shape = &sensorShape;
 	sensorFixture.isSensor = true;
+	
 	playerSensor = player->body->CreateFixture(&sensorFixture);
 	playerSensor->SetUserData((void*)1);
 	
-	PhysBody* ground = app->physics->CreateStaticRectangle(500, 390, 1100, 200);
+	//PhysBody* ground = app->physics->CreateStaticRectangle(500, 390, 1100, 200);
 	
 	return ret;
 }
@@ -145,7 +150,7 @@ bool Player::PostUpdate()
 	bool ret = true;
 	SDL_Rect section = currentAnimation->GetCurrentFrame();
 	//app->render->DrawTexture(wizard, position.x,position.y, &section);
-	app->render->DrawTexture(wizard, METERS_TO_PIXELS(player->body->GetPosition().x) -50,METERS_TO_PIXELS( player->body->GetPosition().y)-50, &section);
+	app->render->DrawTexture(wizard, METERS_TO_PIXELS(player->body->GetPosition().x) -35,METERS_TO_PIXELS( player->body->GetPosition().y)-50, &section);
 	
 	
 	
