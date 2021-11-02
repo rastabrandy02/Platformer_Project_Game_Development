@@ -11,7 +11,11 @@
 
 class PhysBody;
 struct b2MassData;
-
+enum directionOfView
+{
+	RIGHT = 0,
+	LEFT
+};
 struct Object
 {
 	SDL_Texture* graphic;
@@ -57,21 +61,32 @@ private:
 	
 	b2Vec2 speed = { 5.0f, -5.0f };
 	
-	bool isFalling;
 	
-	int jumpStartPos;
-	int maxJump = 100;
+	
 	bool canJump = false;
 	bool canDoubleJump = false;
+	bool onTheAir = false;
+
+	int lookingAt;
+	bool countLanding = false;
+	int landingTimer = 0;
 	
 	
 
 	SDL_Texture* wizard;
 	Animation* currentAnimation;
-	Animation idleAnimation;
+
+	Animation idleAnimationRight;
+	Animation idleAnimationLeft;
+
 	Animation runAnimationRight;
 	Animation runAnimationLeft;
-	Animation jumpAnimation;
+
+	Animation jumpAnimationRight;
+	Animation jumpAnimationLeft;
+
+	Animation landAnimationRight;
+	Animation landAnimationLeft;
 };
 
 #endif // !__PLAYER_H__
