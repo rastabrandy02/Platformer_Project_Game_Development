@@ -79,7 +79,7 @@ bool Scene::Update(float dt)
 	{
 		if (app->input->GetKey(SDL_SCANCODE_SPACE))
 		{
-			//app->currentScene = SCENE_LEVEL_1;
+			
 			app->ChangeScene(SCENE_LEVEL_1);
 			
 		}
