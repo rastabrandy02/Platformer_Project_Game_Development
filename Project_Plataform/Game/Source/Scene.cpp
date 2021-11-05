@@ -30,11 +30,16 @@ bool Scene::Awake()
 // Called before the first frame
 bool Scene::Start()
 {
-	//img = app->tex->Load("Assets/textures/test.png");
-	//app->map->Load("hello.tmx");
-	app->map->Load("WizardMap.tmx");
-	//img = app->tex->Load("Assets/sprites/mago01.png");
-	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
+	if (app->currentScene == SCENE_TITLE)
+	{
+
+	}
+	else if (app->currentScene == SCENE_LEVEL_1)
+	{
+		app->map->Load("WizardMap.tmx");
+		app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
+	}
+	
 	return true;
 }
 
@@ -70,11 +75,23 @@ bool Scene::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		app->LoadGameRequest();
 
-	
+	if (app->currentScene == SCENE_TITLE)
+	{
+		if (app->input->GetKey(SDL_SCANCODE_SPACE))
+		{
+			//app->currentScene = SCENE_LEVEL_1;
+			app->ChangeScene(SCENE_LEVEL_1);
+			
+		}
+	}
 
 	//app->render->DrawTexture(img, 380, 100);
 	//app->render->DrawTexture(app->player->wizard, position.x, position.y);
-	app->map->Draw();
+	if (app->currentScene == SCENE_LEVEL_1)
+	{
+		app->map->Draw();
+	}
+	
 
 	return true;
 }

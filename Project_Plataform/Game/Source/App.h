@@ -11,6 +11,7 @@
 #include "Scene.h"
 #include "Animation.h"
 #include "Map.h"
+#include "MainHeader.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -31,6 +32,14 @@ class Player;
 class Map;
 class Physics;
 
+
+enum sceneEnum
+{
+	SCENE_TITLE,
+	SCENE_LEVEL_1,
+	SCENE_DEATH
+	
+};
 class App
 {
 public:
@@ -70,6 +79,8 @@ public:
 
 	void LoadLevel1Request();
 
+	void ChangeScene(sceneEnum nextScene);
+
 private:
 
 	// Load config file
@@ -90,6 +101,8 @@ private:
 	// Call modules after each loop iteration
 	bool PostUpdate();
 
+	
+
 public:
 
 	// Modules
@@ -103,6 +116,7 @@ public:
 	Map* map;
 	Physics* physics;
 
+	sceneEnum currentScene;
 #define SCREEN_HEIGHT 758
 #define SCREEN_WIDTH 1024
 

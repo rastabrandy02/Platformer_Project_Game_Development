@@ -93,7 +93,7 @@ bool App::Awake()
 			item = item->next;
 		}
 	}
-
+	currentScene = SCENE_TITLE;
 	return ret;
 }
 
@@ -335,7 +335,7 @@ bool App::LoadFromFile()
 	
 
 }
-
+// L02: TODO 7: Implement the xml save method SaveToFile() for current state
 
 bool App::SaveToFile() const
 {
@@ -358,9 +358,14 @@ bool App::SaveToFile() const
 
 }
 
+void App::ChangeScene(sceneEnum nextScene)
+{
+	currentScene = nextScene;
+	Start();
+	//state = START;
+}
 
 
-// L02: TODO 7: Implement the xml save method SaveToFile() for current state
 
 
 

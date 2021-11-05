@@ -1,5 +1,6 @@
-#include "App.h"
+//#include "App.h"
 
+#include "MainHeader.h"
 #include "Defs.h"
 #include "Log.h"
 
@@ -30,6 +31,7 @@ int main(int argc, char* args[])
 	LOG("Engine starting ...");
 	
 	MainState state = CREATE;
+	//state = CREATE;
 	int result = EXIT_FAILURE;
 
 	while(state != EXIT)
