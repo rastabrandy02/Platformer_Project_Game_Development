@@ -32,7 +32,10 @@ bool Scene::Start()
 {
 	if (app->currentScene == SCENE_TITLE)
 	{
-
+		if (app->input->GetKey(SDL_SCANCODE_SPACE))
+		{
+			app->ChangeScene(SCENE_LEVEL_1);
+		}
 	}
 	else if (app->currentScene == SCENE_LEVEL_1)
 	{
@@ -79,9 +82,7 @@ bool Scene::Update(float dt)
 	{
 		if (app->input->GetKey(SDL_SCANCODE_SPACE))
 		{
-			
 			app->ChangeScene(SCENE_LEVEL_1);
-			
 		}
 	}
 
