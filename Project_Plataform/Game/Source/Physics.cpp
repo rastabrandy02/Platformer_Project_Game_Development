@@ -19,7 +19,7 @@ Physics::Physics() : Module()
 {
 	world = NULL;
 	mouseJoint = NULL;
-	debug = true;
+	debug = false;
 }
 
 // Destructor
@@ -30,11 +30,14 @@ Physics::~Physics()
 bool Physics::Start()
 {
 	LOG("Creating Physics 2D environment");
-
-	world = new b2World(b2Vec2(GRAVITY_X, -GRAVITY_Y));
-	//world->SetContactListener(this);
-	world->SetContactListener(app->player);
-	// needed to create joints like mouse joint
+	if (app->currentScene == SCENE_LEVEL_1)
+	{
+		world = new b2World(b2Vec2(GRAVITY_X, -GRAVITY_Y));
+		//world->SetContactListener(this);
+		world->SetContactListener(app->player);
+		// needed to create joints like mouse joint
+	}
+	
 	name.Create("physics");
 
 	return true;
@@ -43,19 +46,22 @@ bool Physics::Start()
 
 bool Physics::PreUpdate()
 {
-
-	world->Step(1.0f / 60.0f, 6, 2);
-
-	for(b2Contact* c = world->GetContactList(); c; c = c->GetNext())
+	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		if(c->GetFixtureA()->IsSensor() && c->IsTouching())
+		world->Step(1.0f / 60.0f, 6, 2);
+
+		for (b2Contact* c = world->GetContactList(); c; c = c->GetNext())
 		{
-			PhysBody* pb1 = (PhysBody*)c->GetFixtureA()->GetBody()->GetUserData();
-			PhysBody* pb2 = (PhysBody*)c->GetFixtureA()->GetBody()->GetUserData();
-			if(pb1 && pb2 && pb1->listener)
-				pb1->listener->OnCollision(pb1, pb2);
+			if (c->GetFixtureA()->IsSensor() && c->IsTouching())
+			{
+				PhysBody* pb1 = (PhysBody*)c->GetFixtureA()->GetBody()->GetUserData();
+				PhysBody* pb2 = (PhysBody*)c->GetFixtureA()->GetBody()->GetUserData();
+				if (pb1 && pb2 && pb1->listener)
+					pb1->listener->OnCollision(pb1, pb2);
+			}
 		}
 	}
+	
 
 	return true;
 }
@@ -197,27 +203,29 @@ PhysBody* Physics::CreateChain(int x, int y, int* points, int size)
 // 
 bool Physics::PostUpdate()
 {
-	if(app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
-		debug = !debug;
-
-	if(!debug)
-		return true;
-
-	// Bonus code: this will iterate all objects in the world and draw the circles
-	// You need to provide your own macro to translate meters to pixels
-	b2Body* clickedBody = NULL;
-	b2Vec2 mousePos;
-	int mPosX, mPosY;
-    app->input->GetMousePosition(mPosX, mPosY);
-	mousePos = { PIXEL_TO_METERS(mPosX), PIXEL_TO_METERS(mPosY)};
-
-	for(b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		for(b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
+		if (app->input->GetKey(SDL_SCANCODE_F9) == KEY_DOWN)
+			debug = !debug;
+
+		if (!debug)
+			return true;
+
+		// Bonus code: this will iterate all objects in the world and draw the circles
+		// You need to provide your own macro to translate meters to pixels
+		b2Body* clickedBody = NULL;
+		b2Vec2 mousePos;
+		int mPosX, mPosY;
+		app->input->GetMousePosition(mPosX, mPosY);
+		mousePos = { PIXEL_TO_METERS(mPosX), PIXEL_TO_METERS(mPosY) };
+
+		for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 		{
-			switch(f->GetType())
+			for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
 			{
-				// Draw circles ------------------------------------------------
+				switch (f->GetType())
+				{
+					// Draw circles ------------------------------------------------
 				case b2Shape::e_circle:
 				{
 					b2CircleShape* shape = (b2CircleShape*)f->GetShape();
@@ -233,10 +241,10 @@ bool Physics::PostUpdate()
 					int32 count = polygonShape->GetVertexCount();
 					b2Vec2 prev, v;
 
-					for(int32 i = 0; i < count; ++i)
+					for (int32 i = 0; i < count; ++i)
 					{
 						v = b->GetWorldPoint(polygonShape->GetVertex(i));
-						if(i > 0)
+						if (i > 0)
 							app->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 255, 100, 100);
 
 						prev = v;
@@ -253,10 +261,10 @@ bool Physics::PostUpdate()
 					b2ChainShape* shape = (b2ChainShape*)f->GetShape();
 					b2Vec2 prev, v;
 
-					for(int32 i = 0; i < shape->m_count; ++i)
+					for (int32 i = 0; i < shape->m_count; ++i)
 					{
 						v = b->GetWorldPoint(shape->m_vertices[i]);
-						if(i > 0)
+						if (i > 0)
 							app->render->DrawLine(METERS_TO_PIXELS(prev.x), METERS_TO_PIXELS(prev.y), METERS_TO_PIXELS(v.x), METERS_TO_PIXELS(v.y), 100, 255, 100);
 						prev = v;
 					}
@@ -277,66 +285,68 @@ bool Physics::PostUpdate()
 					app->render->DrawLine(METERS_TO_PIXELS(v1.x), METERS_TO_PIXELS(v1.y), METERS_TO_PIXELS(v2.x), METERS_TO_PIXELS(v2.y), 100, 100, 255);
 				}
 				break;
-			}
+				}
 
-			// TODO 1: If mouse button 1 is pressed ...
-			// test if the current body contains mouse position
-			
-			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-			{
-				
-				if(b->GetFixtureList()->GetShape()->TestPoint(b->GetTransform(), mousePos)) clickedBody = b;
+				// TODO 1: If mouse button 1 is pressed ...
+				// test if the current body contains mouse position
+
+				if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+				{
+
+					if (b->GetFixtureList()->GetShape()->TestPoint(b->GetTransform(), mousePos)) clickedBody = b;
+				}
+
 			}
-			
 		}
-	}
 
-	// If a body was selected we will attach a mouse joint to it
-	// so we can pull it around
-	// TODO 2: If a body was selected, create a mouse joint
-	// using mouse_joint class property
-	
-	if (clickedBody != NULL)
-	{
-		b2MouseJointDef mJoint;
-		mJoint.bodyA = ground;
-		mJoint.bodyB = clickedBody;
-		mJoint.target = mousePos;
-		mJoint.dampingRatio = 0.5f;
-		mJoint.frequencyHz = 2.0f;
-		mJoint.maxForce = 100.0f * clickedBody->GetMass();
-		mouseJoint = (b2MouseJoint*)world->CreateJoint(&mJoint);
+		// If a body was selected we will attach a mouse joint to it
+		// so we can pull it around
+		// TODO 2: If a body was selected, create a mouse joint
+		// using mouse_joint class property
 
-		 clickedBodyPos.x = clickedBody->GetPosition().x;
-		 clickedBodyPos.y = clickedBody->GetPosition().y;
-		
-		
-
-		
-	}
-	// TODO 3: If the player keeps pressing the mouse button, update
-// target position and draw a red line between both anchor points
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
-	{
-		mouseJoint->SetTarget(mousePos);
 		if (clickedBody != NULL)
 		{
-			app->render->DrawLine(mousePos.x, mousePos.y, clickedBodyPos.x, clickedBodyPos.y, 255, 0, 0, 255);
-		}
-		
-		
+			b2MouseJointDef mJoint;
+			mJoint.bodyA = ground;
+			mJoint.bodyB = clickedBody;
+			mJoint.target = mousePos;
+			mJoint.dampingRatio = 0.5f;
+			mJoint.frequencyHz = 2.0f;
+			mJoint.maxForce = 100.0f * clickedBody->GetMass();
+			mouseJoint = (b2MouseJoint*)world->CreateJoint(&mJoint);
 
-		
+			clickedBodyPos.x = clickedBody->GetPosition().x;
+			clickedBodyPos.y = clickedBody->GetPosition().y;
+
+
+
+
+		}
+		// TODO 3: If the player keeps pressing the mouse button, update
+	// target position and draw a red line between both anchor points
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+		{
+			mouseJoint->SetTarget(mousePos);
+			if (clickedBody != NULL)
+			{
+				app->render->DrawLine(mousePos.x, mousePos.y, clickedBodyPos.x, clickedBodyPos.y, 255, 0, 0, 255);
+			}
+
+
+
+
+		}
+		// TODO 4: If the player releases the mouse button, destroy the joint
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP)
+		{
+			//delete mouseJoint;
+			world->DestroyJoint(mouseJoint);
+			mouseJoint = NULL;
+			clickedBody = NULL;
+		}
+
+
 	}
-	// TODO 4: If the player releases the mouse button, destroy the joint
-	if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP)
-	{
-		//delete mouseJoint;
-		world->DestroyJoint(mouseJoint);
-		mouseJoint = NULL;
-		clickedBody = NULL;
-	}
-	
 	
 	return true;
 }

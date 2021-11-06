@@ -59,6 +59,20 @@ Player::Player() :  Module()
 	landAnimationLeft.speed = 0.09f;
 	landAnimationLeft.loop = false;
 
+	dieAnimationRight.PushBack({ 20,280,85,85 });
+	dieAnimationRight.PushBack({ 110,280,85,85 });
+	dieAnimationRight.PushBack({ 200,280,85,85 });
+	dieAnimationRight.PushBack({ 290,280,75,85 });
+	dieAnimationRight.speed = 0.07f;
+	dieAnimationRight.loop = false;
+
+	dieAnimationLeft.PushBack({ 625,280,85,85 });
+	dieAnimationLeft.PushBack({ 535,280,85,85 });
+	dieAnimationLeft.PushBack({ 440,280,85,85 });
+	dieAnimationLeft.PushBack({ 365,280,75,85 });
+	dieAnimationLeft.speed = 0.07f;
+	dieAnimationLeft.loop = false;
+
 
 	name.Create("player");
 }
@@ -71,8 +85,8 @@ bool Player::Awake(pugi::xml_node &config)
 {
 	LOG("Loading player");
 	
-	position.x = 0;
-	position.y = 250;
+	position.x = config.child("position").attribute("x").as_int();
+	position.y = config.child("position").attribute("y").as_int();
 	
 	return true;
 }
@@ -82,22 +96,25 @@ bool Player::Start()
 	
 	//wizard = app->tex->Load("Assets/sprites/wizard_spritesheet.png");
 	wizard = app->tex->Load("Assets/sprites/wizard_spritesheet_extended.png");
+	if (app->currentScene == SCENE_LEVEL_1)
+	{
+		player = app->physics->CreateCircle(position.x, position.y, 25);
+
+		player->body->SetFixedRotation(true);
+		player->body->GetFixtureList()->SetFriction(5.0f);
+
+		b2PolygonShape sensorShape;
+		sensorShape.SetAsBox(PIXEL_TO_METERS(26), PIXEL_TO_METERS(26));
+
+
+		b2FixtureDef sensorFixture;
+		sensorFixture.shape = &sensorShape;
+		sensorFixture.isSensor = true;
+
+		playerSensor = player->body->CreateFixture(&sensorFixture);
+		playerSensor->SetUserData((void*)DATA_PLAYER);
+	}
 	
-	player = app->physics->CreateCircle(position.x, position.y, 25);
-	
-	player->body->SetFixedRotation(true);
-	player->body->GetFixtureList()->SetFriction(5.0f);
-	
-	b2PolygonShape sensorShape;
-	sensorShape.SetAsBox(PIXEL_TO_METERS(26),PIXEL_TO_METERS (26));
-	
-	
-	b2FixtureDef sensorFixture;
-	sensorFixture.shape = &sensorShape;
-	sensorFixture.isSensor = true;
-	
-	playerSensor = player->body->CreateFixture(&sensorFixture);
-	playerSensor->SetUserData((void*)1);
 	
 	
 	
@@ -117,79 +134,79 @@ bool Player::PreUpdate()
 {
 	bool ret = true;
 
-	
-	
-	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		
-		player->body->SetLinearVelocity({ speed.x, player->body->GetLinearVelocity().y });
-
-		lookingAt = RIGHT;
-		if(!onTheAir)currentAnimation = &runAnimationRight;
-		if (onTheAir && !countLanding) currentAnimation = &jumpAnimationRight;
-		
-	}
-	
-	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-	{
-		
-		
-		player->body->SetLinearVelocity({ -speed.x, player->body->GetLinearVelocity().y });
-		//playerVelocity = player->body->GetLinearVelocity();
-		//position.x = player->body->GetPosition().x;
-		lookingAt = LEFT;
-		if(!onTheAir)currentAnimation = &runAnimationLeft;
-		if (onTheAir && !countLanding) currentAnimation = &jumpAnimationLeft;
-	}
-	if (canJump || canDoubleJump)
-	{
-		if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN))
+		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && !isDead)
 		{
 			
+			player->body->SetLinearVelocity({ speed.x, player->body->GetLinearVelocity().y });
+
+			lookingAt = RIGHT;
+			if (!onTheAir)currentAnimation = &runAnimationRight;
+			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationRight;
+
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && !isDead)
+		{
 
 
-			player->body->SetLinearVelocity({ player->body->GetLinearVelocity().x , speed.y});
-			onTheAir = true;
+			player->body->SetLinearVelocity({ -speed.x, player->body->GetLinearVelocity().y });
 			//playerVelocity = player->body->GetLinearVelocity();
-			
+			//position.x = player->body->GetPosition().x;
+			lookingAt = LEFT;
+			if (!onTheAir)currentAnimation = &runAnimationLeft;
+			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationLeft;
+		}
+		if (canJump || canDoubleJump && !isDead)
+		{
+			if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN))
+			{
+
+
+
+				player->body->SetLinearVelocity({ player->body->GetLinearVelocity().x , speed.y });
+				onTheAir = true;
+				//playerVelocity = player->body->GetLinearVelocity();
+
+				switch (lookingAt)
+				{
+				case RIGHT:
+				{
+					currentAnimation = &jumpAnimationRight;
+				}break;
+				case LEFT:
+				{
+					currentAnimation = &jumpAnimationLeft;
+				}
+				default:
+					break;
+				}
+				if (canJump == false)
+				{
+					canDoubleJump = false;
+				}
+				canJump = false;
+			}
+		}
+		if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE) && (app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE) && (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE) && !onTheAir && !isDead)
+		{
 			switch (lookingAt)
 			{
 			case RIGHT:
 			{
-				 currentAnimation = &jumpAnimationRight;
+				currentAnimation = &idleAnimationRight;
 			}break;
 			case LEFT:
 			{
-				 currentAnimation = &jumpAnimationLeft;
+				currentAnimation = &idleAnimationLeft;
 			}
 			default:
 				break;
 			}
-			if (canJump == false)
-			{
-				canDoubleJump = false;
-			}
-			canJump = false;
 		}
+		
 	}
-	if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE) && (app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE) && (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE) && !onTheAir)
-	{
-		switch (lookingAt)
-		{
-		case RIGHT:
-		{
-			currentAnimation = &idleAnimationRight; 
-		}break;
-		case LEFT:
-		{
-			currentAnimation = &idleAnimationLeft;
-		}
-		default:
-			break;
-		}
-	}
-		//currentAnimation = &idleAnimationRight;
-	
 	
 	
 	return true;
@@ -197,27 +214,47 @@ bool Player::PreUpdate()
 bool Player::Update(float dt)
 {
 	bool ret = true;
-	if (onTheAir && countLanding)
+	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		landingTimer++;
-		if (landingTimer >= 30)
+		
+		if (onTheAir && countLanding)
 		{
-			onTheAir = false;
-			countLanding = false;
-			landingTimer = 0;
+			landingTimer++;
+			if (landingTimer >= 30)
+			{
+				onTheAir = false;
+				countLanding = false;
+				landingTimer = 0;
+			}
 		}
+		if (isDead)
+		{
+			deathTimer++;
+			if (deathTimer >= 60)
+			{
+				deathTimer = 0;
+				isDead = false;
+				Die();
+			}
+		}
+
+
+		currentAnimation->Update();
 	}
 	
-	currentAnimation->Update();
 	return ret;
 }
 bool Player::PostUpdate()
 {
 	bool ret = true;
-	SDL_Rect section = currentAnimation->GetCurrentFrame();
-	//app->render->DrawTexture(wizard, position.x,position.y, &section);
-	app->render->DrawTexture(wizard, METERS_TO_PIXELS(player->body->GetPosition().x) -35,METERS_TO_PIXELS( player->body->GetPosition().y)-50, &section);
-	
+	if (app->currentScene == SCENE_LEVEL_1)
+	{
+		SDL_Rect section = currentAnimation->GetCurrentFrame();
+		//app->render->DrawTexture(wizard, position.x,position.y, &section);
+		app->render->DrawTexture(wizard, METERS_TO_PIXELS(player->body->GetPosition().x) - 35, METERS_TO_PIXELS(player->body->GetPosition().y) - 50, &section);
+
+
+	}
 	
 	
 		
@@ -225,64 +262,125 @@ bool Player::PostUpdate()
 }
 void Player::BeginContact(b2Contact* contact)
 {
-	void* fixtureUserData = contact->GetFixtureA()->GetUserData();
+	void* fixtureUserDataA = contact->GetFixtureA()->GetUserData();
+	void* fixtureUserDataB = contact->GetFixtureB()->GetUserData();
 	
-	if (((int)fixtureUserData == 1))
+	if (((int)fixtureUserDataA == DATA_PLAYER))
 	{
+		if ((int)fixtureUserDataB == DATA_DEATH)
+		{
+			//Die();
+			/*currentAnimation = &landAnimationLeft;
+			isDead = true;*/
+			switch (lookingAt)
+			{
+			case RIGHT:
+			{
+				//currentAnimation = &idleAnimationRight;
+				currentAnimation = &dieAnimationRight;
+				isDead = true;
+
+			}break;
+			case LEFT:
+			{
+				//currentAnimation = &idleAnimationLeft;
+
+				currentAnimation = &dieAnimationLeft;
+				isDead = true;
+
+			}
+			default:
+				break;
+			}
+		}
+			return;
+		
 		canJump = true;
 		canDoubleJump = true;
-		switch (lookingAt)
+		if ((int)fixtureUserDataB == DATA_GROUND && !isDead)
 		{
-		case RIGHT:
-		{
-			//currentAnimation = &idleAnimationRight;
+			switch (lookingAt)
+			{
+			case RIGHT:
+			{
+				//currentAnimation = &idleAnimationRight;
 				currentAnimation = &landAnimationRight;
-				if(onTheAir) countLanding = true;
-			
-		}break;
-		case LEFT:
-		{
-			//currentAnimation = &idleAnimationLeft;
-			
+				if (onTheAir) countLanding = true;
+
+			}break;
+			case LEFT:
+			{
+				//currentAnimation = &idleAnimationLeft;
+
 				currentAnimation = &landAnimationLeft;
 				if (onTheAir) countLanding = true;
-			
+
+			}
+			default:
+				break;
+			}
 		}
-		default:
-			break;
-		}
+		
 	}
 	
-	 fixtureUserData = contact->GetFixtureB()->GetUserData();
-	if (((int)fixtureUserData == 1))
+	 
+	if (((int)fixtureUserDataB == DATA_PLAYER))
 	{
 		canJump = true;
 		canDoubleJump = true;
-		switch (lookingAt)
+		if ((int)fixtureUserDataA == DATA_DEATH)
 		{
-		case RIGHT:
+			switch (lookingAt)
+			{
+			case RIGHT:
+			{
+				
+				currentAnimation = &dieAnimationRight;
+				isDead = true;
+
+			}break;
+			case LEFT:
+			{
+				
+
+				currentAnimation = &dieAnimationLeft;
+				isDead = true;
+
+			}
+			default:
+				break;
+			}
+			return;
+		}
+		if ((int)fixtureUserDataA == DATA_GROUND && !isDead)
 		{
-			//currentAnimation = &idleAnimationRight;
-			
-			
+			switch (lookingAt)
+			{
+			case RIGHT:
+			{
+				//currentAnimation = &idleAnimationRight;
+
+
 				currentAnimation = &landAnimationRight;
 				if (onTheAir) countLanding = true;
-			
-			
-		}break;
-		case LEFT:
-		{
-			//currentAnimation = &idleAnimationLeft;
-			
-			
+
+
+			}break;
+			case LEFT:
+			{
+				//currentAnimation = &idleAnimationLeft;
+
+
 				currentAnimation = &landAnimationLeft;
 				if (onTheAir) countLanding = true;
-				
-			
+
+
+			}
+			default:
+				break;
+			}
 		}
-		default:
-			break;
-		}
+		
 	}
 
 
@@ -310,4 +408,9 @@ bool Player::SaveState(pugi::xml_node& node)
 	pos.append_attribute("y").set_value(player->body->GetPosition().y +1);
 	
 	return true;
+}
+
+void Player::Die()
+{
+	app->ChangeScene(SCENE_DEATH);
 }

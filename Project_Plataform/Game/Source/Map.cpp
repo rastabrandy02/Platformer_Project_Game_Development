@@ -476,8 +476,14 @@ bool Map::SetMapColliders()
 						SDL_Rect r = tileset->GetTileRect(gid);
 						iPoint pos;
 						pos = MapToWorld(x, y);
-
-						app->physics->groundColliders.add(app->physics->CreateStaticRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight));
+						PhysBody* item = app->physics->CreateStaticRectangle(pos.x + (tileset->tileWidth * 0.5f), pos.y + (tileset->tileHeight * 0.5f), tileset->tileWidth, tileset->tileHeight);
+						if (mapLayerItem->data->properties.GetProperty("Death") == 1)
+						{
+							item->body->GetFixtureList()->SetUserData((void*)DATA_DEATH);
+						}
+						else item->body->GetFixtureList()->SetUserData((void*)DATA_GROUND);
+						app->physics->groundColliders.add(item);
+						
 					}
 
 				}

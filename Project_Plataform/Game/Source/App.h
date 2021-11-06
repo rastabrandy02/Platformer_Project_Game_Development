@@ -104,7 +104,7 @@ private:
 	
 
 public:
-
+	
 	// Modules
 	Window* win;
 	Input* input;
@@ -116,7 +116,7 @@ public:
 	Map* map;
 	Physics* physics;
 
-	sceneEnum currentScene;
+	sceneEnum currentScene = SCENE_TITLE;
 #define SCREEN_HEIGHT 758
 #define SCREEN_WIDTH 1024
 

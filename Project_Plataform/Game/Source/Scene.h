@@ -33,7 +33,8 @@ public:
 	bool CleanUp();
 
 private:
-	SDL_Texture* img;
+	SDL_Texture* titlleBackground;
+	SDL_Texture* deathBackground;
 };
 
 #endif // __SCENE_H__

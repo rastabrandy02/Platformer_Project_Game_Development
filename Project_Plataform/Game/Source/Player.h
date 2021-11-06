@@ -44,6 +44,7 @@ public:
 
 
 	void BeginContact(b2Contact* contact);
+	void Die();
 
 	p2Point <int> position;
 	
@@ -71,6 +72,8 @@ private:
 	bool countLanding = false;
 	int landingTimer = 0;
 	
+	bool isDead = false;
+	int deathTimer = 0;
 	
 
 	SDL_Texture* wizard;
@@ -87,6 +90,9 @@ private:
 
 	Animation landAnimationRight;
 	Animation landAnimationLeft;
+
+	Animation dieAnimationRight;
+	Animation dieAnimationLeft;
 };
 
 #endif // !__PLAYER_H__

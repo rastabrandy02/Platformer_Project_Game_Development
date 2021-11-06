@@ -93,7 +93,7 @@ bool App::Awake()
 			item = item->next;
 		}
 	}
-	currentScene = SCENE_TITLE;
+	
 	return ret;
 }
 
@@ -361,8 +361,12 @@ bool App::SaveToFile() const
 void App::ChangeScene(sceneEnum nextScene)
 {
 	currentScene = nextScene;
+	
+	/*CleanUp();
+	Awake();*/
+	
 	Start();
-	//state = START;
+	
 }
 
 

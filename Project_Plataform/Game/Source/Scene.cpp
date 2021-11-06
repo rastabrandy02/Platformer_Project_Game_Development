@@ -23,7 +23,7 @@ bool Scene::Awake()
 {
 	LOG("Loading Scene");
 	bool ret = true;
-
+	
 	return ret;
 }
 
@@ -32,17 +32,22 @@ bool Scene::Start()
 {
 	if (app->currentScene == SCENE_TITLE)
 	{
-		if (app->input->GetKey(SDL_SCANCODE_SPACE))
-		{
-			app->ChangeScene(SCENE_LEVEL_1);
-		}
+		
+		//titlleBackground = app->tex->Load("Assets/maps/SceneTitle.png");
+		titlleBackground = app->tex->Load("Assets/maps/title_test.png");
+
 	}
-	else if (app->currentScene == SCENE_LEVEL_1)
+	
+	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		app->map->Load("WizardMap.tmx");
 		app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
+
 	}
-	
+	if (app->currentScene == SCENE_DEATH)
+	{
+		deathBackground = app->tex->Load("Assets/maps/DeathScreen.png");
+	}
 	return true;
 }
 
@@ -85,15 +90,28 @@ bool Scene::Update(float dt)
 			app->ChangeScene(SCENE_LEVEL_1);
 		}
 	}
-
+	if (app->currentScene == SCENE_DEATH)
+	{
+		if (app->input->GetKey(SDL_SCANCODE_SPACE))
+		{
+			return false;
+		}
+	}
 	//app->render->DrawTexture(img, 380, 100);
 	//app->render->DrawTexture(app->player->wizard, position.x, position.y);
+	
+	if (app->currentScene == SCENE_TITLE)
+	{
+		app->render->DrawTexture(titlleBackground, 0, 0);
+	}
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		app->map->Draw();
 	}
-	
-
+	if (app->currentScene == SCENE_DEATH)
+	{
+		app->render->DrawTexture(deathBackground, 0, 0);
+	}
 	return true;
 }
 
@@ -101,6 +119,7 @@ bool Scene::Update(float dt)
 bool Scene::PostUpdate()
 {
 	bool ret = true;
+	
 	SDL_Rect r = { 0, 700, 1500, 20 };
 	app->render->DrawRectangle(r, 0, 255, 0, 255);
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
