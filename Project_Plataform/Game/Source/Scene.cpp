@@ -34,7 +34,7 @@ bool Scene::Start()
 	{
 		
 		//titlleBackground = app->tex->Load("Assets/maps/SceneTitle.png");
-		titlleBackground = app->tex->Load("Assets/maps/title_test.png");
+		titlleBackground = app->tex->Load("Assets/maps/TitleScreen.png");
 
 	}
 	
