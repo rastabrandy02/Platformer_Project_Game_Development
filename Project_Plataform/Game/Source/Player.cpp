@@ -205,7 +205,33 @@ bool Player::PreUpdate()
 				break;
 			}
 		}
-		
+
+		// GOD MODE
+		// GOD MODE
+		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+		{
+			isDead == false;
+			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
+			{
+				player->body->SetLinearVelocity({ -speed.x, player->body->GetLinearVelocity().y });
+				lookingAt = RIGHT;
+				currentAnimation = &idleAnimationRight;
+			}
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE)
+			{
+				player->body->SetLinearVelocity({ -speed.x, player->body->GetLinearVelocity().y });
+				lookingAt = LEFT;
+				currentAnimation = &idleAnimationRight;
+			}
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE)
+			{
+				// no gravity
+			}
+			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
+			{
+
+			}
+		}
 	}
 	
 	
