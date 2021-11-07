@@ -58,6 +58,8 @@ bool Render::Start()
 {
 	LOG("render start");
 	// back background
+	camera.x = 0;
+	camera.y = 0;
 	SDL_RenderGetViewport(renderer, &viewport);
 	return true;
 }

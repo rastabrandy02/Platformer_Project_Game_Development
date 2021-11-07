@@ -62,7 +62,7 @@ private:
 	
 	b2Vec2 speed = { 5.0f, -5.0f };
 	
-	
+	bool godMode = false;
 	
 	bool canJump = false;
 	bool canDoubleJump = false;

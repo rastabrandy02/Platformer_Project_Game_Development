@@ -136,11 +136,14 @@ bool Player::PreUpdate()
 
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
+		if (godMode) player->body->SetGravityScale(0.0f);
+		else player->body->SetGravityScale(1.0f);
+
 		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && !isDead)
 		{
 			
-			player->body->SetLinearVelocity({ speed.x, player->body->GetLinearVelocity().y });
-
+			if(!godMode)player->body->SetLinearVelocity({ speed.x, player->body->GetLinearVelocity().y });
+			if(godMode) player->body->SetTransform({ player->body->GetPosition().x + PIXEL_TO_METERS(10), player->body->GetPosition().y }, 0.0f);
 			lookingAt = RIGHT;
 			if (!onTheAir)currentAnimation = &runAnimationRight;
 			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationRight;
@@ -151,14 +154,15 @@ bool Player::PreUpdate()
 		{
 
 
-			player->body->SetLinearVelocity({ -speed.x, player->body->GetLinearVelocity().y });
+			if(!godMode)player->body->SetLinearVelocity({ -speed.x, player->body->GetLinearVelocity().y });
+			if (godMode) player->body->SetTransform({ player->body->GetPosition().x - PIXEL_TO_METERS(10), player->body->GetPosition().y }, 0.0f);
 			//playerVelocity = player->body->GetLinearVelocity();
 			//position.x = player->body->GetPosition().x;
 			lookingAt = LEFT;
 			if (!onTheAir)currentAnimation = &runAnimationLeft;
 			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationLeft;
 		}
-		if (canJump || canDoubleJump && !isDead)
+		if (canJump || canDoubleJump && !isDead && !godMode)
 		{
 			if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN))
 			{
@@ -208,28 +212,19 @@ bool Player::PreUpdate()
 
 		// GOD MODE
 		// GOD MODE
-		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) godMode = !godMode;
+		if (godMode)
 		{
-			isDead == false;
-			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE)
+			
+			
+			if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 			{
-				player->body->SetLinearVelocity({ -speed.x, player->body->GetLinearVelocity().y });
-				lookingAt = RIGHT;
-				currentAnimation = &idleAnimationRight;
+				player->body->SetTransform({ player->body->GetPosition().x, player->body->GetPosition().y - PIXEL_TO_METERS(10) }, 0.0f);
 			}
-			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE)
+				
+			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 			{
-				player->body->SetLinearVelocity({ -speed.x, player->body->GetLinearVelocity().y });
-				lookingAt = LEFT;
-				currentAnimation = &idleAnimationRight;
-			}
-			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE)
-			{
-				// no gravity
-			}
-			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_IDLE)
-			{
-
+				player->body->SetTransform({ player->body->GetPosition().x, player->body->GetPosition().y + PIXEL_TO_METERS(10) }, 0.0f);
 			}
 		}
 	}
@@ -260,7 +255,7 @@ bool Player::Update(float dt)
 			{
 				deathTimer = 0;
 				isDead = false;
-				Die();
+				if(!godMode)Die();
 			}
 		}
 
@@ -279,9 +274,11 @@ bool Player::PostUpdate()
 		//app->render->DrawTexture(wizard, position.x,position.y, &section);
 		app->render->DrawTexture(wizard, METERS_TO_PIXELS(player->body->GetPosition().x) - 35, METERS_TO_PIXELS(player->body->GetPosition().y) - 50, &section);
 
-
+		int playerPosX;
+		int playerPosY;
+		player->GetPosition(playerPosX, playerPosY);
+		if (playerPosX > app->render->camera.x + 300) app->render->camera.x = -playerPosX + 300;
 	}
-	
 	
 		
 	return ret;
