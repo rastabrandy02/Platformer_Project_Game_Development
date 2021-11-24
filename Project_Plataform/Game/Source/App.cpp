@@ -17,7 +17,7 @@
 // Constructor
 App::App(int argc, char* args[]) : argc(argc), args(args)
 {
-	frames = 0;
+	 
 
 	input = new Input();
 	win = new Window();
@@ -42,7 +42,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	// Render last to swap buffer
 	AddModule(render);
 
-	
+	ptimer = new PerfTimer();
+	frameDuration = new PerfTimer();
+	maxFrameRate = 60;
 }
 
 // Destructor
@@ -117,6 +119,8 @@ bool App::Start()
 bool App::Update()
 {
 	bool ret = true;
+	
+
 	PrepareUpdate();
 
 	if(input->GetWindowEvent(WE_QUIT) == true)
@@ -164,6 +168,12 @@ bool App::LoadConfig()
 // ---------------------------------------------
 void App::PrepareUpdate()
 {
+	frameCount++;
+	lastSecFrameCount++;
+
+	// Calculate the dt: differential time since last frame
+	dt = frameDuration->ReadMs();
+	frameDuration->Start();
 }
 
 // ---------------------------------------------
@@ -181,6 +191,34 @@ void App::FinishUpdate()
 		SaveToFile();
 		saveRequest = false;
 	}
+
+	float secondsSinceStartup = startupTime.ReadSec();
+
+	if (lastSecFrameTime.Read() > 1000) {
+		lastSecFrameTime.Start();
+		framesPerSecond = lastSecFrameCount;
+		lastSecFrameCount = 0;
+		averageFps = (averageFps + framesPerSecond) / 2;
+	}
+
+	static char title[256];
+	sprintf_s(title, 256, "Game Development Platformer Project - Av.FPS: %.2f Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %I64u ",
+		averageFps, framesPerSecond, dt, secondsSinceStartup, frameCount);
+
+	// L08: DONE 2: Use SDL_Delay to make sure you get your capped framerate
+	if (FPSCapTo30)maxFrameRate = 30;
+	else maxFrameRate = 60;
+	float delay = float(1000 / maxFrameRate) - frameDuration->ReadMs();
+	//LOG("F: %f Delay:%f", frameDuration->ReadMs(), delay);
+
+	// L08: DONE 3: Measure accurately the amount of time SDL_Delay() actually waits compared to what was expected
+	PerfTimer* delayt = new PerfTimer();
+	delayt->Start();
+	if (maxFrameRate > 0 && delay > 0) SDL_Delay(delay);
+	
+	LOG("Expected %f milliseconds and the real delay is % f", delay, delayt->ReadMs());
+
+	app->win->SetTitle(title);
 }
 
 // Call modules before each loop iteration
@@ -369,7 +407,14 @@ void App::ChangeScene(sceneEnum nextScene)
 	
 }
 
-
+void App::ChangeMaxFPS(uint32 newFPS)
+{
+	maxFrameRate = newFPS;
+}
+uint32 App::GetMaxFPS()
+{
+	return maxFrameRate;
+}
 
 
 

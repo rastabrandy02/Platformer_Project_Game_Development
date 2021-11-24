@@ -11,7 +11,9 @@
 #include "Scene.h"
 #include "Animation.h"
 #include "Map.h"
-#include "MainHeader.h"
+#include "Timer.h"
+#include "PerfTimer.h"
+
 
 #include "Defs.h"
 #include "Log.h"
@@ -80,7 +82,8 @@ public:
 	void LoadLevel1Request();
 
 	void ChangeScene(sceneEnum nextScene);
-
+	void ChangeMaxFPS(uint32 newFPS);
+	uint32 GetMaxFPS();
 private:
 
 	// Load config file
@@ -120,6 +123,9 @@ public:
 #define SCREEN_HEIGHT 758
 #define SCREEN_WIDTH 1024
 
+	
+	bool FPSCapTo30 = false;
+
 private:
 
 	int argc;
@@ -137,12 +143,32 @@ private:
 	pugi::xml_node config;
 	pugi::xml_node configApp;
 
-	uint frames;
-	float dt;
+	
+	
 
 	// L02: TODO 1: Create methods to request Load and Save and control variables to make sure that executes the real Load and Save at the end of the frame
 	mutable bool saveRequest;
 	bool loadRequest;
+
+	PerfTimer* ptimer;
+	PerfTimer* frameDuration;
+
+	Timer startupTime;
+	Timer frameTime;
+	Timer lastSecFrameTime;
+
+	uint64 frameCount = 0;
+	uint32 framesPerSecond = 0;
+	uint32 lastSecFrameCount = 0;
+
+	uint32 maxFrameRate;
+
+	float averageFps = 0.0f;
+	float dt = 0.0f;
+
+	
+
+	
 };
 
 extern App* app;
