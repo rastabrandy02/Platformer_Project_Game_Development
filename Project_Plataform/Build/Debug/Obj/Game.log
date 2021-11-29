@@ -1,1 +1,57 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(436,5): error MSB8020: No se pueden encontrar las herramientas de compilación para Visual Studio 2019 (Conjunto de herramientas de la plataforma = 'v142'). Para compilar con las herramientas de compilación v142, instale las herramientas de compilación Visual Studio 2019. También puede actualizar a las herramientas actuales de Visual Studio. Para ello, seleccione el menú Proyecto o haga clic con el botón secundario en la solución y, a continuación, seleccione "Actualizar solución".
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+  App.cpp
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\App.cpp(175,28): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\App.cpp(211,14): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\App.cpp(217,47): warning C4244: 'argumento': conversión de 'float' a 'Uint32'; posible pérdida de datos
+  Audio.cpp
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Input.cpp
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Main.cpp
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Map.cpp
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Map.cpp(466,103): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Map.cpp(466,66): warning C4244: 'argumento': conversión de 'float' a 'int'; posible pérdida de datos
+  Physics.cpp
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(115,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(116,25): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(139,23): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(140,25): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(183,20): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(335,83): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(335,65): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(335,47): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(335,35): warning C4244: 'argumento': conversión de 'float32' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(416,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(417,13): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(423,27): warning C4244: 'return': conversión de 'float32' a 'int'; posible pérdida de datos
+  Player.cpp
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Render.cpp
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Scene.cpp
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(66,34): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(69,34): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(72,34): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(75,34): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+  Textures.cpp
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Window.cpp
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+  Generando código...
+  Game.vcxproj -> C:\Users\fernandofg2\Desktop\Platformer_Project_Game_Development\Project_Plataform\Build\Debug\Game.exe

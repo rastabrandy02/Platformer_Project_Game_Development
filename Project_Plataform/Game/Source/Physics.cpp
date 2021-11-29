@@ -48,7 +48,7 @@ bool Physics::PreUpdate()
 {
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		world->Step(1.0f / 60.0f, 6, 2);
+		world->Step(app->dtSeconds, 6, 2);
 
 		for (b2Contact* c = world->GetContactList(); c; c = c->GetNext())
 		{

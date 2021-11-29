@@ -125,6 +125,7 @@ public:
 
 	
 	bool FPSCapTo30 = false;
+	float dtSeconds;
 
 private:
 
