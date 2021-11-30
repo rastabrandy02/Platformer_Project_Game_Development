@@ -10,6 +10,7 @@
 #include "Physics.h"
 #include "Defs.h"
 #include "Log.h"
+#include "WalkingEnemy.h"
 
 #include <iostream>
 #include <sstream>
@@ -28,6 +29,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	player = new Player();
 	physics = new Physics();
+	//enemy = new WalkingEnemy();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -39,6 +41,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(map);
 	AddModule(player);
+	//AddModule(enemy);
 	// Render last to swap buffer
 	AddModule(render);
 

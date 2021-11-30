@@ -41,7 +41,7 @@ bool Scene::Start()
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		app->map->Load("WizardMap.tmx");
-		app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
+		app->audio->PlayMusic("Assets/audio/music/wizard.ogg");
 
 	}
 	if (app->currentScene == SCENE_DEATH)

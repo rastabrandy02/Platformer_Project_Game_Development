@@ -93,6 +93,9 @@ private:
 
 	Animation dieAnimationRight;
 	Animation dieAnimationLeft;
+
+	Animation shootingAnimationRight;
+	Animation shootingAnimationLeft;
 };
 
 #endif // !__PLAYER_H__
