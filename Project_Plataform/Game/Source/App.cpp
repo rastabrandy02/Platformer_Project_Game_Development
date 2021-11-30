@@ -29,6 +29,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	player = new Player();
 	physics = new Physics();
 	pathfinding = new PathFinding();
+	walkingenemy = new WalkingEnemy();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -41,6 +42,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(player);
 	AddModule(pathfinding);
+	AddModule(walkingenemy);
 	// Render last to swap buffer
 	AddModule(render);
 

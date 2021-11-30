@@ -8,11 +8,11 @@
 #include "Physics.h"
 #include "WalkingEnemy.h"
 
-/*WalkingEnemy::WalkingEnemy() : Module()
+WalkingEnemy::WalkingEnemy() : Module()
 {
 	//animations
 
-	name.Create("Walking Enemy");
+	name.Create("Walking_Enemy");
 }
 
 WalkingEnemy::~WalkingEnemy()
@@ -21,36 +21,37 @@ WalkingEnemy::~WalkingEnemy()
 // Load assets
 bool WalkingEnemy::Awake(pugi::xml_node& config)
 {
-	LOG("Loading player");
+	LOG("Loading Enemy");
 
 	position.x = config.child("position").attribute("x").as_int();
 	position.y = config.child("position").attribute("y").as_int();
 
 	return true;
 }
-bool Player::Start()
+bool WalkingEnemy::Start()
 {
 	bool ret = true;
 
-	//wizard = app->tex->Load("Assets/sprites/wizard_spritesheet.png");
-	wizard = app->tex->Load("Assets/sprites/walkingenemy_spritesheet_extended.png");
+	
+	
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		enemy = app->physics->CreateCircle(position.x, position.y, 25);
+		enemy = app->physics->CreateCircle(400, 50, 25);
 
 		enemy->body->SetFixedRotation(true);
 		enemy->body->GetFixtureList()->SetFriction(5.0f);
 
 		b2PolygonShape sensorShape;
-		sensorShape.SetAsBox(PIXEL_TO_METERS(26), PIXEL_TO_METERS(26));
+		sensorShape.SetAsBox(PIXEL_TO_METERS(30), PIXEL_TO_METERS(30));
 
 
-		b2FixtureDef sensorFixture;
-		sensorFixture.shape = &sensorShape;
-		sensorFixture.isSensor = true;
+		b2FixtureDef sensorFix;
+		sensorFix.shape = &sensorShape;
+		sensorFix.isSensor = true;
 
-		playerSensor = enemy->body->CreateFixture(&sensorFixture);
-		playerSensor->SetUserData((void*)DATA_PLAYER);
+		enemySensor = enemy->body->CreateFixture(&sensorFix);
+		enemySensor->SetUserData((void*)DATA_ENEMY);
+		enemyRec = { METERS_TO_PIXELS((int)enemy->body->GetPosition().x) - 60,METERS_TO_PIXELS((int)enemy->body->GetPosition().y) + 60, 60,60 };
 	}
 
 
@@ -58,4 +59,56 @@ bool Player::Start()
 
 	return ret;
 }
-*/
+bool WalkingEnemy::PreUpdate()
+{
+	return true;
+}
+bool WalkingEnemy::Update(float dt)
+{
+	if (app->currentScene == SCENE_LEVEL_1)
+	{
+		/*iPoint origin = {(int) METERS_TO_PIXELS((int)enemy->body->GetPosition().x), (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().y) };
+		iPoint destination = { (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().x), (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().y) };*/
+		iPoint origin = { (int)enemy->body->GetPosition().x, (int)enemy->body->GetPosition().y };
+		//enemy->GetPosition(origin.x, origin.y);
+		/*origin.x = METERS_TO_PIXELS(origin.x);
+		origin.y = METERS_TO_PIXELS(origin.y);*/
+		//app->map->WorldToMap(origin.x, origin.y);
+		iPoint destination = { (int)app->player->player->body->GetPosition().x, (int)app->player->player->body->GetPosition().y };
+		//app->player->player->GetPosition(destination.x, destination.y);
+		/*destination.x = METERS_TO_PIXELS(destination.x);
+		destination.y = METERS_TO_PIXELS(destination.y);*/
+		//app->map->WorldToMap(destination.x, destination.y);
+		app->pathfinding->CreatePath(origin, destination);
+
+
+		enemyRec.x = METERS_TO_PIXELS(enemy->body->GetPosition().x) - 30;
+		enemyRec.y = METERS_TO_PIXELS(enemy->body->GetPosition().y) - 30;
+	}
+	return true;
+}
+
+bool WalkingEnemy::PostUpdate()
+{
+	if (app->currentScene == SCENE_LEVEL_1)
+	{
+		app->render->DrawRectangle(enemyRec, 255, 0, 0, 255);
+	}
+	return true;
+}
+
+
+
+bool WalkingEnemy::LoadState(pugi::xml_node&)
+{
+	return true;
+}
+bool WalkingEnemy::SaveState(pugi::xml_node&)
+{
+	return true;
+}
+
+bool WalkingEnemy::CleanUp()
+{
+	return true;
+}

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __PLAYER_H__
-#define __PLAYER_H__
+#ifndef __WALKING_ENEMY_H__
+#define __WALKING_ENEMY_H__
 
 #include "Physics.h"
 #include "Module.h"
@@ -11,22 +11,22 @@
 
 class PhysBody;
 struct b2MassData;
-enum directionOfView
-{
-	RIGHT = 0,
-	LEFT
-};
-struct Object
-{
-	SDL_Texture* graphic;
-	PhysBody* body;
-	uint fx;
+//enum directionOfView
+//{
+//	RIGHT = 0,
+//	LEFT
+//};
+//struct Object
+//{
+//	SDL_Texture* graphic;
+//	PhysBody* body;
+//	uint fx;
+//
+//	Object() : graphic(NULL), body(NULL)
+//	{}
+//};
 
-	Object() : graphic(NULL), body(NULL)
-	{}
-};
-
-class WalkingEnemy : public Module, public b2ContactListener
+class WalkingEnemy : public Module
 {
 public:
 	WalkingEnemy();
@@ -64,8 +64,13 @@ private:
 	bool isDead = false;
 	int deathTimer = 0;
 
+	PhysBody* enemy;
+	b2Fixture* enemySensor;
+	SDL_Rect enemyRec;
 
-	SDL_Texture* Walking Enemy;
+
+
+	SDL_Texture* walkingEnemy;
 	Animation* currentAnimation;
 
 	Animation idleAnimationRight;

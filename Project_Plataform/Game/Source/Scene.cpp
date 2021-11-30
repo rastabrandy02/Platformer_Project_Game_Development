@@ -34,7 +34,7 @@ bool Scene::Start()
 	if (app->currentScene == SCENE_TITLE)
 	{
 		
-		//titlleBackground = app->tex->Load("Assets/maps/SceneTitle.png");
+		
 		titlleBackground = app->tex->Load("Assets/maps/TitleScreen.png");
 
 	}
@@ -51,22 +51,7 @@ bool Scene::Start()
 
 			RELEASE_ARRAY(data);
 
-			enemy = app->physics->CreateCircle(400, 50, 25);
-
-			enemy->body->SetFixedRotation(true);
-			enemy->body->GetFixtureList()->SetFriction(5.0f);
-
-			b2PolygonShape sensorShape;
-			sensorShape.SetAsBox(PIXEL_TO_METERS(30), PIXEL_TO_METERS(30));
-
-
-			b2FixtureDef sensorFixture;
-			sensorFixture.shape = &sensorShape;
-			sensorFixture.isSensor = true;
-
-			enemySensor = enemy->body->CreateFixture(&sensorFixture);
-			enemySensor->SetUserData((void*)DATA_ENEMY);
-			enemyRec = {METERS_TO_PIXELS( (int)enemy->body->GetPosition().x) - 60,METERS_TO_PIXELS((int)enemy->body->GetPosition().y) + 60, 60,60 };
+			
 		}
 		app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 
@@ -130,8 +115,7 @@ bool Scene::Update(float dt)
 			return false;
 		}
 	}
-	//app->render->DrawTexture(img, 380, 100);
-	//app->render->DrawTexture(app->player->wizard, position.x, position.y);
+	
 	
 	if (app->currentScene == SCENE_TITLE)
 	{
@@ -140,15 +124,7 @@ bool Scene::Update(float dt)
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		app->map->Draw();
-		/*iPoint origin = {(int) METERS_TO_PIXELS(enemy->body->GetPosition().x), (int)METERS_TO_PIXELS(enemy->body->GetPosition().y) };
-		iPoint destination = { (int)METERS_TO_PIXELS(app->player->player->body->GetPosition().x), (int)METERS_TO_PIXELS(app->player->player->body->GetPosition().y) };*/
-		iPoint origin = { (int)enemy->body->GetPosition().x, (int)enemy->body->GetPosition().y };
-		iPoint destination = { (int)app->player->player->body->GetPosition().x, (int)app->player->player->body->GetPosition().y }; 
-		app->pathfinding->CreatePath(origin, destination);
 		
-
-		enemyRec.x = METERS_TO_PIXELS (enemy->body->GetPosition().x) -30;
-		enemyRec.y = METERS_TO_PIXELS (enemy->body->GetPosition().y) -30;
 	}
 	if (app->currentScene == SCENE_DEATH)
 	{
@@ -169,7 +145,7 @@ bool Scene::PostUpdate()
 	app->render->DrawRectangle(r, 0, 255, 0, 255);
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		app->render->DrawRectangle(enemyRec, 255, 0, 0, 255);
+		
 		
 		const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
 

@@ -14,6 +14,7 @@
 #include "Timer.h"
 #include "PerfTimer.h"
 #include "Pathfinding.h"
+#include "WalkingEnemy.h"
 
 
 #include "Defs.h"
@@ -35,6 +36,7 @@ class Player;
 class Map;
 class Physics;
 class PathFinding;
+class WalkingEnemy;
 
 
 enum sceneEnum
@@ -121,6 +123,7 @@ public:
 	Map* map;
 	Physics* physics;
 	PathFinding* pathfinding;
+	WalkingEnemy* walkingenemy;
 
 	sceneEnum currentScene = SCENE_TITLE;
 #define SCREEN_HEIGHT 758

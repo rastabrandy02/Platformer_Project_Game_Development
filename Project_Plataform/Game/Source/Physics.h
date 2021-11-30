@@ -19,6 +19,7 @@
 // Small class to return to other modules to track position and rotation of physics bodies
 enum userData
 {
+	DATA_NULL,
 	DATA_PLAYER,
 	DATA_GROUND,
 	DATA_ENEMY,

@@ -2,8 +2,8 @@
   Scene.cpp
 C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
 C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(95,34): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(98,34): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(101,34): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(104,34): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(80,34): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(83,34): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(86,34): warning C4244: '-=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(89,34): warning C4244: '+=': conversión de 'float' a 'int'; posible pérdida de datos
   Game.vcxproj -> C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Build\Debug\Game.exe

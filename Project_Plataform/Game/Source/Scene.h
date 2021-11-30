@@ -38,10 +38,10 @@ private:
 	SDL_Texture* deathBackground;
 	SDL_Texture* navigationPath;
 
-	PhysBody* enemy;
-	b2Fixture* enemySensor;
+	/*PhysBody* enemy;
+	b2Fixture* enemySensor;*/
 	
-	SDL_Rect enemyRec;
+	/*SDL_Rect enemyRec;*/
 };
 
 #endif // __SCENE_H__
