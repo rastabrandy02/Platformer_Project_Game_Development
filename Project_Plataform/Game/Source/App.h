@@ -13,6 +13,7 @@
 #include "Map.h"
 #include "Timer.h"
 #include "PerfTimer.h"
+#include "Pathfinding.h"
 
 
 #include "Defs.h"
@@ -33,6 +34,7 @@ class Scene;
 class Player;
 class Map;
 class Physics;
+class PathFinding;
 
 
 enum sceneEnum
@@ -118,6 +120,7 @@ public:
 	Player* player;
 	Map* map;
 	Physics* physics;
+	PathFinding* pathfinding;
 
 	sceneEnum currentScene = SCENE_TITLE;
 #define SCREEN_HEIGHT 758

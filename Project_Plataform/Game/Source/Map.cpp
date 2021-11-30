@@ -57,7 +57,7 @@ void Map::Draw()
 
 	// L04: DONE 5: Prepare the loop to draw all tilesets + DrawTexture()
 	ListItem<MapLayer*>* mapLayerItem;
-	mapLayerItem = mapData.maplayers.start;
+	mapLayerItem = mapData.mapLayers.start;
 
 	// L06: TODO 4: Make sure we draw all the layers and not just the first one
 	while (mapLayerItem != NULL) {
@@ -98,43 +98,7 @@ void Map::Draw()
 }
 
 
-/*Draw the map (all requried layers)
-void Map::Draw()
-{
-	if (mapLoaded == false) return;
 
-    // L03: DONE 6: Iterate all tilesets and draw all their 
-    // images in 0,0 (you should have only one tileset for now)
-	/*
-    ListItem<TileSet*>* tileset;
-    tileset = mapData.tilesets.start;
-
-    while (tileset != NULL) 
-	{
-        app->render->DrawTexture(tileset->data->texture,0,0);
-        tileset = tileset->next;
-    }
-	
-	
-	// L04: TODO 5: Prepare the loop to draw all tiles in a layer + DrawTexture()
-
-	for (int x = 0; x < mapData.maplayers.start->data->width; x++)
-	{
-		for (int y = 0; y< mapData.maplayers.start->data->height; y++)
-		{
-			// L04: TODO 9: Complete the draw function (inside the loop from TODO 5)
-			// Find which tile id is on x, y coordinates 
-			// Find out that Tile’s Rect inside the tileset Image (
-			// Find out where in the World(screen) we have to draw
-			// DrawTexture()
-			int gid = mapData.maplayers.start->data->Get(x, y);
-			SDL_Rect rect = mapData.tilesets.start->data->GetTileRect(gid);
-			iPoint screenPos = MapToWorld(x, y);
-			app->render->DrawTexture(mapData.tilesets.start->data->texture, screenPos.x, screenPos.y, &rect);
-
-		}
-	}
-}*/
 
 // L04: TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 iPoint Map::MapToWorld(int x, int y) const
@@ -226,13 +190,13 @@ bool Map::CleanUp()
 		RELEASE(item->data);
 		item = item->next;
 	}
-	mapData.tilesets.clear();
+	mapData.tilesets.Clear();
 
 	// L04: TODO 2: clean up all layer data
 	// Remove all layers
 	//mapData.maplayers.clear();
 	ListItem<MapLayer*>* mapLayerItem;
-	mapLayerItem = mapData.maplayers.start;
+	mapLayerItem = mapData.mapLayers.start;
 
 	while (mapLayerItem != NULL)
 	{
@@ -329,7 +293,7 @@ bool Map::LoadTileSets(pugi::xml_node mapFile) {
 		TileSet* set = new TileSet();
 		if (ret == true) ret = LoadTilesetDetails(tileset, set);
 		if (ret == true) ret = LoadTilesetImage(tileset, set);
-		mapData.tilesets.add(set);
+		mapData.tilesets.Add(set);
 	}
 
 	return ret;
@@ -420,7 +384,7 @@ bool Map::LoadAllLayers(pugi::xml_node mapNode) {
 	{
 		MapLayer* mapLayer = new MapLayer();
 		LoadLayer(layerNode, mapLayer);
-		mapData.maplayers.add(mapLayer);
+		mapData.mapLayers.Add(mapLayer);
 	}
 	return ret;
 }
@@ -434,7 +398,7 @@ bool Map::LoadProperties(pugi::xml_node& node, Properties& properties)
 		p->name = propertieNode.attribute("name").as_string();
 		p->value = propertieNode.attribute("value").as_int();
 
-		properties.list.add(p);
+		properties.list.Add(p);
 	}
 
 	return ret;
@@ -444,7 +408,7 @@ bool Map::SetMapColliders()
 	bool ret = true;
 
 	ListItem<MapLayer*>* mapLayerItem;
-	mapLayerItem = mapData.maplayers.start;
+	mapLayerItem = mapData.mapLayers.start;
 	LOG("--------!!!SETTING COLLIDERS!!!---------");
 	while (mapLayerItem != NULL) {
 
@@ -469,7 +433,7 @@ bool Map::SetMapColliders()
 							item->body->GetFixtureList()->SetUserData((void*)DATA_DEATH);
 						}
 						else item->body->GetFixtureList()->SetUserData((void*)DATA_GROUND);
-						app->physics->groundColliders.add(item);
+						app->physics->groundColliders.Add(item);
 						
 					}
 
@@ -478,5 +442,50 @@ bool Map::SetMapColliders()
 		}
 		mapLayerItem = mapLayerItem->next;
 	}
+	return ret;
+}
+
+bool Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
+{
+	bool ret = false;
+	ListItem<MapLayer*>* item;
+	
+	item = mapData.mapLayers.start;
+	
+
+	for (item = mapData.mapLayers.start; item != NULL; item = item->next)
+	{
+		MapLayer* layer = item->data;
+
+		if (layer->properties.GetProperty("Navigation", 0) == 0)
+			continue;
+
+		uchar* map = new uchar[layer->width * layer->height];
+		memset(map, 1, layer->width * layer->height);
+
+		for (int y = 0; y < mapData.height; ++y)
+		{
+			for (int x = 0; x < mapData.width; ++x)
+			{
+				int i = (y * layer->width) + x;
+
+				int tileId = layer->Get(x, y);
+				TileSet* tileset = (tileId > 0) ? GetTilesetFromTileId(tileId) : NULL;
+
+				if (tileset != NULL)
+				{
+					map[i] = (tileId - tileset->firstgid) > 0 ? 0 : 1;
+				}
+			}
+		}
+
+		*buffer = map;
+		width = mapData.width;
+		height = mapData.height;
+		ret = true;
+
+		break;
+	}
+
 	return ret;
 }

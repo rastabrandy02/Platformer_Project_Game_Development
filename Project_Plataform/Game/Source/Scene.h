@@ -2,6 +2,7 @@
 #define __SCENE_H__
 
 #include "Module.h"
+#include "Physics.h"
 
 struct SDL_Texture;
 
@@ -35,6 +36,12 @@ public:
 private:
 	SDL_Texture* titlleBackground;
 	SDL_Texture* deathBackground;
+	SDL_Texture* navigationPath;
+
+	PhysBody* enemy;
+	b2Fixture* enemySensor;
+	
+	SDL_Rect enemyRec;
 };
 
 #endif // __SCENE_H__

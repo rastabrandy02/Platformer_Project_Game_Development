@@ -134,106 +134,6 @@ bool Player::PreUpdate()
 {
 	bool ret = true;
 
-	//if (app->currentScene == SCENE_LEVEL_1)
-	//{
-	//	if (godMode) player->body->SetGravityScale(0.0f);
-	//	else player->body->SetGravityScale(1.0f);
-
-	//	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && !isDead)
-	//	{
-	//		
-	//		if(!godMode)player->body->SetLinearVelocity({ speed.x * dt, player->body->GetLinearVelocity().y });
-	//		if(godMode) player->body->SetTransform({ player->body->GetPosition().x + PIXEL_TO_METERS(10), player->body->GetPosition().y }, 0.0f);
-	//		lookingAt = RIGHT;
-	//		if (!onTheAir)currentAnimation = &runAnimationRight;
-	//		if (onTheAir && !countLanding) currentAnimation = &jumpAnimationRight;
-
-	//	}
-
-	//	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && !isDead)
-	//	{
-
-
-	//		if(!godMode)player->body->SetLinearVelocity({ -speed.x * dt, player->body->GetLinearVelocity().y });
-	//		if (godMode) player->body->SetTransform({ player->body->GetPosition().x - PIXEL_TO_METERS(10), player->body->GetPosition().y }, 0.0f);
-	//		
-	//		lookingAt = LEFT;
-	//		if (!onTheAir)currentAnimation = &runAnimationLeft;
-	//		if (onTheAir && !countLanding) currentAnimation = &jumpAnimationLeft;
-	//	}
-	//	if (canJump || canDoubleJump && !isDead && !godMode)
-	//	{
-	//		if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN))
-	//		{
-
-
-
-	//			player->body->SetLinearVelocity({ player->body->GetLinearVelocity().x , speed.y });
-	//			onTheAir = true;
-	//			
-
-	//			switch (lookingAt)
-	//			{
-	//			case RIGHT:
-	//			{
-	//				currentAnimation = &jumpAnimationRight;
-	//			}break;
-	//			case LEFT:
-	//			{
-	//				currentAnimation = &jumpAnimationLeft;
-	//			}
-	//			default:
-	//				break;
-	//			}
-	//			if (canJump == false)
-	//			{
-	//				canDoubleJump = false;
-	//			}
-	//			canJump = false;
-	//		}
-	//	}
-	//	if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_IDLE) && (app->input->GetKey(SDL_SCANCODE_D) == KEY_IDLE) && (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE) && !onTheAir && !isDead)
-	//	{
-	//		switch (lookingAt)
-	//		{
-	//		case RIGHT:
-	//		{
-	//			currentAnimation = &idleAnimationRight;
-	//		}break;
-	//		case LEFT:
-	//		{
-	//			currentAnimation = &idleAnimationLeft;
-	//		}
-	//		default:
-	//			break;
-	//		}
-	//	}
-
-	//	// GOD MODE
-	//	// GOD MODE
-	//	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) godMode = !godMode;
-	//	if (godMode)
-	//	{
-	//		
-	//		
-	//		if (app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-	//		{
-	//			player->body->SetTransform({ player->body->GetPosition().x, player->body->GetPosition().y - PIXEL_TO_METERS(10) }, 0.0f);
-	//		}
-	//			
-	//		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-	//		{
-	//			player->body->SetTransform({ player->body->GetPosition().x, player->body->GetPosition().y + PIXEL_TO_METERS(10) }, 0.0f);
-	//		}
-	//	}
-	//}
-	
-	
-	return true;
-}
-bool Player::Update(float dt)
-{
-	bool ret = true;
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		if (godMode) player->body->SetGravityScale(0.0f);
@@ -327,6 +227,13 @@ bool Player::Update(float dt)
 			}
 		}
 	}
+	
+	return true;
+}
+bool Player::Update(float dt)
+{
+	bool ret = true;
+	
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		

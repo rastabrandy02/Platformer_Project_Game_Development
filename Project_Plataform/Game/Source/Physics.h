@@ -21,6 +21,7 @@ enum userData
 {
 	DATA_PLAYER,
 	DATA_GROUND,
+	DATA_ENEMY,
 	DATA_DEATH
 };
 class PhysBody

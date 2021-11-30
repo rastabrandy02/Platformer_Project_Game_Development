@@ -47,11 +47,13 @@ public:
 	void Die();
 
 	p2Point <int> position;
+
+	PhysBody* player;
 	
 private:
 	
 
-	PhysBody* player;
+	
 	//PhysBody* playerSensor;
 	b2Fixture* playerSensor;
 	b2MassData* playerMass;

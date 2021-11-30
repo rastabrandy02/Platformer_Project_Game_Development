@@ -59,7 +59,7 @@ struct Properties
 			item = item->next;
 		}
 
-		list.clear();
+		list.Clear();
 	}
 
 	// L06: TODO 7: Method to ask for the value of a custom property
@@ -109,7 +109,7 @@ struct MapData
 	List<TileSet*> tilesets;
 
 	// L04: TODO 2: Add a list/array of layers to the map
-	List<MapLayer*> maplayers;
+	List<MapLayer*> mapLayers;
 };
 
 class Map : public Module
@@ -138,6 +138,8 @@ public:
 
 	// L05: DONE 2: Add orthographic world to map coordinates
 	iPoint WorldToMap(int x, int y) const;
+
+	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
 
 private:
 
