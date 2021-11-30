@@ -26,11 +26,11 @@ struct Object
 	{}
 };
 
-class Player : public Module, public b2ContactListener
+class WalkingEnemy : public Module, public b2ContactListener
 {
 public:
-	Player();
-	virtual ~Player();
+	WalkingEnemy();
+	virtual ~WalkingEnemy();
 
 	bool Awake(pugi::xml_node& config);
 	bool Start();
@@ -48,37 +48,24 @@ public:
 
 	p2Point <int> position;
 
-	PhysBody* player;
-	
 private:
-	
-
-	
-	//PhysBody* playerSensor;
-	b2Fixture* playerSensor;
-	b2MassData* playerMass;
-	
-	
 	SDL_Rect playerRec;
-	
-	
+
+
 	b2Vec2 speed = { 5.0f, -5.0f };
-	
-	bool godMode = false;
-	
+
 	bool canJump = false;
-	bool canDoubleJump = false;
 	bool onTheAir = false;
 
 	int lookingAt;
 	bool countLanding = false;
 	int landingTimer = 0;
-	
+
 	bool isDead = false;
 	int deathTimer = 0;
-	
 
-	SDL_Texture* wizard;
+
+	SDL_Texture* Walking Enemy;
 	Animation* currentAnimation;
 
 	Animation idleAnimationRight;
@@ -95,9 +82,6 @@ private:
 
 	Animation dieAnimationRight;
 	Animation dieAnimationLeft;
-
-	Animation shootingAnimationRight;
-	Animation shootingAnimationLeft;
 };
 
-#endif // !__PLAYER_H__
+#endif 

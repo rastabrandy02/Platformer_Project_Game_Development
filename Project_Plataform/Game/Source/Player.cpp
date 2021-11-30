@@ -73,6 +73,18 @@ Player::Player() :  Module()
 	dieAnimationLeft.speed = 0.07f;
 	dieAnimationLeft.loop = false;
 
+	
+	shootingAnimationRight.PushBack({ 15,370,85,85 });
+	shootingAnimationRight.PushBack({ 93,370,85,85 });
+	shootingAnimationRight.PushBack({ 203,370,85,85 });
+	shootingAnimationRight.speed = 0.07f;
+	shootingAnimationRight.loop = false;
+
+	shootingAnimationLeft.PushBack({ 323,370,85,85 });
+	shootingAnimationLeft.PushBack({ 447,370,85,85 });
+	shootingAnimationLeft.PushBack({ 555,370,85,85 });
+	shootingAnimationLeft.speed = 0.07f;
+	shootingAnimationLeft.loop = false;
 
 	name.Create("player");
 }
@@ -161,12 +173,27 @@ bool Player::PreUpdate()
 			if (!onTheAir)currentAnimation = &runAnimationLeft;
 			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationLeft;
 		}
+		
+		//SHOOTING
+		/*if (app->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT && !isDead)
+		{
+
+			if (!godMode)player->body->SetLinearVelocity({ speed.x, player->body->GetLinearVelocity().y });
+			if (godMode) player->body->SetTransform({ player->body->GetPosition().x + PIXEL_TO_METERS(10), player->body->GetPosition().y }, 0.0f);
+			lookingAt = RIGHT;
+			if (!onTheAir)currentAnimation = &shootingAnimationRight;
+			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationRight;
+
+			lookingAt = LEFT;
+			if (!onTheAir)currentAnimation = &shootingAnimationLeft;
+			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationLeft;
+		}
+		*/
+
 		if (canJump || canDoubleJump && !isDead && !godMode)
 		{
 			if ((app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN))
 			{
-
-
 
 				player->body->SetLinearVelocity({ player->body->GetLinearVelocity().x , speed.y });
 				onTheAir = true;
