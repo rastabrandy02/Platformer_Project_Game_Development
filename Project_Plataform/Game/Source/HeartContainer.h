@@ -37,6 +37,9 @@ private:
 	b2Fixture* heartSensor;
 
 	SDL_Texture* heartTexture;
+	Animation* currentAnimation;
+
+	Animation normalAnimation;
 };
 
 //#endif 

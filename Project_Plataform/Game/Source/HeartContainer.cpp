@@ -1,9 +1,14 @@
 #include "App.h"
 #include "HeartContainer.h"
+#include "Textures.h"
 
 HeartContainer::HeartContainer()
 {
-
+	normalAnimation.PushBack({ 25,20,56,44 });
+	normalAnimation.PushBack({ 25,32,100,33 });
+	normalAnimation.loop = true;
+	normalAnimation.speed = 0.04f;
+	currentAnimation = &normalAnimation;
 }
 HeartContainer::~HeartContainer()
 {
@@ -23,8 +28,6 @@ bool HeartContainer::Awake(pugi::xml_node& config)
 bool HeartContainer::Start()
 {
 	bool ret = true;
-
-
 
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
