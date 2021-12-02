@@ -125,6 +125,8 @@ bool Player::Start()
 
 		playerSensor = player->body->CreateFixture(&sensorFixture);
 		playerSensor->SetUserData((void*)DATA_PLAYER);
+		player->listener = app->player;
+		
 	}
 	
 	
@@ -309,140 +311,7 @@ bool Player::PostUpdate()
 		
 	return ret;
 }
-void Player::BeginContact(b2Contact* contact)
-{
-	void* fixtureUserDataA = contact->GetFixtureA()->GetUserData();
-	void* fixtureUserDataB = contact->GetFixtureB()->GetUserData();
-	
-	if (((int)fixtureUserDataA == DATA_PLAYER))
-	{
-		if ((int)fixtureUserDataB == DATA_DEATH)
-		{
-			//Die();
-			/*currentAnimation = &landAnimationLeft;
-			isDead = true;*/
-			switch (lookingAt)
-			{
-			case RIGHT:
-			{
-				//currentAnimation = &idleAnimationRight;
-				currentAnimation = &dieAnimationRight;
-				isDead = true;
 
-			}break;
-			case LEFT:
-			{
-				//currentAnimation = &idleAnimationLeft;
-
-				currentAnimation = &dieAnimationLeft;
-				isDead = true;
-
-			}
-			default:
-				break;
-			}
-		}
-			return;
-		
-		canJump = true;
-		canDoubleJump = true;
-		if ((int)fixtureUserDataB == DATA_GROUND && !isDead)
-		{
-			switch (lookingAt)
-			{
-			case RIGHT:
-			{
-				//currentAnimation = &idleAnimationRight;
-				currentAnimation = &landAnimationRight;
-				if (onTheAir) countLanding = true;
-
-			}break;
-			case LEFT:
-			{
-				//currentAnimation = &idleAnimationLeft;
-
-				currentAnimation = &landAnimationLeft;
-				if (onTheAir) countLanding = true;
-
-			}
-			default:
-				break;
-			}
-		}
-		
-	}
-	
-	 
-	if (((int)fixtureUserDataB == DATA_PLAYER))
-	{
-		canJump = true;
-		canDoubleJump = true;
-		if ((int)fixtureUserDataA == DATA_DEATH)
-		{
-			switch (lookingAt)
-			{
-			case RIGHT:
-			{
-				
-				currentAnimation = &dieAnimationRight;
-				isDead = true;
-
-			}break;
-			case LEFT:
-			{
-				
-
-				currentAnimation = &dieAnimationLeft;
-				isDead = true;
-
-			}
-			default:
-				break;
-			}
-			return;
-		}
-		if ((int)fixtureUserDataA == DATA_GROUND && !isDead)
-		{
-			switch (lookingAt)
-			{
-			case RIGHT:
-			{
-				//currentAnimation = &idleAnimationRight;
-
-
-				currentAnimation = &landAnimationRight;
-				if (onTheAir) countLanding = true;
-
-
-			}break;
-			case LEFT:
-			{
-				//currentAnimation = &idleAnimationLeft;
-
-
-				currentAnimation = &landAnimationLeft;
-				if (onTheAir) countLanding = true;
-
-
-			}
-			default:
-				break;
-			}
-		}
-		
-	}
-
-
-	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
-	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
-
-	if (physA && physA->listener != NULL)
-		physA->listener->OnCollision(physA, physB);
-
-	if (physB && physB->listener != NULL)
-		physB->listener->OnCollision(physB, physA);
-
-}
 bool Player::LoadState(pugi::xml_node& node)
 {
 	position.x = node.child("position").attribute("x").as_int();
@@ -458,7 +327,61 @@ bool Player::SaveState(pugi::xml_node& node)
 	
 	return true;
 }
+void Player::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
+{
+	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_ENEMY)
+	{
+		LOG("Touching enemy--------------------");
+	}
+	int otherData = (int) bodyB->body->GetFixtureList()->GetUserData();
+	if (otherData ==  DATA_DEATH)
+	{
+		
+		switch (lookingAt)
+		{
+		case RIGHT:
+		{
+			currentAnimation = &dieAnimationRight;
+			isDead = true;
 
+		}break;
+		case LEFT:
+		{
+			currentAnimation = &dieAnimationLeft;
+			isDead = true;
+
+		}
+		default:
+			break;
+		}
+	}
+	
+	if (otherData == DATA_GROUND && !isDead)
+	{
+		canJump = true;
+		canDoubleJump = true;
+		switch (lookingAt)
+		{
+		case RIGHT:
+		{
+			//currentAnimation = &idleAnimationRight;
+			currentAnimation = &landAnimationRight;
+			if (onTheAir) countLanding = true;
+
+		}break;
+		case LEFT:
+		{
+			//currentAnimation = &idleAnimationLeft;
+
+			currentAnimation = &landAnimationLeft;
+			if (onTheAir) countLanding = true;
+
+		}
+		default:
+			break;
+		}
+	}
+}
 void Player::Die()
 {
 	app->ChangeScene(SCENE_DEATH);

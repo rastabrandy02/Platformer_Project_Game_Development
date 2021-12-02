@@ -43,7 +43,8 @@ public:
 	bool SaveState(pugi::xml_node&) override;
 
 
-	void BeginContact(b2Contact* contact);
+	//void BeginContact(b2Contact* contact);
+	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
 	void Die();
 
 	p2Point <int> position;

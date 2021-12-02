@@ -11,22 +11,8 @@
 
 class PhysBody;
 struct b2MassData;
-//enum directionOfView
-//{
-//	RIGHT = 0,
-//	LEFT
-//};
-//struct Object
-//{
-//	SDL_Texture* graphic;
-//	PhysBody* body;
-//	uint fx;
-//
-//	Object() : graphic(NULL), body(NULL)
-//	{}
-//};
 
-class WalkingEnemy : public Module
+class WalkingEnemy : public Module, public b2ContactListener
 {
 public:
 	WalkingEnemy();
@@ -42,8 +28,6 @@ public:
 	bool LoadState(pugi::xml_node&) override;
 	bool SaveState(pugi::xml_node&) override;
 
-
-	void BeginContact(b2Contact* contact);
 	void Die();
 
 	p2Point <int> position;

@@ -52,6 +52,7 @@ bool WalkingEnemy::Start()
 		enemySensor = enemy->body->CreateFixture(&sensorFix);
 		enemySensor->SetUserData((void*)DATA_ENEMY);
 		enemyRec = { METERS_TO_PIXELS((int)enemy->body->GetPosition().x) - 60,METERS_TO_PIXELS((int)enemy->body->GetPosition().y) + 60, 60,60 };
+		enemy->listener = app->physics;
 	}
 
 

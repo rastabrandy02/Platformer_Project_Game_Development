@@ -11,6 +11,7 @@
 #include "Defs.h"
 #include "Log.h"
 
+
 #include <iostream>
 #include <sstream>
 
@@ -30,6 +31,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	physics = new Physics();
 	pathfinding = new PathFinding();
 	walkingenemy = new WalkingEnemy();
+	heartcontainer = new HeartContainer();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -43,6 +45,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(player);
 	AddModule(pathfinding);
 	AddModule(walkingenemy);
+	AddModule(heartcontainer);
 	// Render last to swap buffer
 	AddModule(render);
 
