@@ -36,7 +36,7 @@ public:
 private:
 	SDL_Texture* titlleBackground;
 	SDL_Texture* deathBackground;
-	SDL_Texture* navigationPath;
+	
 
 	/*PhysBody* enemy;
 	b2Fixture* enemySensor;*/

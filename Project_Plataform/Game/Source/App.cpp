@@ -29,7 +29,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	player = new Player();
 	physics = new Physics();
-	pathfinding = new PathFinding();
 	walkingenemy = new WalkingEnemy();
 	heartcontainer = new HeartContainer();
 
@@ -42,10 +41,10 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(physics);
 	AddModule(scene);
 	AddModule(map);
-	AddModule(player);
-	AddModule(pathfinding);
 	AddModule(walkingenemy);
 	AddModule(heartcontainer);
+
+	AddModule(player);
 	// Render last to swap buffer
 	AddModule(render);
 

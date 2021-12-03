@@ -41,15 +41,10 @@ bool Scene::Start()
 	
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		navigationPath = app->tex->Load("Assets/maps/navigation_path.png");
+		
 		if (app->map->Load("WizardMap.tmx") == true)
 		{
-			int w, h;
-			uchar* data = NULL;
-
-			if (app->map->CreateWalkabilityMap(w, h, &data)) app->pathfinding->SetMap(w, h, data);
-
-			RELEASE_ARRAY(data);
+			
 
 			
 		}
@@ -147,13 +142,10 @@ bool Scene::PostUpdate()
 	{
 		
 		
-		const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
+		//const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
+		//const DynArray<iPoint>* path = app->walkingenemy->
 
-		for (uint i = 0; i < path->Count(); ++i)
-		{
-			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-			app->render->DrawTexture(navigationPath, pos.x, pos.y);
-		}
+		
 	}
 	
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)

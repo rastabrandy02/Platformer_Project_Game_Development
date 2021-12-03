@@ -117,29 +117,29 @@ PathNode::PathNode(const PathNode& node) : g(node.g), h(node.h), pos(node.pos), 
 // PathNode -------------------------------------------------------------------------
 // Fills a list (PathList) of all valid adjacent pathnodes
 // ----------------------------------------------------------------------------------
-uint PathNode::FindWalkableAdjacents(PathList& listToFill) const
+uint PathNode::FindWalkableAdjacents(PathList& listToFill, PathFinding* pathfinding) const
 {
 	iPoint cell;
 	uint before = listToFill.list.Count();
 
 	// north
 	cell.Create(pos.x, pos.y + 1);
-	if(app->pathfinding->IsWalkable(cell))
+	if(pathfinding->IsWalkable(cell))
 		listToFill.list.Add(PathNode(-1, -1, cell, this));
 
 	// south
 	cell.Create(pos.x, pos.y - 1);
-	if(app->pathfinding->IsWalkable(cell))
+	if(pathfinding->IsWalkable(cell))
 		listToFill.list.Add(PathNode(-1, -1, cell, this));
 
 	// east
 	cell.Create(pos.x + 1, pos.y);
-	if(app->pathfinding->IsWalkable(cell))
+	if(pathfinding->IsWalkable(cell))
 		listToFill.list.Add(PathNode(-1, -1, cell, this));
 
 	// west
 	cell.Create(pos.x - 1, pos.y);
-	if(app->pathfinding->IsWalkable(cell))
+	if(pathfinding->IsWalkable(cell))
 		listToFill.list.Add(PathNode(-1, -1, cell, this));
 
 	return listToFill.list.Count();
@@ -213,7 +213,7 @@ int PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 
 			// L12b: TODO 5: Fill a list of all adjancent nodes
 			PathList adjacent;
-			node->data.FindWalkableAdjacents(adjacent);
+			node->data.FindWalkableAdjacents(adjacent, this);
 
 			// L12b: TODO 6: Iterate adjancent nodes:
 			// If it is a better path, Update the parent

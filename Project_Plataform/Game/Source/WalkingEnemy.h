@@ -7,8 +7,9 @@
 #include "App.h"
 #include "p2Point.h"
 #include "Animation.h"
+#include "Pathfinding.h"
 
-
+class PathFinding;
 class PhysBody;
 struct b2MassData;
 
@@ -28,17 +29,19 @@ public:
 	bool LoadState(pugi::xml_node&) override;
 	bool SaveState(pugi::xml_node&) override;
 
-
-	void BeginContact(b2Contact* contact);
+	
 	void Die();
 
 	p2Point <int> position;
+	const DynArray<iPoint>* currentPath;
 
 private:
+
+	void Walk();
 	SDL_Rect playerRec;
+	SDL_Texture* navigationPath;
 
-
-	b2Vec2 speed = { 5.0f, -5.0f };
+	b2Vec2 speed = { 2.0f, -2.0f };
 
 	bool canJump = false;
 	bool onTheAir = false;
@@ -49,6 +52,8 @@ private:
 
 	bool isDead = false;
 	int deathTimer = 0;
+
+	PathFinding* pathfinding;
 
 	PhysBody* enemy;
 	b2Fixture* enemySensor;

@@ -117,7 +117,7 @@ iPoint Map::WorldToMap(int x, int y) const
 	iPoint ret(0, 0);
 
 	// L05: DONE 3: Add the case for isometric maps to WorldToMap
-	if (mapData.type == MAPTYPE_ORTHOGONAL)
+	/*if (mapData.type == MAPTYPE_ORTHOGONAL)
 	{
 		ret.x = x / mapData.tileWidth;
 		ret.y = y / mapData.tileHeight;
@@ -134,8 +134,9 @@ iPoint Map::WorldToMap(int x, int y) const
 	{
 		LOG("Unknown map type");
 		ret.x = x; ret.y = y;
-	}
-
+	}*/
+	ret.x = x / mapData.tileWidth;
+	ret.y = y / mapData.tileHeight;
 	return ret;
 }
 
