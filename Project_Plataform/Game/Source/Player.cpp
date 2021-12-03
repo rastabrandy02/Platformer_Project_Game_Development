@@ -46,7 +46,7 @@ Player::Player() :  Module()
 	jumpAnimationRight.speed = 0.09f;
 	jumpAnimationRight.loop = true;
 
-	jumpAnimationLeft.PushBack({ 475,100,80,95 });
+	jumpAnimationLeft.PushBack({ 475,100,85,95 });
 	//jumpAnimationLeft.PushBack({ 556,100,85,95 });
 	jumpAnimationLeft.speed = 0.0009f;
 	jumpAnimationLeft.loop = true;
