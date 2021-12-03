@@ -52,7 +52,7 @@ bool WalkingEnemy::Start()
 		enemySensor = enemy->body->CreateFixture(&sensorFix);
 		enemySensor->SetUserData((void*)DATA_ENEMY);
 		enemyRec = { METERS_TO_PIXELS((int)enemy->body->GetPosition().x) - 60,METERS_TO_PIXELS((int)enemy->body->GetPosition().y) + 60, 60,60 };
-		enemy->listener = app->physics;
+		enemy->listener = app->walkingenemy;
 
 		pathfinding = new PathFinding();
 		int w, h;
@@ -131,6 +131,14 @@ void WalkingEnemy::Walk()
 	enemyRec.y = METERS_TO_PIXELS(enemy->body->GetPosition().y) - 30;
 }
 
+void WalkingEnemy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
+{
+	int otherData = (int)bodyB->body->GetUserData();
+	if (otherData == DATA_PLAYER)
+	{
+		app->player->TakeDamage(1);
+	}
+}
 bool WalkingEnemy::LoadState(pugi::xml_node&)
 {
 	return true;

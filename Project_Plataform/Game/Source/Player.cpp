@@ -382,6 +382,12 @@ void Player::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		}
 	}
 }
+
+void Player::TakeDamage(int damage)
+{
+	health -= damage;
+	if (health < 0) isDead = true;
+}
 void Player::Die()
 {
 	app->ChangeScene(SCENE_DEATH);

@@ -13,7 +13,7 @@ class PathFinding;
 class PhysBody;
 struct b2MassData;
 
-class WalkingEnemy : public Module
+class WalkingEnemy : public Module, public b2ContactListener
 {
 public:
 	WalkingEnemy();
@@ -29,7 +29,7 @@ public:
 	bool LoadState(pugi::xml_node&) override;
 	bool SaveState(pugi::xml_node&) override;
 
-	
+	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
 	void Die();
 
 	p2Point <int> position;

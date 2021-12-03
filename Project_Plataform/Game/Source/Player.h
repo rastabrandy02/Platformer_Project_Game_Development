@@ -42,6 +42,7 @@ public:
 	bool LoadState(pugi::xml_node&) override;
 	bool SaveState(pugi::xml_node&) override;
 
+	void TakeDamage(int dmg);
 
 	//void BeginContact(b2Contact* contact);
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
@@ -53,7 +54,7 @@ public:
 	
 private:
 	
-
+	int health = 10;
 	
 	//PhysBody* playerSensor;
 	b2Fixture* playerSensor;
