@@ -12,6 +12,70 @@ WalkingEnemy::WalkingEnemy() : Module()
 {
 	//animations
 
+	idleAnimationRight.PushBack({ 10, 6, 85, 95 });
+	idleAnimationRight.PushBack({ 85,6,85,95 });
+	idleAnimationRight.PushBack({ 167,6,85,95 });
+	idleAnimationRight.PushBack({ 248,6,85,95 });
+	idleAnimationRight.loop = true;
+	idleAnimationRight.speed = 0.04f;
+	currentAnimation = &idleAnimationRight;
+
+
+	idleAnimationLeft.PushBack({ 330,6,85,95 });
+	idleAnimationLeft.PushBack({ 405,6,85,95 });
+	idleAnimationLeft.PushBack({ 485,6,85,95 });
+	idleAnimationLeft.PushBack({ 566,6,85,95 });
+	idleAnimationLeft.speed = 0.04f;
+	idleAnimationLeft.loop = true;
+
+	//Correct the run animation's PushBacks (currently displaying idle animation)
+	runAnimationRight.PushBack({ 10, 8, 85, 95 });
+	runAnimationRight.PushBack({ 85,8,85,95 });
+	runAnimationRight.PushBack({ 167,8,85,95 });
+	runAnimationRight.PushBack({ 248,8,85,95 });
+	runAnimationRight.speed = 0.09f;
+	runAnimationRight.loop = true;
+
+	runAnimationLeft.PushBack({ 330,8,85,95 });
+	runAnimationLeft.PushBack({ 405,8,85,95 });
+	runAnimationLeft.PushBack({ 485,8,85,95 });
+	runAnimationLeft.PushBack({ 566,8,85,95 });
+	runAnimationLeft.speed = 0.09f;
+	runAnimationLeft.loop = true;
+
+
+	//jumpAnimationRight.PushBack({ 10, 100, 85, 95 });
+	jumpAnimationRight.PushBack({ 100, 100, 85, 95 });
+	jumpAnimationRight.speed = 0.09f;
+	jumpAnimationRight.loop = true;
+
+	jumpAnimationLeft.PushBack({ 475,100,85,95 });
+	//jumpAnimationLeft.PushBack({ 556,100,85,95 });
+	jumpAnimationLeft.speed = 0.0009f;
+	jumpAnimationLeft.loop = true;
+
+	landAnimationRight.PushBack({ 10, 105, 85, 85 });
+	landAnimationRight.speed = 0.00009f;
+	landAnimationRight.loop = false;
+
+	landAnimationLeft.PushBack({ 556,105,85,85 });
+	landAnimationLeft.speed = 0.09f;
+	landAnimationLeft.loop = false;
+
+	dieAnimationRight.PushBack({ 20,280,85,85 });
+	dieAnimationRight.PushBack({ 110,280,85,85 });
+	dieAnimationRight.PushBack({ 200,280,85,85 });
+	dieAnimationRight.PushBack({ 290,280,75,85 });
+	dieAnimationRight.speed = 0.07f;
+	dieAnimationRight.loop = false;
+
+	dieAnimationLeft.PushBack({ 625,280,85,85 });
+	dieAnimationLeft.PushBack({ 535,280,85,85 });
+	dieAnimationLeft.PushBack({ 440,280,85,85 });
+	dieAnimationLeft.PushBack({ 365,280,75,85 });
+	dieAnimationLeft.speed = 0.07f;
+	dieAnimationLeft.loop = false;
+
 	name.Create("Walking_Enemy");
 }
 
@@ -32,8 +96,8 @@ bool WalkingEnemy::Start()
 {
 	bool ret = true;
 
-	
-	
+	walkingEnemy = app->tex->Load("Assets/sprites/walkingenemy_spritesheet_extended.png");
+
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		enemy = app->physics->CreateCircle(400, 50, 25);
@@ -96,7 +160,8 @@ bool WalkingEnemy::PostUpdate()
 {
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		app->render->DrawRectangle(enemyRec, 255, 0, 0, 255);
+		SDL_Rect section = currentAnimation->GetCurrentFrame();
+		app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
 
 		for (uint i = 0; i < currentPath->Count(); ++i)
 		{

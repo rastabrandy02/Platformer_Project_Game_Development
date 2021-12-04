@@ -1,15 +1,15 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
   WalkingEnemy.cpp
-C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(116,15): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(181,15): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
           ]
-C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(117,15): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(182,15): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
           ]
-  Game.vcxproj -> C:\Users\fernandofg2\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Build\Debug\Game.exe
+  Game.vcxproj -> C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Build\Debug\Game.exe
