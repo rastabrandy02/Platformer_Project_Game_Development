@@ -10,7 +10,6 @@
 
 WalkingEnemy::WalkingEnemy() : Module()
 {
-	//animations
 
 	idleAnimationRight.PushBack({ 10, 6, 85, 95 });
 	idleAnimationRight.PushBack({ 85,6,85,95 });
@@ -28,7 +27,6 @@ WalkingEnemy::WalkingEnemy() : Module()
 	idleAnimationLeft.speed = 0.04f;
 	idleAnimationLeft.loop = true;
 
-	//Correct the run animation's PushBacks (currently displaying idle animation)
 	runAnimationRight.PushBack({ 10, 8, 85, 95 });
 	runAnimationRight.PushBack({ 85,8,85,95 });
 	runAnimationRight.PushBack({ 167,8,85,95 });
@@ -44,13 +42,11 @@ WalkingEnemy::WalkingEnemy() : Module()
 	runAnimationLeft.loop = true;
 
 
-	//jumpAnimationRight.PushBack({ 10, 100, 85, 95 });
 	jumpAnimationRight.PushBack({ 100, 100, 85, 95 });
 	jumpAnimationRight.speed = 0.09f;
 	jumpAnimationRight.loop = true;
 
 	jumpAnimationLeft.PushBack({ 475,100,85,95 });
-	//jumpAnimationLeft.PushBack({ 556,100,85,95 });
 	jumpAnimationLeft.speed = 0.0009f;
 	jumpAnimationLeft.loop = true;
 
@@ -130,9 +126,6 @@ bool WalkingEnemy::Start()
 		
 	}
 
-
-
-
 	return ret;
 }
 bool WalkingEnemy::PreUpdate()
@@ -161,7 +154,9 @@ bool WalkingEnemy::PostUpdate()
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
-		app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
+		//app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
+
+		app->render->DrawRectangle(enemyRec, 255, 0, 0, 255);
 
 		for (uint i = 0; i < currentPath->Count(); ++i)
 		{

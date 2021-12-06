@@ -30,6 +30,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	player = new Player();
 	physics = new Physics();
 	walkingenemy = new WalkingEnemy();
+	flyingenemy = new FlyingEnemy();
 	heartcontainer = new HeartContainer();
 
 	// Ordered for awake / Start / Update
@@ -42,6 +43,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(map);
 	AddModule(walkingenemy);
+	AddModule(flyingenemy);
 	AddModule(heartcontainer);
 
 	AddModule(player);
