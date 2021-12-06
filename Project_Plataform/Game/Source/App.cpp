@@ -30,6 +30,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	player = new Player();
 	physics = new Physics();
 	walkingenemy = new WalkingEnemy();
+	flyingenemy = new FlyingEnemy();
 	heartcontainer = new HeartContainer();
 
 	// Ordered for awake / Start / Update
@@ -42,6 +43,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(map);
 	AddModule(walkingenemy);
+	AddModule(flyingenemy);
 	AddModule(heartcontainer);
 
 	AddModule(player);
@@ -222,7 +224,7 @@ void App::FinishUpdate()
 	delayt->Start();
 	if (maxFrameRate > 0 && delay > 0) SDL_Delay(delay);
 	
-	LOG("Expected %f milliseconds and the real delay is % f", delay, delayt->ReadMs());
+	//LOG("Expected %f milliseconds and the real delay is % f", delay, delayt->ReadMs());
 
 	app->win->SetTitle(title);
 }

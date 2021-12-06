@@ -142,9 +142,7 @@ bool Scene::PostUpdate()
 	{
 		
 		
-		//const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
-		//const DynArray<iPoint>* path = app->walkingenemy->
-
+		
 		
 	}
 	

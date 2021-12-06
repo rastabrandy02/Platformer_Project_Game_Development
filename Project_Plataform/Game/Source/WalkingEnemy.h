@@ -40,8 +40,8 @@ private:
 	void Walk();
 	SDL_Rect playerRec;
 	SDL_Texture* navigationPath;
-
-	b2Vec2 speed = { 2.0f, -2.0f };
+	int size = 60;
+	b2Vec2 speed = { 2.0f, -5.0f };
 
 	bool canJump = false;
 	bool onTheAir = false;

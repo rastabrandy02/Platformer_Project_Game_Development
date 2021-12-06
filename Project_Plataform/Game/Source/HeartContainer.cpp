@@ -15,7 +15,7 @@ bool HeartContainer::Awake(pugi::xml_node& config)
 
 	/*position.x = config.child("position").attribute("x").as_int();
 	position.y = config.child("position").attribute("y").as_int();*/
-	position.x = 500;
+	position.x = 700;
 	position.y = 200;
 
 	return true;
@@ -46,7 +46,7 @@ bool HeartContainer::Start()
 		heartTexture = app->tex->Load("Assets/sprites/heart_spritesheet.png");
 		heartPb->listener = app->heartcontainer;
 	}
-
+	
 
 
 
@@ -57,6 +57,8 @@ void HeartContainer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_PLAYER)
 	{
 		LOG("Touching Heart--------------");
+		app->player->Heal(5);
+		
 	}
 }
 bool HeartContainer::PreUpdate()

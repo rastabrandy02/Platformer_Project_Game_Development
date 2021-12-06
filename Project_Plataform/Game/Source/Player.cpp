@@ -385,8 +385,15 @@ void Player::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 
 void Player::TakeDamage(int damage)
 {
+	//if (godMode) return;
 	health -= damage;
 	if (health < 0) isDead = true;
+}
+void Player::Heal(int heal)
+{
+	//if (godMode) return;
+	health += heal;
+	if (health > maxHealth) health = maxHealth;
 }
 void Player::Die()
 {

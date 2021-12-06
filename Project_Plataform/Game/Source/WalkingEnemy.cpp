@@ -100,13 +100,13 @@ bool WalkingEnemy::Start()
 
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		enemy = app->physics->CreateCircle(400, 50, 25);
+		enemy = app->physics->CreateCircle(400, 200, 25);
 
 		enemy->body->SetFixedRotation(true);
 		enemy->body->GetFixtureList()->SetFriction(5.0f);
 
 		b2PolygonShape sensorShape;
-		sensorShape.SetAsBox(PIXEL_TO_METERS(30), PIXEL_TO_METERS(30));
+		sensorShape.SetAsBox(PIXEL_TO_METERS(size/2), PIXEL_TO_METERS(size/2));
 
 
 		b2FixtureDef sensorFix;
@@ -115,7 +115,7 @@ bool WalkingEnemy::Start()
 
 		enemySensor = enemy->body->CreateFixture(&sensorFix);
 		enemySensor->SetUserData((void*)DATA_ENEMY);
-		enemyRec = { METERS_TO_PIXELS((int)enemy->body->GetPosition().x) - 60,METERS_TO_PIXELS((int)enemy->body->GetPosition().y) + 60, 60,60 };
+		enemyRec = { METERS_TO_PIXELS((int)enemy->body->GetPosition().x) - size,METERS_TO_PIXELS((int)enemy->body->GetPosition().y) + size, 60,60 };
 		enemy->listener = app->walkingenemy;
 
 		pathfinding = new PathFinding();
@@ -161,7 +161,8 @@ bool WalkingEnemy::PostUpdate()
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
-		app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
+		//app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
+		app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS( enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
 
 		for (uint i = 0; i < currentPath->Count(); ++i)
 		{
@@ -190,18 +191,32 @@ void WalkingEnemy::Walk()
 	{
 		enemy->body->SetLinearVelocity({ speed.x,enemy->body->GetLinearVelocity().y });
 	}
+	if (canJump)
+	{
+		if (enemy->body->GetPosition().y > nextStep.y + 1)
+		{
+			enemy->body->SetLinearVelocity({ enemy->body->GetLinearVelocity().x , speed.y });
+			canJump = false;
+		}
+	}
 	
 
-	enemyRec.x = METERS_TO_PIXELS(enemy->body->GetPosition().x) - 30;
-	enemyRec.y = METERS_TO_PIXELS(enemy->body->GetPosition().y) - 30;
+	enemyRec.x = METERS_TO_PIXELS(enemy->body->GetPosition().x) - size/2;
+	enemyRec.y = METERS_TO_PIXELS(enemy->body->GetPosition().y) - size/2;
 }
 
 void WalkingEnemy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
-	int otherData = (int)bodyB->body->GetUserData();
-	if (otherData == DATA_PLAYER)
+	
+	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_PLAYER)
 	{
 		app->player->TakeDamage(1);
+		LOG("Enemy Collision----------");
+	}
+	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_GROUND)
+	{
+		canJump = true;
+		LOG("Enemy On The Ground----------");
 	}
 }
 bool WalkingEnemy::LoadState(pugi::xml_node&)

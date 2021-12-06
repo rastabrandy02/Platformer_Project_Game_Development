@@ -43,6 +43,7 @@ public:
 	bool SaveState(pugi::xml_node&) override;
 
 	void TakeDamage(int dmg);
+	void Heal(int heal);
 
 	//void BeginContact(b2Contact* contact);
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
@@ -53,8 +54,8 @@ public:
 	PhysBody* player;
 	
 private:
-	
-	int health = 10;
+	int maxHealth = 10;
+	int health = maxHealth;
 	
 	//PhysBody* playerSensor;
 	b2Fixture* playerSensor;
@@ -64,7 +65,7 @@ private:
 	SDL_Rect playerRec;
 	
 	
-	b2Vec2 speed = { 5.0f, -5.0f };
+	b2Vec2 speed = { 5.0f, -7.0f };
 	
 	bool godMode = false;
 	

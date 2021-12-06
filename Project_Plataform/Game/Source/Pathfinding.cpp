@@ -49,6 +49,7 @@ bool PathFinding::IsWalkable(const iPoint& pos) const
 {
 	uchar t = GetTileAt(pos);
 	return t != INVALID_WALK_CODE && t > 0;
+	//return (t == 6266);
 }
 
 // Utility: return the walkability value of a tile
@@ -207,7 +208,7 @@ int PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 
 				lastPath.Flip();
 				ret = lastPath.Count();
-				LOG("Created path of %d steps in %d iterations", ret, iterations);
+				//LOG("Created path of %d steps in %d iterations", ret, iterations);
 				break;
 			}
 

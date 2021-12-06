@@ -16,6 +16,7 @@
 #include "Pathfinding.h"
 #include "WalkingEnemy.h"
 #include "HeartContainer.h"
+#include "FlyingEnemy.h"
 
 
 
@@ -39,6 +40,7 @@ class Map;
 class Physics;
 class PathFinding;
 class WalkingEnemy;
+class FlyingEnemy;
 class HeartContainer;
 
 
@@ -127,6 +129,7 @@ public:
 	Physics* physics;
 	PathFinding* pathfinding;
 	WalkingEnemy* walkingenemy;
+	FlyingEnemy* flyingenemy;
 	HeartContainer* heartcontainer;
 
 	sceneEnum currentScene = SCENE_TITLE;
