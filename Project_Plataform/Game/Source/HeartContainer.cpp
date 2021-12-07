@@ -7,7 +7,7 @@ HeartContainer::HeartContainer()
 }
 HeartContainer::~HeartContainer()
 {
-
+	
 }
 bool HeartContainer::Awake(pugi::xml_node& config)
 {
@@ -46,7 +46,7 @@ bool HeartContainer::Start()
 		heartTexture = app->tex->Load("Assets/sprites/heart_spritesheet.png");
 		heartPb->listener = app->heartcontainer;
 	}
-	
+
 
 
 
@@ -58,11 +58,15 @@ void HeartContainer::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	{
 		LOG("Touching Heart--------------");
 		app->player->Heal(5);
+		setToDestroy = true;
 		
+
+
 	}
 }
 bool HeartContainer::PreUpdate()
 {
+	if(setToDestroy) Die();
 	return true;
 }
 bool HeartContainer::Update(float dt)
@@ -71,16 +75,18 @@ bool HeartContainer::Update(float dt)
 }
 bool HeartContainer::PostUpdate()
 {
-	if (app->currentScene == SCENE_LEVEL_1)
+	if (app->currentScene == SCENE_LEVEL_1 && draw)
 	{
 		app->render->DrawTexture(heartTexture, position.x, position.y);
 	}
-	
+
 	return true;
 }
 void HeartContainer::Die()
 {
-
+	app->physics->world->DestroyBody(heartPb->body);
+	setToDestroy = false;
+	draw = false;
 }
 bool HeartContainer::CleanUp()
 {
@@ -93,4 +99,8 @@ bool HeartContainer::LoadState(pugi::xml_node&)
 bool HeartContainer::SaveState(pugi::xml_node&)
 {
 	return true;
+}
+void HeartContainer::Destroy()
+{
+
 }

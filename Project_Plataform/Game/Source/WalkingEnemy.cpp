@@ -80,7 +80,10 @@ WalkingEnemy::WalkingEnemy() : Module()
 }
 
 WalkingEnemy::~WalkingEnemy()
-{}
+{
+	
+	
+}
 
 // Load assets
 bool WalkingEnemy::Awake(pugi::xml_node& config)
@@ -137,11 +140,12 @@ bool WalkingEnemy::Start()
 }
 bool WalkingEnemy::PreUpdate()
 {
+	if (setToDestroy) Die();
 	return true;
 }
 bool WalkingEnemy::Update(float dt)
 {
-	if (app->currentScene == SCENE_LEVEL_1)
+	if (app->currentScene == SCENE_LEVEL_1 && isAlive)
 	{
 		iPoint origin = {(int) METERS_TO_PIXELS((int)enemy->body->GetPosition().x), (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().y ) };
 		iPoint destination = { (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().x), (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().y ) };
@@ -158,7 +162,7 @@ bool WalkingEnemy::Update(float dt)
 
 bool WalkingEnemy::PostUpdate()
 {
-	if (app->currentScene == SCENE_LEVEL_1)
+	if (app->currentScene == SCENE_LEVEL_1 && isAlive)
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
 		//app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
@@ -212,6 +216,8 @@ void WalkingEnemy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	{
 		app->player->TakeDamage(1);
 		LOG("Enemy Collision----------");
+		health -= 2;
+		if (health <= 0) setToDestroy = true;
 	}
 	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_GROUND)
 	{
@@ -231,4 +237,10 @@ bool WalkingEnemy::SaveState(pugi::xml_node&)
 bool WalkingEnemy::CleanUp()
 {
 	return true;
+}
+void WalkingEnemy::Die()
+{
+	app->physics->world->DestroyBody(enemy->body);
+	setToDestroy = false;
+	isAlive = false;
 }

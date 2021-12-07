@@ -31,7 +31,10 @@ public:
 	void Die();
 
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB);
+	void Destroy();
 private:
+	bool setToDestroy = false;
+	bool draw = true;
 	p2Point <int> position;
 	PhysBody* heartPb;
 	b2Fixture* heartSensor;

@@ -437,23 +437,3 @@ void Physics::BeginContact(b2Contact* contact)
 		physB->listener->OnCollision(physB, physA);
 }
 
-//void Physics::BeginContact(b2Contact* contact)
-//{
-//	//void* fixtureUserData = contact->GetFixtureA()->GetUserData();
-//	//if (((int)fixtureUserData == 3))
-//	//{
-//	//	//app->player->isJumping = true;
-//	//}
-//
-//
-//
-//	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
-//	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
-//
-//	if(physA && physA->listener != NULL)
-//		physA->listener->OnCollision(physA, physB);
-//
-//	if(physB && physB->listener != NULL)
-//		physB->listener->OnCollision(physB, physA);
-//	
-//}

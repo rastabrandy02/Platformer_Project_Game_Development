@@ -67,10 +67,11 @@ public:
 	
 
 	List<PhysBody*> groundColliders;
+	b2World* world;
 private:
 
 	bool debug;
-	b2World* world;
+	
 	b2MouseJoint* mouseJoint;
 	b2Body* ground;
 	b2Vec2 clickedBodyPos;

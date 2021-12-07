@@ -38,6 +38,9 @@ public:
 private:
 
 	void Walk();
+	bool setToDestroy = false;
+	bool isAlive = true;
+	int health = 10;
 	SDL_Texture* navigationPath;
 	int size = 40;
 	b2Vec2 speed = { 2.0f, -2.0f };

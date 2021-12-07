@@ -38,6 +38,10 @@ public:
 private:
 
 	void Walk();
+
+	bool setToDestroy = false;
+	bool isAlive = true;
+	int health = 10;
 	SDL_Rect playerRec;
 	SDL_Texture* navigationPath;
 	int size = 60;

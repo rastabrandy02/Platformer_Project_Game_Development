@@ -48,7 +48,9 @@ FlyingEnemy::FlyingEnemy(): Module()
 }
 
 FlyingEnemy::~FlyingEnemy()
-{}
+{
+	
+}
 
 // Load assets
 bool FlyingEnemy::Awake(pugi::xml_node& config)
@@ -86,7 +88,7 @@ bool FlyingEnemy::Start()
 		enemySensor = enemy->body->CreateFixture(&sensorFix);
 		enemySensor->SetUserData((void*)DATA_ENEMY);
 		enemyRec = { METERS_TO_PIXELS((int)enemy->body->GetPosition().x) - size,METERS_TO_PIXELS((int)enemy->body->GetPosition().y) + size, 60,60 };
-		enemy->listener = app->walkingenemy;
+		enemy->listener = app->flyingenemy;
 
 		pathfinding = new PathFinding();
 		int w, h;
@@ -107,11 +109,12 @@ bool FlyingEnemy::Start()
 }
 bool FlyingEnemy::PreUpdate()
 {
+	if (setToDestroy) Die();
 	return true;
 }
 bool FlyingEnemy::Update(float dt)
 {
-	if (app->currentScene == SCENE_LEVEL_1)
+	if (app->currentScene == SCENE_LEVEL_1 && isAlive)
 	{
 		iPoint origin = { (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().x), (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().y) };
 		iPoint destination = { (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().x), (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().y) };
@@ -128,7 +131,7 @@ bool FlyingEnemy::Update(float dt)
 
 bool FlyingEnemy::PostUpdate()
 {
-	if (app->currentScene == SCENE_LEVEL_1)
+	if (app->currentScene == SCENE_LEVEL_1 && isAlive)
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
 		//app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
@@ -187,6 +190,8 @@ void FlyingEnemy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	{
 		app->player->TakeDamage(1);
 		LOG("Flying Enemy Collision----------");
+		health -= 2;
+		if (health <= 0) setToDestroy = true;
 	}
 	
 }
@@ -202,4 +207,10 @@ bool FlyingEnemy::SaveState(pugi::xml_node&)
 bool FlyingEnemy::CleanUp()
 {
 	return true;
+}
+void FlyingEnemy::Die()
+{
+	app->physics->world->DestroyBody(enemy->body);
+	setToDestroy = false;
+	isAlive = false;
 }
