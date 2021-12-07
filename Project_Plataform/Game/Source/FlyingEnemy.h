@@ -63,7 +63,7 @@ private:
 
 
 
-	SDL_Texture* walkingEnemy;
+	SDL_Texture* flyingEnemy;
 	Animation* currentAnimation;
 
 	Animation idleAnimationRight;

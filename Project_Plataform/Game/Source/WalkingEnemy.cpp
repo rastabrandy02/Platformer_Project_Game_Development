@@ -10,8 +10,6 @@
 
 WalkingEnemy::WalkingEnemy() : Module()
 {
-	//animations
-
 	idleAnimationRight.PushBack({ 10, 6, 85, 95 });
 	idleAnimationRight.PushBack({ 85,6,85,95 });
 	idleAnimationRight.PushBack({ 167,6,85,95 });
@@ -20,7 +18,6 @@ WalkingEnemy::WalkingEnemy() : Module()
 	idleAnimationRight.speed = 0.04f;
 	currentAnimation = &idleAnimationRight;
 
-
 	idleAnimationLeft.PushBack({ 330,6,85,95 });
 	idleAnimationLeft.PushBack({ 405,6,85,95 });
 	idleAnimationLeft.PushBack({ 485,6,85,95 });
@@ -28,7 +25,6 @@ WalkingEnemy::WalkingEnemy() : Module()
 	idleAnimationLeft.speed = 0.04f;
 	idleAnimationLeft.loop = true;
 
-	//Correct the run animation's PushBacks (currently displaying idle animation)
 	runAnimationRight.PushBack({ 10, 8, 85, 95 });
 	runAnimationRight.PushBack({ 85,8,85,95 });
 	runAnimationRight.PushBack({ 167,8,85,95 });
@@ -43,14 +39,11 @@ WalkingEnemy::WalkingEnemy() : Module()
 	runAnimationLeft.speed = 0.09f;
 	runAnimationLeft.loop = true;
 
-
-	//jumpAnimationRight.PushBack({ 10, 100, 85, 95 });
 	jumpAnimationRight.PushBack({ 100, 100, 85, 95 });
 	jumpAnimationRight.speed = 0.09f;
 	jumpAnimationRight.loop = true;
 
 	jumpAnimationLeft.PushBack({ 475,100,85,95 });
-	//jumpAnimationLeft.PushBack({ 556,100,85,95 });
 	jumpAnimationLeft.speed = 0.0009f;
 	jumpAnimationLeft.loop = true;
 
@@ -103,7 +96,7 @@ bool WalkingEnemy::Start()
 
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		enemy = app->physics->CreateCircle(400, 200, 25);
+		enemy = app->physics->CreateCircle(200, 200, 25);
 
 		enemy->body->SetFixedRotation(true);
 		enemy->body->GetFixtureList()->SetFriction(5.0f);
@@ -141,8 +134,24 @@ bool WalkingEnemy::Start()
 bool WalkingEnemy::PreUpdate()
 {
 	if (setToDestroy) Die();
+
+	if (app->currentScene == SCENE_LEVEL_1)
+	{
+		if (lookingAt = RIGHT)
+		{
+			if (!onTheAir)currentAnimation = &runAnimationRight;
+			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationRight;
+		}
+		if (lookingAt = LEFT)
+		{
+			if (!onTheAir)currentAnimation = &runAnimationLeft;
+			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationLeft;
+		}
+	}
+
 	return true;
 }
+
 bool WalkingEnemy::Update(float dt)
 {
 	if (app->currentScene == SCENE_LEVEL_1 && isAlive)
@@ -166,7 +175,9 @@ bool WalkingEnemy::PostUpdate()
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
 		//app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
-		app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS( enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
+		//app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS (enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
+		app->render->DrawTexture(walkingEnemy, METERS_TO_PIXELS(enemy->body->GetPosition().x) - 35, METERS_TO_PIXELS(enemy->body->GetPosition().y) - 50, &section);
+
 
 		for (uint i = 0; i < currentPath->Count(); ++i)
 		{
