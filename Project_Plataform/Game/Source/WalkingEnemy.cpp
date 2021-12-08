@@ -68,14 +68,85 @@ WalkingEnemy::WalkingEnemy() : Module()
 	dieAnimationLeft.PushBack({ 365,280,75,85 });
 	dieAnimationLeft.speed = 0.07f;
 	dieAnimationLeft.loop = false;
-
+	position.x = 400;
+	position.y = 200;
 	name.Create("Walking_Enemy");
 }
 
+WalkingEnemy::WalkingEnemy(int x, int y)
+{
+	idleAnimationRight.PushBack({ 10, 6, 85, 95 });
+	idleAnimationRight.PushBack({ 85,6,85,95 });
+	idleAnimationRight.PushBack({ 167,6,85,95 });
+	idleAnimationRight.PushBack({ 248,6,85,95 });
+	idleAnimationRight.loop = true;
+	idleAnimationRight.speed = 0.04f;
+	currentAnimation = &idleAnimationRight;
+
+
+	idleAnimationLeft.PushBack({ 330,6,85,95 });
+	idleAnimationLeft.PushBack({ 405,6,85,95 });
+	idleAnimationLeft.PushBack({ 485,6,85,95 });
+	idleAnimationLeft.PushBack({ 566,6,85,95 });
+	idleAnimationLeft.speed = 0.04f;
+	idleAnimationLeft.loop = true;
+
+	//Correct the run animation's PushBacks (currently displaying idle animation)
+	runAnimationRight.PushBack({ 10, 8, 85, 95 });
+	runAnimationRight.PushBack({ 85,8,85,95 });
+	runAnimationRight.PushBack({ 167,8,85,95 });
+	runAnimationRight.PushBack({ 248,8,85,95 });
+	runAnimationRight.speed = 0.09f;
+	runAnimationRight.loop = true;
+
+	runAnimationLeft.PushBack({ 330,8,85,95 });
+	runAnimationLeft.PushBack({ 405,8,85,95 });
+	runAnimationLeft.PushBack({ 485,8,85,95 });
+	runAnimationLeft.PushBack({ 566,8,85,95 });
+	runAnimationLeft.speed = 0.09f;
+	runAnimationLeft.loop = true;
+
+
+	//jumpAnimationRight.PushBack({ 10, 100, 85, 95 });
+	jumpAnimationRight.PushBack({ 100, 100, 85, 95 });
+	jumpAnimationRight.speed = 0.09f;
+	jumpAnimationRight.loop = true;
+
+	jumpAnimationLeft.PushBack({ 475,100,85,95 });
+	//jumpAnimationLeft.PushBack({ 556,100,85,95 });
+	jumpAnimationLeft.speed = 0.0009f;
+	jumpAnimationLeft.loop = true;
+
+	landAnimationRight.PushBack({ 10, 105, 85, 85 });
+	landAnimationRight.speed = 0.00009f;
+	landAnimationRight.loop = false;
+
+	landAnimationLeft.PushBack({ 556,105,85,85 });
+	landAnimationLeft.speed = 0.09f;
+	landAnimationLeft.loop = false;
+
+	dieAnimationRight.PushBack({ 20,280,85,85 });
+	dieAnimationRight.PushBack({ 110,280,85,85 });
+	dieAnimationRight.PushBack({ 200,280,85,85 });
+	dieAnimationRight.PushBack({ 290,280,75,85 });
+	dieAnimationRight.speed = 0.07f;
+	dieAnimationRight.loop = false;
+
+	dieAnimationLeft.PushBack({ 625,280,85,85 });
+	dieAnimationLeft.PushBack({ 535,280,85,85 });
+	dieAnimationLeft.PushBack({ 440,280,85,85 });
+	dieAnimationLeft.PushBack({ 365,280,75,85 });
+	dieAnimationLeft.speed = 0.07f;
+	dieAnimationLeft.loop = false;
+	position.x = x;
+	position.y = y;
+	name.Create("Walking_Enemy");
+	
+}
 WalkingEnemy::~WalkingEnemy()
 {
-	
-	
+
+
 }
 
 // Load assets
@@ -96,7 +167,11 @@ bool WalkingEnemy::Start()
 
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
+<<<<<<< Updated upstream
 		enemy = app->physics->CreateCircle(200, 200, 25);
+=======
+		enemy = app->physics->CreateCircle(position.x, position.y, 25);
+>>>>>>> Stashed changes
 
 		enemy->body->SetFixedRotation(true);
 		enemy->body->GetFixtureList()->SetFriction(5.0f);
@@ -134,6 +209,7 @@ bool WalkingEnemy::Start()
 bool WalkingEnemy::PreUpdate()
 {
 	if (setToDestroy) Die();
+<<<<<<< Updated upstream
 
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
@@ -149,12 +225,15 @@ bool WalkingEnemy::PreUpdate()
 		}
 	}
 
+=======
+	aggro = CheckAggro();
+>>>>>>> Stashed changes
 	return true;
 }
 
 bool WalkingEnemy::Update(float dt)
 {
-	if (app->currentScene == SCENE_LEVEL_1 && isAlive)
+	if (app->currentScene == SCENE_LEVEL_1 && isAlive && aggro)
 	{
 		iPoint origin = {(int) METERS_TO_PIXELS((int)enemy->body->GetPosition().x), (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().y ) };
 		iPoint destination = { (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().x), (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().y ) };
@@ -163,7 +242,12 @@ bool WalkingEnemy::Update(float dt)
 		destination = app->map->WorldToMap(destination.x, destination.y);
 		
 		pathfinding->CreatePath(origin, destination);
-		Walk();
+		currentPath = pathfinding->GetLastPath();
+		Move();
+		if (aggro == false)
+		{
+			enemy->body->SetLinearVelocity({ 0, 0 });
+		}
 		
 	}
 	return true;
@@ -175,22 +259,31 @@ bool WalkingEnemy::PostUpdate()
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
 		//app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
+<<<<<<< Updated upstream
 		//app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS (enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
 		app->render->DrawTexture(walkingEnemy, METERS_TO_PIXELS(enemy->body->GetPosition().x) - 35, METERS_TO_PIXELS(enemy->body->GetPosition().y) - 50, &section);
 
 
 		for (uint i = 0; i < currentPath->Count(); ++i)
+=======
+		app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS( enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
+		if (aggro && app->physics->debug)
+>>>>>>> Stashed changes
 		{
-			iPoint pos = app->map->MapToWorld(currentPath->At(i)->x, currentPath->At(i)->y);
-			app->render->DrawTexture(navigationPath, pos.x, pos.y);
+			for (uint i = 0; i < currentPath->Count(); ++i)
+			{
+				iPoint pos = app->map->MapToWorld(currentPath->At(i)->x, currentPath->At(i)->y);
+				app->render->DrawTexture(navigationPath, pos.x, pos.y);
+			}
 		}
+		
 	}
 	return true;
 }
 
-void WalkingEnemy::Walk()
+void WalkingEnemy::Move()
 {
-	currentPath = pathfinding->GetLastPath();
+	
 
 	iPoint nextStep = { currentPath->At(1)->x, currentPath->At(1)->y};
 	nextStep = app->map->MapToWorld(nextStep.x, nextStep.y);
@@ -235,6 +328,13 @@ void WalkingEnemy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		canJump = true;
 		LOG("Enemy On The Ground----------");
 	}
+}
+bool WalkingEnemy::CheckAggro()
+{
+	uint dist = abs(sqrt(pow(enemy->body->GetPosition().x - app->player->player->body->GetPosition().x, 2) +
+		pow(enemy->body->GetPosition().y - app->player->player->body->GetPosition().y, 2)));
+	if (dist < aggroDistance) return true;
+	if (dist > aggroDistance) return false;
 }
 bool WalkingEnemy::LoadState(pugi::xml_node&)
 {

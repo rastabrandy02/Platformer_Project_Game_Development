@@ -65,7 +65,7 @@ private:
 	SDL_Rect playerRec;
 	
 	
-	b2Vec2 speed = { 5.0f, -7.0f };
+	b2Vec2 speed = { 6.0f, -8.0f };
 	
 	bool godMode = false;
 	

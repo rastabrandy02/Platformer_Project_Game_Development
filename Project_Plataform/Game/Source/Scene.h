@@ -37,7 +37,7 @@ private:
 	SDL_Texture* titlleBackground;
 	SDL_Texture* deathBackground;
 	
-
+	List <Module*> enemies;
 	/*PhysBody* enemy;
 	b2Fixture* enemySensor;*/
 	

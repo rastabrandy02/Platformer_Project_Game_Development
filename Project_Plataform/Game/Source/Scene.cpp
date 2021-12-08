@@ -41,7 +41,15 @@ bool Scene::Start()
 	
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		
+		WalkingEnemy* walkingEnemy = new WalkingEnemy(400,200);
+		FlyingEnemy* flyingEnemy = new FlyingEnemy();
+		enemies.Add(walkingEnemy);
+		enemies.Add(flyingEnemy);
+		for (ListItem<Module*>* item = enemies.start; item; item = item->next)
+		{
+			item->data->Start();
+		}
+
 		if (app->map->Load("WizardMap.tmx") == true)
 		{
 			
@@ -63,6 +71,14 @@ bool Scene::Start()
 // Called each loop iteration
 bool Scene::PreUpdate()
 {
+	if (app->currentScene == SCENE_LEVEL_1)
+	{
+		for (ListItem<Module*>* item = enemies.start; item; item = item->next)
+		{
+			item->data->PreUpdate();
+		}
+	}
+	
 	return true;
 }
 
@@ -119,6 +135,10 @@ bool Scene::Update(float dt)
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		app->map->Draw();
+		for (ListItem<Module*>* item = enemies.start; item; item = item->next)
+		{
+			item->data->Update(dt);
+		}
 		
 	}
 	if (app->currentScene == SCENE_DEATH)
@@ -126,7 +146,7 @@ bool Scene::Update(float dt)
 		app->render->DrawTexture(deathBackground, 0, 0);
 	}
 	
-
+	
 	
 	return true;
 }
@@ -136,11 +156,13 @@ bool Scene::PostUpdate()
 {
 	bool ret = true;
 	
-	SDL_Rect r = { 0, 700, 1500, 20 };
-	app->render->DrawRectangle(r, 0, 255, 0, 255);
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		
+		for (ListItem<Module*>* item = enemies.start; item; item = item->next)
+		{
+			item->data->PostUpdate();
+		}
 		
 		
 		
@@ -155,6 +177,11 @@ bool Scene::PostUpdate()
 // Called before quitting
 bool Scene::CleanUp()
 {
+	for (ListItem<Module*>* item = enemies.start; item; item = item->next)
+	{
+		item->data->CleanUp();
+	}
+	enemies.Clear();
 	LOG("Freeing scene");
 
 	return true;

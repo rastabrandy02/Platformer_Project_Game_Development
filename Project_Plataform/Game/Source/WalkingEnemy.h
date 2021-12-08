@@ -17,6 +17,7 @@ class WalkingEnemy : public Module, public b2ContactListener
 {
 public:
 	WalkingEnemy();
+	WalkingEnemy(int x, int y);
 	virtual ~WalkingEnemy();
 
 	bool Awake(pugi::xml_node& config);
@@ -37,7 +38,10 @@ public:
 
 private:
 
-	void Walk();
+	void Move();
+	bool CheckAggro();
+	bool aggro;
+	int aggroDistance = 10;
 
 	bool setToDestroy = false;
 	bool isAlive = true;

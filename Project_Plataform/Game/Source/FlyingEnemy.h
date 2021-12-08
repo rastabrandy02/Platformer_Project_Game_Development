@@ -17,6 +17,7 @@ class FlyingEnemy : public Module, public b2ContactListener
 {
 public:
 	FlyingEnemy();
+	FlyingEnemy(int x, int y);
 	virtual ~FlyingEnemy();
 
 	bool Awake(pugi::xml_node& config);
@@ -37,7 +38,11 @@ public:
 
 private:
 
-	void Walk();
+	void Move();
+	bool CheckAggro();
+	bool aggro;
+	int aggroDistance = 10;
+
 	bool setToDestroy = false;
 	bool isAlive = true;
 	int health = 10;

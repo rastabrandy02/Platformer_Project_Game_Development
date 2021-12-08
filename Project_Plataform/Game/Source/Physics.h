@@ -68,9 +68,10 @@ public:
 
 	List<PhysBody*> groundColliders;
 	b2World* world;
+	bool debug;
 private:
 
-	bool debug;
+	
 	
 	b2MouseJoint* mouseJoint;
 	b2Body* ground;

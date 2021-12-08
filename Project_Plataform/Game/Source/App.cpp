@@ -42,8 +42,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(physics);
 	AddModule(scene);
 	AddModule(map);
-	AddModule(walkingenemy);
-	AddModule(flyingenemy);
+
 	AddModule(heartcontainer);
 
 	AddModule(player);
