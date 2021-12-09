@@ -1,151 +1,39 @@
-<<<<<<< Updated upstream
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
-  Flyingenemy.cpp
-C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(159,15): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
-=======
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(477,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  App.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\App.cpp(182,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\App.cpp(218,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\App.cpp(224,47): warning C4244: 'argument': conversion from 'float' to 'Uint32', possible loss of data
-  Audio.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   Flyingenemy.cpp
 A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
 A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(205,15): warning C4244: '=': conversion from 'float' to 'TYPE', possible loss of data
->>>>>>> Stashed changes
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(213,15): warning C4244: '=': conversion from 'float' to 'TYPE', possible loss of data
           with
           [
               TYPE=int
           ]
-<<<<<<< Updated upstream
-C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(160,15): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
-=======
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(206,15): warning C4244: '=': conversion from 'float' to 'TYPE', possible loss of data
->>>>>>> Stashed changes
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(214,15): warning C4244: '=': conversion from 'float' to 'TYPE', possible loss of data
           with
           [
               TYPE=int
           ]
-<<<<<<< Updated upstream
-C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(172,11): warning C4244: 'inicializando': conversión de 'const float32' a 'int'; posible pérdida de datos
-  WalkingEnemy.cpp
-C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
-C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(197,15): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
-=======
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(208,11): warning C4244: 'initializing': conversion from 'const float32' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(209,11): warning C4244: 'initializing': conversion from 'const float32' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(251,12): warning C4244: 'initializing': conversion from 'double' to 'uint', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(253,11): warning C4018: '<': signed/unsigned mismatch
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(254,11): warning C4018: '>': signed/unsigned mismatch
-  HeartContainer.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Input.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Main.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Map.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Map.cpp(431,103): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Map.cpp(431,66): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Pathfinding.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Pathfinding.cpp(61,26): warning C4305: 'return': truncation from 'int' to 'uchar'
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Pathfinding.cpp(61,9): warning C4309: 'return': truncation of constant value
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Point.h(111,24): warning C4244: 'argument': conversion from 'TYPE' to 'float', possible loss of data
-          with
-          [
-              TYPE=int
-          ]
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Point.h(107): message : while compiling class template member function 'TYPE Point<TYPE>::DistanceTo(const Point<TYPE> &) const'
-          with
-          [
-              TYPE=int
-          ]
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Pathfinding.cpp(163): message : see reference to function template instantiation 'TYPE Point<TYPE>::DistanceTo(const Point<TYPE> &) const' being compiled
-          with
-          [
-              TYPE=int
-          ]
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Pathfinding.h(75): message : see reference to class template instantiation 'Point<int>' being compiled
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Point.h(111,15): warning C4244: 'return': conversion from 'float' to 'TYPE', possible loss of data
-          with
-          [
-              TYPE=int
-          ]
-  Physics.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(112,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(113,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(136,23): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(137,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(180,20): warning C4018: '<': signed/unsigned mismatch
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(332,83): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(332,65): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(332,47): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(332,35): warning C4244: 'argument': conversion from 'float32' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(413,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(414,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Physics.cpp(420,27): warning C4244: 'return': conversion from 'float32' to 'int', possible loss of data
-  Player.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Render.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Scene.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(91,34): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(94,34): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(97,34): warning C4244: '-=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Scene.cpp(100,34): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
-  Textures.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(216,11): warning C4244: 'initializing': conversion from 'const float32' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(217,11): warning C4244: 'initializing': conversion from 'const float32' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(259,12): warning C4244: 'initializing': conversion from 'double' to 'uint', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(261,11): warning C4018: '<': signed/unsigned mismatch
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(262,11): warning C4018: '>': signed/unsigned mismatch
   WalkingEnemy.cpp
 A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
 A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(266,15): warning C4244: '=': conversion from 'float' to 'TYPE', possible loss of data
->>>>>>> Stashed changes
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(289,15): warning C4244: '=': conversion from 'float' to 'TYPE', possible loss of data
           with
           [
               TYPE=int
           ]
-<<<<<<< Updated upstream
-C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(198,15): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
-=======
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(267,15): warning C4244: '=': conversion from 'float' to 'TYPE', possible loss of data
->>>>>>> Stashed changes
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(290,15): warning C4244: '=': conversion from 'float' to 'TYPE', possible loss of data
           with
           [
               TYPE=int
           ]
-<<<<<<< Updated upstream
-  Generando código...
-  Game.vcxproj -> C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Build\Debug\Game.exe
-=======
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(310,12): warning C4244: 'initializing': conversion from 'double' to 'uint', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(312,11): warning C4018: '<': signed/unsigned mismatch
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(313,11): warning C4018: '>': signed/unsigned mismatch
-  Window.cpp
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(333,12): warning C4244: 'initializing': conversion from 'double' to 'uint', possible loss of data
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(335,11): warning C4018: '<': signed/unsigned mismatch
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(336,11): warning C4018: '>': signed/unsigned mismatch
   Generating Code...
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(314): warning C4715: 'WalkingEnemy::CheckAggro': not all control paths return a value
-A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(255): warning C4715: 'FlyingEnemy::CheckAggro': not all control paths return a value
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\WalkingEnemy.cpp(337): warning C4715: 'WalkingEnemy::CheckAggro': not all control paths return a value
+A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(263): warning C4715: 'FlyingEnemy::CheckAggro': not all control paths return a value
   Game.vcxproj -> A:\GitHub\Platformer_Project_Game_Development\Project_Plataform\Build\Debug\Game.exe
->>>>>>> Stashed changes

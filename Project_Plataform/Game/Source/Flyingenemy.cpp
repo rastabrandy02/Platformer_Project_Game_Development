@@ -151,12 +151,9 @@ bool FlyingEnemy::Start()
 bool FlyingEnemy::PreUpdate()
 {
 	if (setToDestroy) Die();
-<<<<<<< Updated upstream
 
-
-=======
 	aggro = CheckAggro();
->>>>>>> Stashed changes
+
 	return true;
 }
 bool FlyingEnemy::Update(float dt)
@@ -187,16 +184,14 @@ bool FlyingEnemy::PostUpdate()
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
 		//app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
-<<<<<<< Updated upstream
+
 		//app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) - size/2,METERS_TO_PIXELS(enemy->body->GetPosition().y) - size/2, size,size }, 0, 255, 0, 255);
 		app->render->DrawTexture(flyingEnemy, METERS_TO_PIXELS(enemy->body->GetPosition().x) - 35, METERS_TO_PIXELS(enemy->body->GetPosition().y) - 50, &section);
 
 
-		for (uint i = 0; i < currentPath->Count(); ++i)
-=======
 		app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) - size/2,METERS_TO_PIXELS(enemy->body->GetPosition().y) - size/2, size,size }, 0, 255, 0, 255);
 		if (aggro && app->physics->debug)
->>>>>>> Stashed changes
+
 		{
 				for (uint i = 0; i < currentPath->Count(); ++i)
 				{

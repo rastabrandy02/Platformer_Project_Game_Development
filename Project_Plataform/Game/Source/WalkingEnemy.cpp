@@ -167,11 +167,10 @@ bool WalkingEnemy::Start()
 
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-<<<<<<< Updated upstream
+
 		enemy = app->physics->CreateCircle(200, 200, 25);
-=======
 		enemy = app->physics->CreateCircle(position.x, position.y, 25);
->>>>>>> Stashed changes
+
 
 		enemy->body->SetFixedRotation(true);
 		enemy->body->GetFixtureList()->SetFriction(5.0f);
@@ -209,7 +208,7 @@ bool WalkingEnemy::Start()
 bool WalkingEnemy::PreUpdate()
 {
 	if (setToDestroy) Die();
-<<<<<<< Updated upstream
+
 
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
@@ -225,9 +224,9 @@ bool WalkingEnemy::PreUpdate()
 		}
 	}
 
-=======
+
 	aggro = CheckAggro();
->>>>>>> Stashed changes
+
 	return true;
 }
 
@@ -259,16 +258,16 @@ bool WalkingEnemy::PostUpdate()
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
 		//app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
-<<<<<<< Updated upstream
+
 		//app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS (enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
 		app->render->DrawTexture(walkingEnemy, METERS_TO_PIXELS(enemy->body->GetPosition().x) - 35, METERS_TO_PIXELS(enemy->body->GetPosition().y) - 50, &section);
 
 
-		for (uint i = 0; i < currentPath->Count(); ++i)
-=======
+		
+
 		app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS( enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
 		if (aggro && app->physics->debug)
->>>>>>> Stashed changes
+
 		{
 			for (uint i = 0; i < currentPath->Count(); ++i)
 			{
