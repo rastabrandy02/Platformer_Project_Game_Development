@@ -11,7 +11,6 @@
 FlyingEnemy::FlyingEnemy(): Module()
 {
 	//animations
-
 	idleAnimationRight.PushBack({ 10, 6, 85, 95 });
 	idleAnimationRight.PushBack({ 85,6,85,95 });
 	idleAnimationRight.PushBack({ 167,6,85,95 });
@@ -20,7 +19,6 @@ FlyingEnemy::FlyingEnemy(): Module()
 	idleAnimationRight.speed = 0.04f;
 	currentAnimation = &idleAnimationRight;
 
-
 	idleAnimationLeft.PushBack({ 330,6,85,95 });
 	idleAnimationLeft.PushBack({ 405,6,85,95 });
 	idleAnimationLeft.PushBack({ 485,6,85,95 });
@@ -28,6 +26,19 @@ FlyingEnemy::FlyingEnemy(): Module()
 	idleAnimationLeft.speed = 0.04f;
 	idleAnimationLeft.loop = true;
 
+	/*flyAnimationRight.PushBack{};
+	flyAnimationRight.PushBack{};
+	flyAnimationRight.PushBack{};
+	flyAnimationRight.PushBack{};
+	idleAnimationLeft.speed = 0.04f;
+	idleAnimationLeft.loop = true;
+
+	flyAnimationLeft.PushBack{};
+	flyAnimationLeft.PushBack{};
+	flyAnimationLeft.PushBack{};
+	flyAnimationLeft.PushBack{};
+	idleAnimationLeft.speed = 0.04f;
+	idleAnimationLeft.loop = true;*/
 	
 
 	dieAnimationRight.PushBack({ 20,280,85,85 });

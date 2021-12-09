@@ -8,117 +8,51 @@
 #include "Physics.h"
 #include "WalkingEnemy.h"
 
-WalkingEnemy::WalkingEnemy() : Module()
-{
-	idleAnimationRight.PushBack({ 10, 6, 85, 95 });
-	idleAnimationRight.PushBack({ 85,6,85,95 });
-	idleAnimationRight.PushBack({ 167,6,85,95 });
-	idleAnimationRight.PushBack({ 248,6,85,95 });
-	idleAnimationRight.loop = true;
-	idleAnimationRight.speed = 0.04f;
-	currentAnimation = &idleAnimationRight;
-
-	idleAnimationLeft.PushBack({ 330,6,85,95 });
-	idleAnimationLeft.PushBack({ 405,6,85,95 });
-	idleAnimationLeft.PushBack({ 485,6,85,95 });
-	idleAnimationLeft.PushBack({ 566,6,85,95 });
-	idleAnimationLeft.speed = 0.04f;
-	idleAnimationLeft.loop = true;
-
-	runAnimationRight.PushBack({ 10, 8, 85, 95 });
-	runAnimationRight.PushBack({ 85,8,85,95 });
-	runAnimationRight.PushBack({ 167,8,85,95 });
-	runAnimationRight.PushBack({ 248,8,85,95 });
-	runAnimationRight.speed = 0.09f;
-	runAnimationRight.loop = true;
-
-	runAnimationLeft.PushBack({ 330,8,85,95 });
-	runAnimationLeft.PushBack({ 405,8,85,95 });
-	runAnimationLeft.PushBack({ 485,8,85,95 });
-	runAnimationLeft.PushBack({ 566,8,85,95 });
-	runAnimationLeft.speed = 0.09f;
-	runAnimationLeft.loop = true;
-
-	jumpAnimationRight.PushBack({ 100, 100, 85, 95 });
-	jumpAnimationRight.speed = 0.09f;
-	jumpAnimationRight.loop = true;
-
-	jumpAnimationLeft.PushBack({ 475,100,85,95 });
-	jumpAnimationLeft.speed = 0.0009f;
-	jumpAnimationLeft.loop = true;
-
-	landAnimationRight.PushBack({ 10, 105, 85, 85 });
-	landAnimationRight.speed = 0.00009f;
-	landAnimationRight.loop = false;
-
-	landAnimationLeft.PushBack({ 556,105,85,85 });
-	landAnimationLeft.speed = 0.09f;
-	landAnimationLeft.loop = false;
-
-	dieAnimationRight.PushBack({ 20,280,85,85 });
-	dieAnimationRight.PushBack({ 110,280,85,85 });
-	dieAnimationRight.PushBack({ 200,280,85,85 });
-	dieAnimationRight.PushBack({ 290,280,75,85 });
-	dieAnimationRight.speed = 0.07f;
-	dieAnimationRight.loop = false;
-
-	dieAnimationLeft.PushBack({ 625,280,85,85 });
-	dieAnimationLeft.PushBack({ 535,280,85,85 });
-	dieAnimationLeft.PushBack({ 440,280,85,85 });
-	dieAnimationLeft.PushBack({ 365,280,75,85 });
-	dieAnimationLeft.speed = 0.07f;
-	dieAnimationLeft.loop = false;
-	position.x = 400;
-	position.y = 200;
-
-	pathfinding = new PathFinding();
-	name.Create("walking_enemy");
-}
 
 WalkingEnemy::WalkingEnemy(int x, int y)
 {
 	idleAnimationRight.PushBack({ 10, 6, 85, 95 });
-	idleAnimationRight.PushBack({ 85,6,85,95 });
-	idleAnimationRight.PushBack({ 167,6,85,95 });
-	idleAnimationRight.PushBack({ 248,6,85,95 });
+	idleAnimationRight.PushBack({ 95,6,85,95 });
+	idleAnimationRight.PushBack({ 188,6,85,95 });
+	idleAnimationRight.PushBack({ 282,6,85,95 });
 	idleAnimationRight.loop = true;
 	idleAnimationRight.speed = 0.04f;
 	currentAnimation = &idleAnimationRight;
 
-
-	idleAnimationLeft.PushBack({ 330,6,85,95 });
-	idleAnimationLeft.PushBack({ 405,6,85,95 });
-	idleAnimationLeft.PushBack({ 485,6,85,95 });
-	idleAnimationLeft.PushBack({ 566,6,85,95 });
+	idleAnimationLeft.PushBack({ 374,6,85,95 });
+	idleAnimationLeft.PushBack({ 463,6,85,95 });
+	idleAnimationLeft.PushBack({ 553,6,85,95 });
+	idleAnimationLeft.PushBack({ 647,6,85,95 });
 	idleAnimationLeft.speed = 0.04f;
 	idleAnimationLeft.loop = true;
 
-	//Correct the run animation's PushBacks (currently displaying idle animation)
-	runAnimationRight.PushBack({ 10, 8, 85, 95 });
-	runAnimationRight.PushBack({ 85,8,85,95 });
-	runAnimationRight.PushBack({ 167,8,85,95 });
-	runAnimationRight.PushBack({ 248,8,85,95 });
+
+	runAnimationRight.PushBack({ 10, 192, 85, 95 });
+	runAnimationRight.PushBack({ 95,192,85,95 });
+	runAnimationRight.PushBack({ 188,192,85,95 });
+	runAnimationRight.PushBack({ 282,192,85,95 });
 	runAnimationRight.speed = 0.09f;
 	runAnimationRight.loop = true;
 
-	runAnimationLeft.PushBack({ 330,8,85,95 });
-	runAnimationLeft.PushBack({ 405,8,85,95 });
-	runAnimationLeft.PushBack({ 485,8,85,95 });
-	runAnimationLeft.PushBack({ 566,8,85,95 });
+	runAnimationLeft.PushBack({ 374,192,85,95 });
+	runAnimationLeft.PushBack({ 463,192,85,95 });
+	runAnimationLeft.PushBack({ 553,192,85,95 });
+	runAnimationLeft.PushBack({ 647,192,85,95 });
 	runAnimationLeft.speed = 0.09f;
 	runAnimationLeft.loop = true;
 
 
-	//jumpAnimationRight.PushBack({ 10, 100, 85, 95 });
+	jumpAnimationRight.PushBack({ 10, 100, 85, 95 });
 	jumpAnimationRight.PushBack({ 100, 100, 85, 95 });
 	jumpAnimationRight.speed = 0.09f;
 	jumpAnimationRight.loop = true;
 
-	jumpAnimationLeft.PushBack({ 475,100,85,95 });
-	//jumpAnimationLeft.PushBack({ 556,100,85,95 });
-	jumpAnimationLeft.speed = 0.0009f;
+	jumpAnimationLeft.PushBack({ 568,100,85,95 });
+	jumpAnimationLeft.PushBack({ 637,100,85,95 });
+	jumpAnimationLeft.speed = 0.09f;
 	jumpAnimationLeft.loop = true;
 
+	//NEEDS THE SPRITES
 	landAnimationRight.PushBack({ 10, 105, 85, 85 });
 	landAnimationRight.speed = 0.00009f;
 	landAnimationRight.loop = false;
@@ -127,17 +61,18 @@ WalkingEnemy::WalkingEnemy(int x, int y)
 	landAnimationLeft.speed = 0.09f;
 	landAnimationLeft.loop = false;
 
-	dieAnimationRight.PushBack({ 20,280,85,85 });
+
+	dieAnimationRight.PushBack({ 15,280,85,85 });
 	dieAnimationRight.PushBack({ 110,280,85,85 });
 	dieAnimationRight.PushBack({ 200,280,85,85 });
 	dieAnimationRight.PushBack({ 290,280,75,85 });
 	dieAnimationRight.speed = 0.07f;
 	dieAnimationRight.loop = false;
 
-	dieAnimationLeft.PushBack({ 625,280,85,85 });
-	dieAnimationLeft.PushBack({ 535,280,85,85 });
-	dieAnimationLeft.PushBack({ 440,280,85,85 });
-	dieAnimationLeft.PushBack({ 365,280,75,85 });
+	dieAnimationLeft.PushBack({ 372,280,85,85 });
+	dieAnimationLeft.PushBack({ 450,280,85,85 });
+	dieAnimationLeft.PushBack({ 542,280,85,85 });
+	dieAnimationLeft.PushBack({ 640,280,75,85 });
 	dieAnimationLeft.speed = 0.07f;
 	dieAnimationLeft.loop = false;
 	position.x = x;
@@ -258,10 +193,7 @@ bool WalkingEnemy::PostUpdate()
 		//app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS (enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
 		app->render->DrawTexture(walkingEnemy, METERS_TO_PIXELS(enemy->body->GetPosition().x) - 35, METERS_TO_PIXELS(enemy->body->GetPosition().y) - 50, &section);
 
-
-		
-
-		app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS( enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
+		//app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS( enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
 		if (aggro && app->physics->debug)
 
 		{

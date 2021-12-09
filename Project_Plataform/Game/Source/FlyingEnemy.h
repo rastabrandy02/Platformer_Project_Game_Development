@@ -75,7 +75,11 @@ private:
 	Animation idleAnimationRight;
 	Animation idleAnimationLeft;
 
+	Animation flyAnimationRight;
+	Animation flyAnimationLeft;
+
 	Animation dieAnimationRight;
 	Animation dieAnimationLeft;
+
 };
 #endif
