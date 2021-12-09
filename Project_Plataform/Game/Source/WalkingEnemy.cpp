@@ -70,6 +70,8 @@ WalkingEnemy::WalkingEnemy() : Module()
 	dieAnimationLeft.loop = false;
 	position.x = 400;
 	position.y = 200;
+
+	pathfinding = new PathFinding();
 	name.Create("walking_enemy");
 }
 
@@ -140,6 +142,8 @@ WalkingEnemy::WalkingEnemy(int x, int y)
 	dieAnimationLeft.loop = false;
 	position.x = x;
 	position.y = y;
+
+	pathfinding = new PathFinding();
 	name.Create("walking_enemy");
 	
 }
@@ -186,9 +190,9 @@ bool WalkingEnemy::Start()
 		enemySensor = enemy->body->CreateFixture(&sensorFix);
 		enemySensor->SetUserData((void*)DATA_ENEMY);
 		enemyRec = { METERS_TO_PIXELS((int)enemy->body->GetPosition().x) - size,METERS_TO_PIXELS((int)enemy->body->GetPosition().y) + size, 60,60 };
-		enemy->listener = app->walkingenemy;
+		enemy->listener = this;
 
-		pathfinding = new PathFinding();
+		
 		int w, h;
 		uchar* data = NULL;
 
@@ -317,12 +321,13 @@ void WalkingEnemy::Move()
 void WalkingEnemy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 	
-	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_PLAYER)
+	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_PLAYER || bodyA->body->GetFixtureList()->GetUserData() == (void*)DATA_PLAYER)
 	{
 		app->player->TakeDamage(1);
 		LOG("Enemy Collision----------");
-		health -= 2;
-		if (health <= 0) setToDestroy = true;
+		/*health -= 4;
+		if (health <= 0) setToDestroy = true;*/
+		setToDestroy = true;
 	}
 	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_GROUND)
 	{
@@ -339,18 +344,42 @@ bool WalkingEnemy::CheckAggro()
 }
 bool WalkingEnemy::LoadState(pugi::xml_node& node)
 {
-	position.x = node.child("position").attribute("x").as_float();
-	position.y = node.child("position").attribute("y").as_float();
-	enemy->body->SetTransform({ (float)position.x,(float)position.y }, 0);
-	Path();
+	if (isAlive)
+	{
+		position.x = node.child("position").attribute("x").as_float();
+		position.y = node.child("position").attribute("y").as_float();
+		enemy->body->SetTransform({ (float)position.x,(float)position.y }, 0);
+		Path();
+	}
+	else
+	{
+		isAlive = node.child("is_alive").attribute("value").as_bool();
+		if (isAlive)
+		{
+			
+			position.x = node.child("position").attribute("x").as_float();
+			position.y = node.child("position").attribute("y").as_float();
+			
+			Start();
+			enemy->body->SetTransform({ (float)position.x,(float)position.y }, 0);
+			Path();
+		}
+	}
+	
 	return true;
 	
 }
 bool WalkingEnemy::SaveState(pugi::xml_node& node)
 {
-	pugi::xml_node pos = node.append_child("position");
-	pos.append_attribute("x").set_value(enemy->body->GetPosition().x);
-	pos.append_attribute("y").set_value(enemy->body->GetPosition().y + 1);
+	pugi::xml_node alive = node.append_child("is_alive");
+	alive.append_attribute("value").set_value(isAlive);
+	if (isAlive)
+	{
+		pugi::xml_node pos = node.append_child("position");
+		pos.append_attribute("x").set_value(enemy->body->GetPosition().x);
+		pos.append_attribute("y").set_value(enemy->body->GetPosition().y + 1);
+	}
+	
 	return true;
 }
 

@@ -46,6 +46,8 @@ FlyingEnemy::FlyingEnemy(): Module()
 
 	position.x = 500;
 	position.y = 300;
+
+	pathfinding = new PathFinding();
 	name.Create("flying_enemy");
 }
 
@@ -87,6 +89,8 @@ FlyingEnemy::FlyingEnemy(int x, int y)
 
 	position.x = x;
 	position.y = y;
+
+	pathfinding = new PathFinding();
 	name.Create("flying_enemy");
 }
 FlyingEnemy::~FlyingEnemy()
@@ -106,7 +110,7 @@ bool FlyingEnemy::Awake(pugi::xml_node& config)
 bool FlyingEnemy::Start()
 {
 	bool ret = true;
-
+	
 	flyingEnemy = app->tex->Load("Assets/sprites/flyingenemy_sprite.png");
 
 	if (app->currentScene == SCENE_LEVEL_1)
@@ -129,9 +133,9 @@ bool FlyingEnemy::Start()
 		enemySensor = enemy->body->CreateFixture(&sensorFix);
 		enemySensor->SetUserData((void*)DATA_ENEMY);
 		enemyRec = { METERS_TO_PIXELS((int)enemy->body->GetPosition().x) - size,METERS_TO_PIXELS((int)enemy->body->GetPosition().y) + size, 60,60 };
-		enemy->listener = app->flyingenemy;
+		enemy->listener = this;
 
-		pathfinding = new PathFinding();
+		
 		int w, h;
 		uchar* data = NULL;
 
@@ -264,18 +268,40 @@ bool FlyingEnemy::CheckAggro()
 }
 bool FlyingEnemy::LoadState(pugi::xml_node& node)
 {
-	position.x = node.child("position").attribute("x").as_int();
-	position.y = node.child("position").attribute("y").as_int();
-	enemy->body->SetTransform({ (float)position.x,(float)position.y }, 0);
-	Path();
+	if (isAlive)
+	{
+		position.x = node.child("position").attribute("x").as_float();
+		position.y = node.child("position").attribute("y").as_float();
+		enemy->body->SetTransform({ (float)position.x,(float)position.y }, 0);
+		Path();
+	}
+	else
+	{
+		isAlive = node.child("is_alive").attribute("value").as_bool();
+		if (isAlive)
+		{
+
+			position.x = node.child("position").attribute("x").as_float();
+			position.y = node.child("position").attribute("y").as_float();
+
+			Start();
+			enemy->body->SetTransform({ (float)position.x,(float)position.y }, 0);
+			Path();
+		}
+	}
 	
 	return true;
 }
 bool FlyingEnemy::SaveState(pugi::xml_node& node)
 {
-	pugi::xml_node pos = node.append_child("position");
-	pos.append_attribute("x").set_value(enemy->body->GetPosition().x);
-	pos.append_attribute("y").set_value(enemy->body->GetPosition().y + 1);
+	pugi::xml_node alive = node.append_child("is_alive");
+	alive.append_attribute("value").set_value(isAlive);
+	if (isAlive)
+	{
+		pugi::xml_node pos = node.append_child("position");
+		pos.append_attribute("x").set_value(enemy->body->GetPosition().x);
+		pos.append_attribute("y").set_value(enemy->body->GetPosition().y + 1);
+	}
 	return true;
 }
 
