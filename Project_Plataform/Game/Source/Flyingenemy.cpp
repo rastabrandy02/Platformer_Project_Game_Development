@@ -8,73 +8,20 @@
 #include "Physics.h"
 #include "FlyingEnemy.h"
 
-FlyingEnemy::FlyingEnemy(): Module()
-{
-	//animations
-	idleAnimationRight.PushBack({ 10, 6, 85, 95 });
-	idleAnimationRight.PushBack({ 85,6,85,95 });
-	idleAnimationRight.PushBack({ 167,6,85,95 });
-	idleAnimationRight.PushBack({ 248,6,85,95 });
-	idleAnimationRight.loop = true;
-	idleAnimationRight.speed = 0.04f;
-	currentAnimation = &idleAnimationRight;
-
-	idleAnimationLeft.PushBack({ 330,6,85,95 });
-	idleAnimationLeft.PushBack({ 405,6,85,95 });
-	idleAnimationLeft.PushBack({ 485,6,85,95 });
-	idleAnimationLeft.PushBack({ 566,6,85,95 });
-	idleAnimationLeft.speed = 0.04f;
-	idleAnimationLeft.loop = true;
-
-	/*flyAnimationRight.PushBack{};
-	flyAnimationRight.PushBack{};
-	flyAnimationRight.PushBack{};
-	flyAnimationRight.PushBack{};
-	idleAnimationLeft.speed = 0.04f;
-	idleAnimationLeft.loop = true;
-
-	flyAnimationLeft.PushBack{};
-	flyAnimationLeft.PushBack{};
-	flyAnimationLeft.PushBack{};
-	flyAnimationLeft.PushBack{};
-	idleAnimationLeft.speed = 0.04f;
-	idleAnimationLeft.loop = true;*/
-	
-
-	dieAnimationRight.PushBack({ 20,280,85,85 });
-	dieAnimationRight.PushBack({ 110,280,85,85 });
-	dieAnimationRight.PushBack({ 200,280,85,85 });
-	dieAnimationRight.PushBack({ 290,280,75,85 });
-	dieAnimationRight.speed = 0.07f;
-	dieAnimationRight.loop = false;
-
-	dieAnimationLeft.PushBack({ 625,280,85,85 });
-	dieAnimationLeft.PushBack({ 535,280,85,85 });
-	dieAnimationLeft.PushBack({ 440,280,85,85 });
-	dieAnimationLeft.PushBack({ 365,280,75,85 });
-	dieAnimationLeft.speed = 0.07f;
-	dieAnimationLeft.loop = false;
-
-	position.x = 500;
-	position.y = 300;
-
-	pathfinding = new PathFinding();
-	name.Create("flying_enemy");
-}
 
 FlyingEnemy::FlyingEnemy(int x, int y)
 {
 	//animations
 
-	idleAnimationRight.PushBack({ 10, 6, 85, 95 });
-	idleAnimationRight.PushBack({ 85,6,85,95 });
-	idleAnimationRight.PushBack({ 167,6,85,95 });
-	idleAnimationRight.PushBack({ 248,6,85,95 });
+	idleAnimationRight.PushBack({ 60, 12, 85, 95 });
+	idleAnimationRight.PushBack({ 200,12,85,95 });
+	idleAnimationRight.PushBack({ 330,12,85,95 });
+	idleAnimationRight.PushBack({ 462,12,85,95 });
+	idleAnimationRight.PushBack({ 610,12,85,95 });
 	idleAnimationRight.loop = true;
 	idleAnimationRight.speed = 0.04f;
 	currentAnimation = &idleAnimationRight;
-
-
+	//to finish
 	idleAnimationLeft.PushBack({ 330,6,85,95 });
 	idleAnimationLeft.PushBack({ 405,6,85,95 });
 	idleAnimationLeft.PushBack({ 485,6,85,95 });
@@ -82,21 +29,35 @@ FlyingEnemy::FlyingEnemy(int x, int y)
 	idleAnimationLeft.speed = 0.04f;
 	idleAnimationLeft.loop = true;
 
-
-
-	dieAnimationRight.PushBack({ 20,280,85,85 });
+	//to finish
+	dieAnimationRight.PushBack({ 20, 280, 85, 85 });
 	dieAnimationRight.PushBack({ 110,280,85,85 });
 	dieAnimationRight.PushBack({ 200,280,85,85 });
 	dieAnimationRight.PushBack({ 290,280,75,85 });
 	dieAnimationRight.speed = 0.07f;
 	dieAnimationRight.loop = false;
-
+	//to finish
 	dieAnimationLeft.PushBack({ 625,280,85,85 });
 	dieAnimationLeft.PushBack({ 535,280,85,85 });
 	dieAnimationLeft.PushBack({ 440,280,85,85 });
 	dieAnimationLeft.PushBack({ 365,280,75,85 });
 	dieAnimationLeft.speed = 0.07f;
 	dieAnimationLeft.loop = false;
+
+
+	flyAnimationRight.PushBack({ 60, 12, 85, 95 });
+	flyAnimationRight.PushBack({ 200, 12, 85, 9 });
+	flyAnimationRight.PushBack({ 330, 12, 85, 95 });
+	flyAnimationRight.PushBack({ 462, 12, 85, 95 });
+	flyAnimationRight.speed = 0.04f;
+	flyAnimationRight.loop = true;
+
+	flyAnimationLeft.PushBack({ 60, 470, 140, 100});
+	flyAnimationLeft.PushBack({ 200, 470, 140, 100 });
+	flyAnimationLeft.PushBack({ 330, 470, 140, 100 });
+	flyAnimationLeft.PushBack({ 462, 470, 140, 100 });
+	flyAnimationLeft.speed = 0.04f;
+	flyAnimationLeft.loop = true;
 
 	position.x = x;
 	position.y = y;

@@ -52,7 +52,7 @@ WalkingEnemy::WalkingEnemy(int x, int y)
 	jumpAnimationLeft.speed = 0.09f;
 	jumpAnimationLeft.loop = true;
 
-	//NEEDS THE SPRITES
+	//NEEDS THE SPRITES FOR LANDING
 	landAnimationRight.PushBack({ 10, 105, 85, 85 });
 	landAnimationRight.speed = 0.00009f;
 	landAnimationRight.loop = false;
