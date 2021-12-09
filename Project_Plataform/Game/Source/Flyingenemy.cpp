@@ -46,7 +46,7 @@ FlyingEnemy::FlyingEnemy(): Module()
 
 	position.x = 500;
 	position.y = 300;
-	name.Create("Walking_Enemy");
+	name.Create("flying_enemy");
 }
 
 FlyingEnemy::FlyingEnemy(int x, int y)
@@ -87,7 +87,7 @@ FlyingEnemy::FlyingEnemy(int x, int y)
 
 	position.x = x;
 	position.y = y;
-	name.Create("Walking_Enemy");
+	name.Create("flying_enemy");
 }
 FlyingEnemy::~FlyingEnemy()
 {
@@ -160,14 +160,7 @@ bool FlyingEnemy::Update(float dt)
 {
 	if (app->currentScene == SCENE_LEVEL_1 && isAlive && aggro)
 	{
-		iPoint origin = { (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().x), (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().y) };
-		iPoint destination = { (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().x), (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().y) };
-
-		origin = app->map->WorldToMap(origin.x, origin.y);
-		destination = app->map->WorldToMap(destination.x, destination.y);
-
-		pathfinding->CreatePath(origin, destination);
-		currentPath = pathfinding->GetLastPath();
+		Path();
 		Move();
 
 	}
@@ -187,11 +180,9 @@ bool FlyingEnemy::PostUpdate()
 
 		//app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) - size/2,METERS_TO_PIXELS(enemy->body->GetPosition().y) - size/2, size,size }, 0, 255, 0, 255);
 		app->render->DrawTexture(flyingEnemy, METERS_TO_PIXELS(enemy->body->GetPosition().x) - 35, METERS_TO_PIXELS(enemy->body->GetPosition().y) - 50, &section);
-
-
 		app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) - size/2,METERS_TO_PIXELS(enemy->body->GetPosition().y) - size/2, size,size }, 0, 255, 0, 255);
+		
 		if (aggro && app->physics->debug)
-
 		{
 				for (uint i = 0; i < currentPath->Count(); ++i)
 				{
@@ -203,7 +194,17 @@ bool FlyingEnemy::PostUpdate()
 	}
 	return true;
 }
+void FlyingEnemy::Path()
+{
+	iPoint origin = { (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().x), (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().y) };
+	iPoint destination = { (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().x), (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().y) };
 
+	origin = app->map->WorldToMap(origin.x, origin.y);
+	destination = app->map->WorldToMap(destination.x, destination.y);
+
+	pathfinding->CreatePath(origin, destination);
+	currentPath = pathfinding->GetLastPath();
+}
 void FlyingEnemy::Move()
 {
 	
@@ -261,12 +262,20 @@ bool FlyingEnemy::CheckAggro()
 	if (dist < aggroDistance) return true;
 	if (dist > aggroDistance) return false;
 }
-bool FlyingEnemy::LoadState(pugi::xml_node&)
+bool FlyingEnemy::LoadState(pugi::xml_node& node)
 {
+	position.x = node.child("position").attribute("x").as_int();
+	position.y = node.child("position").attribute("y").as_int();
+	enemy->body->SetTransform({ (float)position.x,(float)position.y }, 0);
+	Path();
+	
 	return true;
 }
-bool FlyingEnemy::SaveState(pugi::xml_node&)
+bool FlyingEnemy::SaveState(pugi::xml_node& node)
 {
+	pugi::xml_node pos = node.append_child("position");
+	pos.append_attribute("x").set_value(enemy->body->GetPosition().x);
+	pos.append_attribute("y").set_value(enemy->body->GetPosition().y + 1);
 	return true;
 }
 

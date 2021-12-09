@@ -6,13 +6,18 @@
 	<audio />
 	<physics />
 	<scene />
+	<walking_enemy>
+		<position x="7" y="11" />
+	</walking_enemy>
+	<flying_enemy>
+		<position x="37.0243835" y="5.6514225" />
+	</flying_enemy>
 	<map />
-	<Walking_Enemy />
 	<:anonymous />
 	<player>
-		<position x="10.7388525" y="10.2088623" />
+		<position x="39.9375" y="1.9375" />
 	</player>
 	<renderer>
-		<camera x="-18" y="0" />
+		<camera x="-953" y="0" />
 	</renderer>
 </game_state>

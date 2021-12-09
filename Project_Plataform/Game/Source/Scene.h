@@ -33,6 +33,9 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	bool LoadState(pugi::xml_node&) override;
+	bool SaveState(pugi::xml_node&) override;
+
 private:
 	SDL_Texture* titlleBackground;
 	SDL_Texture* deathBackground;

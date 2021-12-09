@@ -29,8 +29,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	map = new Map();
 	player = new Player();
 	physics = new Physics();
-	walkingenemy = new WalkingEnemy();
-	flyingenemy = new FlyingEnemy();
+	//walkingenemy = new WalkingEnemy();
+	//flyingenemy = new FlyingEnemy();
 	heartcontainer = new HeartContainer();
 
 	// Ordered for awake / Start / Update

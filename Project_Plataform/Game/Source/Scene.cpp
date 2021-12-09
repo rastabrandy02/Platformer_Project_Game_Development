@@ -47,6 +47,8 @@ bool Scene::Start()
 		enemies.Add(flyingEnemy);
 		for (ListItem<Module*>* item = enemies.start; item; item = item->next)
 		{
+			
+			//item->data->Awake();
 			item->data->Start();
 		}
 
@@ -184,5 +186,25 @@ bool Scene::CleanUp()
 	enemies.Clear();
 	LOG("Freeing scene");
 
+	return true;
+}
+bool Scene::SaveState(pugi::xml_node& node)
+{
+	for (ListItem<Module*>* item = enemies.start; item; item = item->next)
+	{
+		SString name = item->data->name.GetString();
+		item->data->SaveState(node.parent().append_child(name.GetString()));
+	}
+	
+
+	return true;
+}
+bool Scene::LoadState(pugi::xml_node& node)
+{
+	for (ListItem<Module*>* item = enemies.start; item; item = item->next)
+	{
+		SString name = item->data->name.GetString();
+		item->data->LoadState(node.parent().child(name.GetString()));
+	}
 	return true;
 }

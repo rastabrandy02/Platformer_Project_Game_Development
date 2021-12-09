@@ -70,7 +70,7 @@ WalkingEnemy::WalkingEnemy() : Module()
 	dieAnimationLeft.loop = false;
 	position.x = 400;
 	position.y = 200;
-	name.Create("Walking_Enemy");
+	name.Create("walking_enemy");
 }
 
 WalkingEnemy::WalkingEnemy(int x, int y)
@@ -140,7 +140,7 @@ WalkingEnemy::WalkingEnemy(int x, int y)
 	dieAnimationLeft.loop = false;
 	position.x = x;
 	position.y = y;
-	name.Create("Walking_Enemy");
+	name.Create("walking_enemy");
 	
 }
 WalkingEnemy::~WalkingEnemy()
@@ -168,7 +168,7 @@ bool WalkingEnemy::Start()
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 
-		enemy = app->physics->CreateCircle(200, 200, 25);
+		//enemy = app->physics->CreateCircle(200, 200, 25);
 		enemy = app->physics->CreateCircle(position.x, position.y, 25);
 
 
@@ -234,20 +234,12 @@ bool WalkingEnemy::Update(float dt)
 {
 	if (app->currentScene == SCENE_LEVEL_1 && isAlive && aggro)
 	{
-		iPoint origin = {(int) METERS_TO_PIXELS((int)enemy->body->GetPosition().x), (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().y ) };
-		iPoint destination = { (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().x), (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().y ) };
-		
-		origin = app->map->WorldToMap(origin.x, origin.y);
-		destination = app->map->WorldToMap(destination.x, destination.y);
-		
-		pathfinding->CreatePath(origin, destination);
-		currentPath = pathfinding->GetLastPath();
+		Path();
 		Move();
-		if (aggro == false)
-		{
-			enemy->body->SetLinearVelocity({ 0, 0 });
-		}
-		
+	}
+	if (aggro == false)
+	{
+		enemy->body->SetLinearVelocity({ 0, 0 });
 	}
 	return true;
 }
@@ -279,7 +271,17 @@ bool WalkingEnemy::PostUpdate()
 	}
 	return true;
 }
+void WalkingEnemy::Path()
+{
+	iPoint origin = { (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().x), (int)METERS_TO_PIXELS((int)enemy->body->GetPosition().y) };
+	iPoint destination = { (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().x), (int)METERS_TO_PIXELS((int)app->player->player->body->GetPosition().y) };
 
+	origin = app->map->WorldToMap(origin.x, origin.y);
+	destination = app->map->WorldToMap(destination.x, destination.y);
+
+	pathfinding->CreatePath(origin, destination);
+	currentPath = pathfinding->GetLastPath();
+}
 void WalkingEnemy::Move()
 {
 	
@@ -335,12 +337,20 @@ bool WalkingEnemy::CheckAggro()
 	if (dist < aggroDistance) return true;
 	if (dist > aggroDistance) return false;
 }
-bool WalkingEnemy::LoadState(pugi::xml_node&)
+bool WalkingEnemy::LoadState(pugi::xml_node& node)
 {
+	position.x = node.child("position").attribute("x").as_float();
+	position.y = node.child("position").attribute("y").as_float();
+	enemy->body->SetTransform({ (float)position.x,(float)position.y }, 0);
+	Path();
 	return true;
+	
 }
-bool WalkingEnemy::SaveState(pugi::xml_node&)
+bool WalkingEnemy::SaveState(pugi::xml_node& node)
 {
+	pugi::xml_node pos = node.append_child("position");
+	pos.append_attribute("x").set_value(enemy->body->GetPosition().x);
+	pos.append_attribute("y").set_value(enemy->body->GetPosition().y + 1);
 	return true;
 }
 

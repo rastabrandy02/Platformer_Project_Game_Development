@@ -39,6 +39,7 @@ public:
 private:
 
 	void Move();
+	void Path();
 	bool CheckAggro();
 	bool aggro;
 	int aggroDistance = 10;
