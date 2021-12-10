@@ -304,7 +304,7 @@ bool Physics::PostUpdate()
 		// TODO 2: If a body was selected, create a mouse joint
 		// using mouse_joint class property
 
-		if (clickedBody != NULL)
+		/*if (clickedBody != NULL)
 		{
 			b2MouseJointDef mJoint;
 			mJoint.bodyA = ground;
@@ -321,29 +321,29 @@ bool Physics::PostUpdate()
 
 
 
-		}
+		}*/
 		// TODO 3: If the player keeps pressing the mouse button, update
 	// target position and draw a red line between both anchor points
-		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
-		{
-			mouseJoint->SetTarget(mousePos);
-			if (clickedBody != NULL)
-			{
-				app->render->DrawLine(mousePos.x, mousePos.y, clickedBodyPos.x, clickedBodyPos.y, 255, 0, 0, 255);
-			}
+		//if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT)
+		//{
+		//	mouseJoint->SetTarget(mousePos);
+		//	if (clickedBody != NULL)
+		//	{
+		//		app->render->DrawLine(mousePos.x, mousePos.y, clickedBodyPos.x, clickedBodyPos.y, 255, 0, 0, 255);
+		//	}
 
 
 
 
-		}
-		// TODO 4: If the player releases the mouse button, destroy the joint
-		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP)
-		{
-			//delete mouseJoint;
-			world->DestroyJoint(mouseJoint);
-			mouseJoint = NULL;
-			clickedBody = NULL;
-		}
+		//}
+		//// TODO 4: If the player releases the mouse button, destroy the joint
+		//if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP)
+		//{
+		//	//delete mouseJoint;
+		//	world->DestroyJoint(mouseJoint);
+		//	mouseJoint = NULL;
+		//	clickedBody = NULL;
+		//}
 
 
 	}

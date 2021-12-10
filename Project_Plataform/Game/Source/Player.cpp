@@ -127,6 +127,8 @@ bool Player::Start()
 		playerSensor->SetUserData((void*)DATA_PLAYER);
 		player->listener = app->player;
 		
+
+		
 	}
 	
 	
@@ -139,6 +141,8 @@ bool Player::Start()
 bool Player::CleanUp()
 {
 	LOG("Unloading player");
+	
+	fireballs.Clear();
 
 	return true;
 }
@@ -147,6 +151,16 @@ bool Player::CleanUp()
 bool Player::PreUpdate()
 {
 	bool ret = true;
+
+	uint fireballCount2 = 0; 
+
+	if (fireballZero == false)
+	{
+		for (ListItem<Fireball*>* item = fireballs.start; item != NULL; item = item->next)
+		{
+			item->data->PreUpdate();
+		}
+	}
 
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
@@ -237,6 +251,33 @@ bool Player::PreUpdate()
 				break;
 			}
 		}
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN && canAttack)
+		{
+			int offset = 50;
+			if (lookingAt == RIGHT)
+			{
+				Fireball* fireball = new Fireball(METERS_TO_PIXELS(player->body->GetPosition().x) + offset, METERS_TO_PIXELS(player->body->GetPosition().y), lookingAt, fireID);
+				fireballs.Add(fireball);
+				fireball->Start();
+				fireID++;
+			}
+			if (lookingAt == LEFT)
+			{
+				Fireball* fireball = new Fireball(METERS_TO_PIXELS(player->body->GetPosition().x) - offset, METERS_TO_PIXELS(player->body->GetPosition().y), lookingAt, fireID);
+				fireballs.Add(fireball);
+				fireball->Start();
+				fireID++;
+				
+			}
+				
+				
+			/*for (ListItem<Fireball*>* item = fireballs.start; item; item = item->next)
+			{
+					item->data->Start();
+			}*/
+				canAttack = false;
+		}
+		
 
 		// GOD MODE
 		// GOD MODE
@@ -255,6 +296,9 @@ bool Player::PreUpdate()
 				player->body->SetTransform({ player->body->GetPosition().x, player->body->GetPosition().y + PIXEL_TO_METERS(10) }, 0.0f);
 			}
 		}
+		
+
+		
 	}
 	
 	return true;
@@ -286,9 +330,27 @@ bool Player::Update(float dt)
 				if(!godMode)Die();
 			}
 		}
-
+		if (canAttack == false)
+		{
+			fireballTimer++;
+			if (fireballTimer > 30)
+			{
+				canAttack = true;
+				fireballTimer = 0;
+			}
+		}
 
 		currentAnimation->Update();
+		if (fireballZero == false)
+		{
+			for (ListItem<Fireball*>* item = fireballs.start; item != NULL; item = item->next)
+			{
+
+				item->data->Update(dt);
+			}
+		}
+
+		
 	}
 	
 	return ret;
@@ -306,6 +368,16 @@ bool Player::PostUpdate()
 		int playerPosY;
 		player->GetPosition(playerPosX, playerPosY);
 		if (playerPosX > app->render->camera.x + 300) app->render->camera.x = -playerPosX + 300;
+
+		if (fireballZero == false)
+		{
+			for (ListItem<Fireball*>* item = fireballs.start; item; item = item->next)
+			{
+
+				item->data->PostUpdate();
+			}
+		}
+		
 	}
 	
 		

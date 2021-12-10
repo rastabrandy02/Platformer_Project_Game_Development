@@ -7,8 +7,9 @@
 #include "App.h"
 #include "p2Point.h"
 #include "Animation.h"
+#include "Fireball.h"
 
-
+class Fireball;
 class PhysBody;
 struct b2MassData;
 enum directionOfView
@@ -51,8 +52,12 @@ public:
 
 	p2Point <int> position;
 
+	int fireID = 0;
 	PhysBody* player;
-	
+	List<Fireball*> fireballs;
+	uint fireballCount; 
+	bool fireballZero = true;
+
 private:
 	int maxHealth = 10;
 	int health = maxHealth;
@@ -77,8 +82,12 @@ private:
 	bool countLanding = false;
 	int landingTimer = 0;
 	
+	int fireballTimer = 0;
+	bool canAttack = true;
+
 	bool isDead = false;
 	int deathTimer = 0;
+	
 	
 
 	SDL_Texture* wizard;

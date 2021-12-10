@@ -7,18 +7,19 @@
 	<physics />
 	<scene />
 	<walking_enemy>
-		<is_alive value="false" />
+		<is_alive value="true" />
+		<position x="8.11266136" y="10.2093134" />
 	</walking_enemy>
 	<flying_enemy>
 		<is_alive value="true" />
-		<position x="11.429225" y="10.375" />
+		<position x="11.3770895" y="6.87545252" />
 	</flying_enemy>
 	<map />
 	<:anonymous />
 	<player>
-		<position x="5.625" y="7.71375179" />
+		<position x="14.6545382" y="10.2089643" />
 	</player>
 	<renderer>
-		<camera x="0" y="0" />
+		<camera x="-143" y="0" />
 	</renderer>
 </game_state>

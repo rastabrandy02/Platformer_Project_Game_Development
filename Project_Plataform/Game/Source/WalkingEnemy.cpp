@@ -257,14 +257,19 @@ void WalkingEnemy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	{
 		app->player->TakeDamage(1);
 		LOG("Enemy Collision----------");
-		/*health -= 4;
-		if (health <= 0) setToDestroy = true;*/
-		setToDestroy = true;
+		
 	}
 	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_GROUND)
 	{
 		canJump = true;
 		LOG("Enemy On The Ground----------");
+	}
+	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_FIREBALL)
+	{
+
+		LOG("Walking Enemy Collision With Fireball----------");
+		health -= 2;
+		if (health <= 0) setToDestroy = true;
 	}
 }
 bool WalkingEnemy::CheckAggro()

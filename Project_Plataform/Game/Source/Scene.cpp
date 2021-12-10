@@ -42,7 +42,7 @@ bool Scene::Start()
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		WalkingEnemy* walkingEnemy = new WalkingEnemy(400,200);
-		FlyingEnemy* flyingEnemy = new FlyingEnemy();
+		FlyingEnemy* flyingEnemy = new FlyingEnemy(600, 100);
 		enemies.Add(walkingEnemy);
 		enemies.Add(flyingEnemy);
 		for (ListItem<Module*>* item = enemies.start; item; item = item->next)

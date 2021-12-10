@@ -156,7 +156,7 @@ bool FlyingEnemy::PostUpdate()
 
 		//app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) - size/2,METERS_TO_PIXELS(enemy->body->GetPosition().y) - size/2, size,size }, 0, 255, 0, 255);
 		app->render->DrawTexture(flyingEnemy, METERS_TO_PIXELS(enemy->body->GetPosition().x) - 35, METERS_TO_PIXELS(enemy->body->GetPosition().y) - 50, &section);
-		app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) - size/2,METERS_TO_PIXELS(enemy->body->GetPosition().y) - size/2, size,size }, 0, 255, 0, 255);
+		//app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) - size/2,METERS_TO_PIXELS(enemy->body->GetPosition().y) - size/2, size,size }, 0, 255, 0, 255);
 		
 		if (aggro && app->physics->debug)
 		{
@@ -226,6 +226,12 @@ void FlyingEnemy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	{
 		app->player->TakeDamage(1);
 		LOG("Flying Enemy Collision----------");
+		
+	}
+	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_FIREBALL)
+	{
+		
+		LOG("Flying Enemy Collision With Fireball----------");
 		health -= 2;
 		if (health <= 0) setToDestroy = true;
 	}
