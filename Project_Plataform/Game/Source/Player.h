@@ -46,6 +46,8 @@ public:
 	void TakeDamage(int dmg);
 	void Heal(int heal);
 
+	void CollectStar();
+
 	//void BeginContact(b2Contact* contact);
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;
 	void Die();
@@ -62,6 +64,7 @@ private:
 	int maxHealth = 10;
 	int health = maxHealth;
 	
+	int stars = 0;
 	//PhysBody* playerSensor;
 	b2Fixture* playerSensor;
 	b2MassData* playerMass;

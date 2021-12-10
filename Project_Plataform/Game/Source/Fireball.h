@@ -43,7 +43,7 @@ private:
 	bool setToDestroy = false;
 	bool isAlive = true;
 
-	float speed = 5.0f;
+	float speed = 6.0f;
 
 	int direction;
 	int deathTimer = 0;

@@ -42,9 +42,9 @@ bool HeartContainer::Start()
 		sensorFix.isSensor = true;
 
 		heartSensor = heartPb->body->CreateFixture(&sensorFix);
-		heartSensor->SetUserData((void*)DATA_ENEMY);
+		heartSensor->SetUserData((void*)DATA_HEART);
 		heartTexture = app->tex->Load("Assets/sprites/heart_spritesheet.png");
-		heartPb->listener = app->heartcontainer;
+		heartPb->listener = this;
 	}
 
 

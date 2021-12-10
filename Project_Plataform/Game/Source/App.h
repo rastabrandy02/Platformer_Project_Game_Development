@@ -17,7 +17,7 @@
 #include "WalkingEnemy.h"
 #include "HeartContainer.h"
 #include "FlyingEnemy.h"
-
+#include "Star.h"
 
 
 #include "Defs.h"
@@ -42,6 +42,8 @@ class PathFinding;
 class WalkingEnemy;
 class FlyingEnemy;
 class HeartContainer;
+class Star;
+
 
 
 enum sceneEnum
@@ -131,6 +133,7 @@ public:
 	WalkingEnemy* walkingenemy;
 	FlyingEnemy* flyingenemy;
 	HeartContainer* heartcontainer;
+	Star* star;
 
 	sceneEnum currentScene = SCENE_TITLE;
 #define SCREEN_HEIGHT 758

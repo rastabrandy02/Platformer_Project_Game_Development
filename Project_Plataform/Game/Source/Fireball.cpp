@@ -68,8 +68,9 @@ bool Fireball::Start()
 		fireball = app->physics->CreateCircle(position.x, position.y, 20);
 
 		fireball->body->SetFixedRotation(true);
-		fireball->body->SetType(b2_kinematicBody);
+		fireball->body->SetType(b2_dynamicBody);
 		fireball->body->GetFixtureList()->SetFriction(5.0f);
+		fireball->body->SetGravityScale(0.0f);
 
 		b2PolygonShape sensorShape;
 
@@ -101,7 +102,7 @@ bool Fireball::Start()
 bool Fireball::PreUpdate()
 {
 	if(isAlive)deathTimer++;
-	if (deathTimer > 50)
+	if (deathTimer > 75)
 	{
 		setToDestroy = true;
 		deathTimer = 0;
@@ -129,7 +130,7 @@ bool Fireball::PostUpdate()
 	if (app->currentScene == SCENE_LEVEL_1 && isAlive)
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
-		app->render->DrawTexture(fireBallTex, METERS_TO_PIXELS(fireball->body->GetPosition().x) - 15, METERS_TO_PIXELS(fireball->body->GetPosition().y) - 15, &section);
+		//app->render->DrawTexture(fireBallTex, METERS_TO_PIXELS(fireball->body->GetPosition().x) - 15, METERS_TO_PIXELS(fireball->body->GetPosition().y) - 15, &section);
 		app->render->DrawCircle(METERS_TO_PIXELS(fireball->body->GetPosition().x), METERS_TO_PIXELS(fireball->body->GetPosition().y), 10, 255, 0, 0, 255);
 		
 		

@@ -467,6 +467,10 @@ void Player::Heal(int heal)
 	health += heal;
 	if (health > maxHealth) health = maxHealth;
 }
+void Player::CollectStar()
+{
+	stars++;
+}
 void Player::Die()
 {
 	app->ChangeScene(SCENE_DEATH);

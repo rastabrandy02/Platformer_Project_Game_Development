@@ -25,6 +25,8 @@ enum userData
 	DATA_FIREBALL,
 	DATA_GROUND,
 	DATA_ENEMY,
+	DATA_HEART,
+	DATA_STAR,
 	DATA_DEATH
 };
 class PhysBody

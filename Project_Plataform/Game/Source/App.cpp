@@ -32,6 +32,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	//walkingenemy = new WalkingEnemy();
 	//flyingenemy = new FlyingEnemy();
 	heartcontainer = new HeartContainer();
+	star = new Star();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -44,6 +45,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 
 	AddModule(heartcontainer);
+	AddModule(star);
 
 	AddModule(player);
 	// Render last to swap buffer

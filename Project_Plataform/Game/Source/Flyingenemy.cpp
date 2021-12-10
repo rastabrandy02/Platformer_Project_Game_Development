@@ -222,13 +222,13 @@ void FlyingEnemy::Move()
 void FlyingEnemy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 {
 
-	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_PLAYER)
+	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_PLAYER || bodyA->body->GetFixtureList()->GetUserData() == (void*)DATA_PLAYER)
 	{
 		app->player->TakeDamage(1);
 		LOG("Flying Enemy Collision----------");
 		
 	}
-	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_FIREBALL)
+	if (bodyB->body->GetFixtureList()->GetUserData() == (void*)DATA_FIREBALL || bodyA->body->GetFixtureList()->GetUserData() == (void*)DATA_FIREBALL)
 	{
 		
 		LOG("Flying Enemy Collision With Fireball----------");
