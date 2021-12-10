@@ -26,6 +26,7 @@
     <ClCompile Include="Source\HeartContainer.cpp" />
     <ClCompile Include="Source\Fireball.cpp" />
     <ClCompile Include="Source\Star.cpp" />
+    <ClCompile Include="Source\Checkpoint.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -73,6 +74,7 @@
     <ClInclude Include="Source\FlyingEnemy.h" />
     <ClInclude Include="Source\Fireball.h" />
     <ClInclude Include="Source\Star.h" />
+    <ClInclude Include="Source\Checkpoint.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
