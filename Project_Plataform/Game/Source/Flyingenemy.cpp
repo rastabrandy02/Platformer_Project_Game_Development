@@ -11,51 +11,50 @@
 
 FlyingEnemy::FlyingEnemy(int x, int y)
 {
-	//animations
 
-	idleAnimationRight.PushBack({ 60, 12, 85, 95 });
-	idleAnimationRight.PushBack({ 200,12,85,95 });
-	idleAnimationRight.PushBack({ 330,12,85,95 });
-	idleAnimationRight.PushBack({ 462,12,85,95 });
-	idleAnimationRight.PushBack({ 610,12,85,95 });
+	idleAnimationRight.PushBack({ 60, 12, 130, 95 });
+	idleAnimationRight.PushBack({ 200,12,130,95 });
+	idleAnimationRight.PushBack({ 330,12,130,95 });
+	idleAnimationRight.PushBack({ 462,12,130,95 });
+	idleAnimationRight.PushBack({ 610,12,130,95 });
 	idleAnimationRight.loop = true;
 	idleAnimationRight.speed = 0.04f;
 	currentAnimation = &idleAnimationRight;
 	//to finish
-	idleAnimationLeft.PushBack({ 330,6,85,95 });
-	idleAnimationLeft.PushBack({ 405,6,85,95 });
-	idleAnimationLeft.PushBack({ 485,6,85,95 });
-	idleAnimationLeft.PushBack({ 566,6,85,95 });
+	idleAnimationLeft.PushBack({ 330,6,130,95 });
+	idleAnimationLeft.PushBack({ 405,6,130,95 });
+	idleAnimationLeft.PushBack({ 485,6,130,95 });
+	idleAnimationLeft.PushBack({ 566,6,130,95 });
 	idleAnimationLeft.speed = 0.04f;
 	idleAnimationLeft.loop = true;
 
 	//to finish
-	dieAnimationRight.PushBack({ 20, 280, 85, 85 });
-	dieAnimationRight.PushBack({ 110,280,85,85 });
-	dieAnimationRight.PushBack({ 200,280,85,85 });
-	dieAnimationRight.PushBack({ 290,280,75,85 });
+	dieAnimationRight.PushBack({ 20, 280, 130, 95 });
+	dieAnimationRight.PushBack({ 110,280,130,95 });
+	dieAnimationRight.PushBack({ 200,280,130,95 });
+	dieAnimationRight.PushBack({ 290,280,130,95 });
 	dieAnimationRight.speed = 0.07f;
 	dieAnimationRight.loop = false;
 	//to finish
-	dieAnimationLeft.PushBack({ 625,280,85,85 });
-	dieAnimationLeft.PushBack({ 535,280,85,85 });
-	dieAnimationLeft.PushBack({ 440,280,85,85 });
-	dieAnimationLeft.PushBack({ 365,280,75,85 });
+	dieAnimationLeft.PushBack({ 625,280,130,95 });
+	dieAnimationLeft.PushBack({ 535,280,130,95 });
+	dieAnimationLeft.PushBack({ 440,280,130,95 });
+	dieAnimationLeft.PushBack({ 365,280,130,95 });
 	dieAnimationLeft.speed = 0.07f;
 	dieAnimationLeft.loop = false;
 
 
-	flyAnimationRight.PushBack({ 60, 12, 85, 95 });
-	flyAnimationRight.PushBack({ 200, 12, 85, 9 });
-	flyAnimationRight.PushBack({ 330, 12, 85, 95 });
-	flyAnimationRight.PushBack({ 462, 12, 85, 95 });
+	flyAnimationRight.PushBack({ 60, 12, 130, 95 });
+	flyAnimationRight.PushBack({ 200, 12, 130, 95 });
+	flyAnimationRight.PushBack({ 330, 12, 130, 95 });
+	flyAnimationRight.PushBack({ 462, 12, 130, 95 });
 	flyAnimationRight.speed = 0.04f;
 	flyAnimationRight.loop = true;
 
-	flyAnimationLeft.PushBack({ 60, 470, 140, 100});
-	flyAnimationLeft.PushBack({ 200, 470, 140, 100 });
-	flyAnimationLeft.PushBack({ 330, 470, 140, 100 });
-	flyAnimationLeft.PushBack({ 462, 470, 140, 100 });
+	flyAnimationLeft.PushBack({ 60, 470, 130, 95});
+	flyAnimationLeft.PushBack({ 200, 470, 130, 95 });
+	flyAnimationLeft.PushBack({ 330, 470, 130, 95 });
+	flyAnimationLeft.PushBack({ 462, 470, 130, 95 });
 	flyAnimationLeft.speed = 0.04f;
 	flyAnimationLeft.loop = true;
 

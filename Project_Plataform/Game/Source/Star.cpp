@@ -3,23 +3,32 @@
 
 Star::Star()
 {
-
+	starAnimation.PushBack({ 10,9,40,49 });
+	starAnimation.PushBack({ 50,9,33,49 });
+	starAnimation.PushBack({ 83,9,27,49 });
+	starAnimation.PushBack({ 110,9,20,49 });
+	starAnimation.PushBack({ 130,9,28,49 });
+	starAnimation.PushBack({ 158,9,32,49 });
+	starAnimation.PushBack({ 190,9,40,49 });
+	starAnimation.loop = true;
+	starAnimation.speed = 0.04f;
+	currentAnimation = &starAnimation;
 }
 Star::~Star()
 {
 
 }
+
 bool Star::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Hearts");
 
-	/*position.x = config.child("position").attribute("x").as_int();
-	position.y = config.child("position").attribute("y").as_int();*/
 	position.x = 1000;
 	position.y = 200;
 
 	return true;
 }
+
 bool Star::Start()
 {
 	bool ret = true;
@@ -43,7 +52,7 @@ bool Star::Start()
 
 		starSensor = starPb->body->CreateFixture(&sensorFix);
 		starSensor->SetUserData((void*)DATA_HEART);
-		starTexture = app->tex->Load("Assets/sprites/star_spritesheet.png");
+		starTexture = app->tex->Load("Assets/sprites/star.png");
 		starPb->listener = this;
 		
 	}
@@ -61,12 +70,11 @@ void Star::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		app->player->CollectStar();
 		setToDestroy = true;
 
-
-
 	}
 }
 bool Star::PreUpdate()
 {
+	currentAnimation = &starAnimation;
 	if (setToDestroy) Die();
 	return true;
 }
@@ -78,8 +86,9 @@ bool Star::PostUpdate()
 {
 	if (app->currentScene == SCENE_LEVEL_1 && draw)
 	{
-		app->render->DrawTexture(starTexture, position.x, position.y);
-		app->render->DrawRectangle({ position.x -20, position.y -20, 40,40 }, 150, 150, 0, 255);
+		SDL_Rect section = currentAnimation->GetCurrentFrame();
+		app->render->DrawTexture(starTexture, position.x - 45, position.y - 45);
+		//app->render->DrawRectangle({ position.x -20, position.y -20, 40,40 }, 150, 150, 0, 255);
 	}
 
 	return true;

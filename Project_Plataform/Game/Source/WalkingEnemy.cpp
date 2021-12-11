@@ -52,7 +52,6 @@ WalkingEnemy::WalkingEnemy(int x, int y)
 	jumpAnimationLeft.speed = 0.09f;
 	jumpAnimationLeft.loop = true;
 
-	//NEEDS THE SPRITES FOR LANDING
 	landAnimationRight.PushBack({ 10, 105, 85, 85 });
 	landAnimationRight.speed = 0.00009f;
 	landAnimationRight.loop = false;
@@ -188,12 +187,9 @@ bool WalkingEnemy::PostUpdate()
 	if (app->currentScene == SCENE_LEVEL_1 && isAlive)
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
-		//app->render->DrawTexture(walkingEnemy, 255, 0, 0, 255);
 
-		//app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS (enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
 		app->render->DrawTexture(walkingEnemy, METERS_TO_PIXELS(enemy->body->GetPosition().x) - 35, METERS_TO_PIXELS(enemy->body->GetPosition().y) - 50, &section);
 
-		//app->render->DrawRectangle({ METERS_TO_PIXELS(enemy->body->GetPosition().x) -size/2,METERS_TO_PIXELS( enemy->body->GetPosition().y) - size/2, 60,60 }, 255, 0, 0, 255);
 		if (aggro && app->physics->debug)
 
 		{
@@ -327,6 +323,7 @@ bool WalkingEnemy::CleanUp()
 void WalkingEnemy::Die()
 {
 	app->physics->world->DestroyBody(enemy->body);
+	currentAnimation = &dieAnimationRight;
 	setToDestroy = false;
 	isAlive = false;
 }

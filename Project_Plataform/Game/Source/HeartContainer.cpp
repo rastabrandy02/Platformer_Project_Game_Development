@@ -1,25 +1,30 @@
 #include "App.h"
 #include "HeartContainer.h"
 
+
 HeartContainer::HeartContainer()
 {
-
+	heartAnimation.PushBack({ 37,30,38,38 });
+	heartAnimation.PushBack({ 75,30,38,38 });
+	heartAnimation.PushBack({ 130,30,38,38 });
+	heartAnimation.loop = true;
+	heartAnimation.speed = 0.04f;
+	currentAnimation = &heartAnimation;
 }
 HeartContainer::~HeartContainer()
 {
-	
+
 }
+
 bool HeartContainer::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Hearts");
-
-	/*position.x = config.child("position").attribute("x").as_int();
-	position.y = config.child("position").attribute("y").as_int();*/
 	position.x = 700;
 	position.y = 200;
 
 	return true;
 }
+
 bool HeartContainer::Start()
 {
 	bool ret = true;
@@ -43,7 +48,7 @@ bool HeartContainer::Start()
 
 		heartSensor = heartPb->body->CreateFixture(&sensorFix);
 		heartSensor->SetUserData((void*)DATA_HEART);
-		heartTexture = app->tex->Load("Assets/sprites/heart_spritesheet.png");
+		heartTexture = app->tex->Load("Assets/sprites/heart.png");
 		heartPb->listener = this;
 	}
 
@@ -77,7 +82,8 @@ bool HeartContainer::PostUpdate()
 {
 	if (app->currentScene == SCENE_LEVEL_1 && draw)
 	{
-		app->render->DrawTexture(heartTexture, position.x, position.y);
+		app->render->DrawTexture(heartTexture, position.x - 30, position.y + 70);
+		SDL_Rect section = currentAnimation->GetCurrentFrame();
 	}
 
 	return true;

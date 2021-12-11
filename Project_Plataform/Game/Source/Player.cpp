@@ -25,7 +25,6 @@ Player::Player() :  Module()
 	idleAnimationLeft.speed = 0.04f;
 	idleAnimationLeft.loop = true;
 
-	//Correct the run animation's PushBacks (currently displaying idle animation)
 	runAnimationRight.PushBack({ 10, 8, 85, 95 });
 	runAnimationRight.PushBack({ 85,8,85,95 });
 	runAnimationRight.PushBack({ 167,8,85,95 });
@@ -41,13 +40,11 @@ Player::Player() :  Module()
 	runAnimationLeft.loop = true;
 	
 	
-	//jumpAnimationRight.PushBack({ 10, 100, 85, 95 });
 	jumpAnimationRight.PushBack({ 100, 100, 85, 95 });
 	jumpAnimationRight.speed = 0.09f;
 	jumpAnimationRight.loop = true;
 
 	jumpAnimationLeft.PushBack({ 475,100,85,95 });
-	//jumpAnimationLeft.PushBack({ 556,100,85,95 });
 	jumpAnimationLeft.speed = 0.0009f;
 	jumpAnimationLeft.loop = true;
 
@@ -106,7 +103,6 @@ bool Player::Start()
 {
 	bool ret = true;
 	
-	//wizard = app->tex->Load("Assets/sprites/wizard_spritesheet.png");
 	wizard = app->tex->Load("Assets/sprites/wizard_spritesheet_extended.png");
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
@@ -190,21 +186,6 @@ bool Player::PreUpdate()
 			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationLeft;
 		}
 		
-		//SHOOTING
-		/*if (app->input->GetKey(SDL_SCANCODE_E) == KEY_REPEAT && !isDead)
-		{
-
-			if (!godMode)player->body->SetLinearVelocity({ speed.x, player->body->GetLinearVelocity().y });
-			if (godMode) player->body->SetTransform({ player->body->GetPosition().x + PIXEL_TO_METERS(10), player->body->GetPosition().y }, 0.0f);
-			lookingAt = RIGHT;
-			if (!onTheAir)currentAnimation = &shootingAnimationRight;
-			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationRight;
-
-			lookingAt = LEFT;
-			if (!onTheAir)currentAnimation = &shootingAnimationLeft;
-			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationLeft;
-		}
-		*/
 
 		if (canJump || canDoubleJump && !isDead && !godMode)
 		{
@@ -269,7 +250,7 @@ bool Player::PreUpdate()
 				fireID++;
 				
 			}
-				
+	
 				
 			/*for (ListItem<Fireball*>* item = fireballs.start; item; item = item->next)
 			{
@@ -279,7 +260,6 @@ bool Player::PreUpdate()
 		}
 		
 
-		// GOD MODE
 		// GOD MODE
 		if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) godMode = !godMode;
 		if (godMode)

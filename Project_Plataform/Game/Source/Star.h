@@ -37,6 +37,10 @@ private:
 	b2Fixture* starSensor;
 
 	SDL_Texture* starTexture;
+
+	Animation* currentAnimation;
+
+	Animation starAnimation;
 };
 
 //#endif 
