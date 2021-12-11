@@ -19,7 +19,7 @@ HeartContainer::~HeartContainer()
 bool HeartContainer::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Hearts");
-	position.x = 700;
+	position.x = 800;
 	position.y = 200;
 
 	return true;

@@ -23,7 +23,7 @@ bool Star::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Hearts");
 
-	position.x = 1000;
+	position.x = 1090;
 	position.y = 200;
 
 	return true;
@@ -87,7 +87,7 @@ bool Star::PostUpdate()
 	if (app->currentScene == SCENE_LEVEL_1 && draw)
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
-		app->render->DrawTexture(starTexture, position.x - 45, position.y - 45);
+		app->render->DrawTexture(starTexture, position.x - 20, position.y - 20);
 		//app->render->DrawRectangle({ position.x -20, position.y -20, 40,40 }, 150, 150, 0, 255);
 	}
 

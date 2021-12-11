@@ -55,13 +55,7 @@ private:
 
 
 	SDL_Texture* fireBallTex;
-	Animation* currentAnimation;
-
-	Animation idleAnimationRight;
-	Animation idleAnimationLeft;
-
-	Animation dieAnimationRight;
-	Animation dieAnimationLeft;
+	
 };
 
 #endif 

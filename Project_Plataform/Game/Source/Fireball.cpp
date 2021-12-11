@@ -18,38 +18,6 @@ Fireball::Fireball()
 }
 Fireball::Fireball(int x, int y, int lookingAt, int id)
 {
-	idleAnimationRight.PushBack({ 60, 12, 85, 95 });
-	idleAnimationRight.PushBack({ 200,12,85,95 });
-	idleAnimationRight.PushBack({ 330,12,85,95 });
-	idleAnimationRight.PushBack({ 462,12,85,95 });
-	idleAnimationRight.PushBack({ 610,12,85,95 });
-	idleAnimationRight.loop = true;
-	idleAnimationRight.speed = 0.04f;
-	currentAnimation = &idleAnimationRight;
-	//to finish
-	idleAnimationLeft.PushBack({ 330,6,85,95 });
-	idleAnimationLeft.PushBack({ 405,6,85,95 });
-	idleAnimationLeft.PushBack({ 485,6,85,95 });
-	idleAnimationLeft.PushBack({ 566,6,85,95 });
-	idleAnimationLeft.speed = 0.04f;
-	idleAnimationLeft.loop = true;
-
-	//to finish
-	dieAnimationRight.PushBack({ 20, 280, 85, 85 });
-	dieAnimationRight.PushBack({ 110,280,85,85 });
-	dieAnimationRight.PushBack({ 200,280,85,85 });
-	dieAnimationRight.PushBack({ 290,280,75,85 });
-	dieAnimationRight.speed = 0.07f;
-	dieAnimationRight.loop = false;
-	//to finish
-	dieAnimationLeft.PushBack({ 625,280,85,85 });
-	dieAnimationLeft.PushBack({ 535,280,85,85 });
-	dieAnimationLeft.PushBack({ 440,280,85,85 });
-	dieAnimationLeft.PushBack({ 365,280,75,85 });
-	dieAnimationLeft.speed = 0.07f;
-	dieAnimationLeft.loop = false;
-
-
 	position.x = x;
 	position.y = y;
 	direction = lookingAt;
@@ -66,6 +34,7 @@ bool Fireball::Start()
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		fireball = app->physics->CreateCircle(position.x, position.y, 20);
+		fireBallTex = app->tex->Load("Assets/sprites/fireball.png");
 
 		fireball->body->SetFixedRotation(true);
 		fireball->body->SetType(b2_dynamicBody);
@@ -129,9 +98,9 @@ bool Fireball::PostUpdate()
 {
 	if (app->currentScene == SCENE_LEVEL_1 && isAlive)
 	{
-		SDL_Rect section = currentAnimation->GetCurrentFrame();
 		//app->render->DrawTexture(fireBallTex, METERS_TO_PIXELS(fireball->body->GetPosition().x) - 15, METERS_TO_PIXELS(fireball->body->GetPosition().y) - 15, &section);
 		app->render->DrawCircle(METERS_TO_PIXELS(fireball->body->GetPosition().x), METERS_TO_PIXELS(fireball->body->GetPosition().y), 10, 255, 0, 0, 255);
+		app->render->DrawTexture(fireBallTex, METERS_TO_PIXELS(fireball->body->GetPosition().x) - 35, METERS_TO_PIXELS(fireball->body->GetPosition().y) - 50);
 		
 		
 	}

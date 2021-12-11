@@ -11,11 +11,11 @@ Checkpoint::~Checkpoint()
 }
 bool Checkpoint::Awake(pugi::xml_node& config)
 {
-	LOG("Loading Hearts");
+	LOG("Loading Checkpoint");
 
 	/*position.x = config.child("position").attribute("x").as_int();
 	position.y = config.child("position").attribute("y").as_int();*/
-	position.x = 1400;
+	position.x = 1500;
 	position.y = 300;
 
 	return true;
@@ -43,7 +43,8 @@ bool Checkpoint::Start()
 
 		checkpointSensor = checkpointPb->body->CreateFixture(&sensorFix);
 		checkpointSensor->SetUserData((void*)DATA_HEART);
-		checkpointTexture = app->tex->Load("Assets/sprites/star_spritesheet.png");
+		checkpointTexture1 = app->tex->Load("Assets/sprites/checkpoint1.png");
+		checkpointTexture2 = app->tex->Load("Assets/sprites/checkpoint2.png");
 		checkpointPb->listener = this;
 
 	}
@@ -85,11 +86,15 @@ bool Checkpoint::PostUpdate()
 		//app->render->DrawTexture(checkpointTexture, position.x, position.y);
 		if (!activated)
 		{
-			app->render->DrawRectangle({ position.x - 20, position.y - 20, 40,40 }, 0, 0, 255, 255);
+			//app->render->DrawRectangle({ position.x - 20, position.y - 20, 40,40 }, 0, 0, 255, 255);
+			app->render->DrawTexture(checkpointTexture1, position.x - 30, position.y - 40);
+
 		}
 		if (activated)
 		{
-			app->render->DrawRectangle({ position.x - 20, position.y - 20, 40,40 }, 0, 255, 0, 255);
+			//app->render->DrawRectangle({ position.x - 20, position.y - 20, 40,40 }, 0, 255, 0, 255);
+			app->render->DrawTexture(checkpointTexture2, position.x - 30, position.y - 40);
+
 		}
 	}
 

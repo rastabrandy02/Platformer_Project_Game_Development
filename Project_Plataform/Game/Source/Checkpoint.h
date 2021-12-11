@@ -36,7 +36,8 @@ private:
 	PhysBody* checkpointPb;
 	b2Fixture* checkpointSensor;
 
-	SDL_Texture* checkpointTexture;
+	SDL_Texture* checkpointTexture1;
+	SDL_Texture* checkpointTexture2;
 };
 
 //#endif 

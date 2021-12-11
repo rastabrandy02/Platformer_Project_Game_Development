@@ -1,2 +1,41 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: El directorio Output no termina con una barra diagonal final. Esta instancia de compilación agregará la barra diagonal porque es necesaria para que se pueda evaluar correctamente el directorio Output.
+  Flyingenemy.cpp
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(186,15): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(187,15): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(189,11): warning C4244: 'inicializando': conversión de 'const float32' a 'int'; posible pérdida de datos
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(190,11): warning C4244: 'inicializando': conversión de 'const float32' a 'int'; posible pérdida de datos
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(238,12): warning C4244: 'inicializando': conversión de 'double' a 'uint'; posible pérdida de datos
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(240,11): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(241,11): warning C4018: '>': no coinciden signed/unsigned
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(247,62): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(248,62): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(258,63): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(259,63): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Game\Source\Flyingenemy.cpp(242): warning C4715: 'FlyingEnemy::CheckAggro': no todas las rutas de acceso de control devuelven un valor
   Game.vcxproj -> C:\Users\mllur\Documents\GitHub\Platformer_Project_Game_Development\Project_Plataform\Build\Debug\Game.exe

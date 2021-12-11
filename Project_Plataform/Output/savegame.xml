@@ -8,20 +8,20 @@
 	<scene />
 	<walking_enemy>
 		<is_alive value="true" />
-		<position x="19.1507778" y="14.209919" />
+		<position x="12.316431" y="10.209466" />
 	</walking_enemy>
 	<flying_enemy>
 		<is_alive value="true" />
-		<position x="29.5781994" y="8.91527653" />
+		<position x="23.1434765" y="5.4491725" />
 	</flying_enemy>
 	<map />
 	<:anonymous />
 	<:anonymous />
 	<:anonymous />
 	<player>
-		<position x="42.0606155" y="10.2059059" />
+		<position x="45.2170601" y="10.2104301" />
 	</player>
 	<renderer>
-		<camera x="-1020" y="0" />
+		<camera x="-1121" y="0" />
 	</renderer>
 </game_state>
