@@ -71,15 +71,15 @@ Player::Player() :  Module()
 	dieAnimationLeft.loop = false;
 
 	
-	shootingAnimationRight.PushBack({ 15,370,85,85 });
-	shootingAnimationRight.PushBack({ 93,370,85,85 });
-	shootingAnimationRight.PushBack({ 203,370,85,85 });
+	shootingAnimationRight.PushBack({ 9,366,85,85 });
+	shootingAnimationRight.PushBack({ 903,366,85,85 });
+	shootingAnimationRight.PushBack({ 200,366,85,85 });
 	shootingAnimationRight.speed = 0.07f;
 	shootingAnimationRight.loop = false;
 
-	shootingAnimationLeft.PushBack({ 323,370,85,85 });
-	shootingAnimationLeft.PushBack({ 447,370,85,85 });
-	shootingAnimationLeft.PushBack({ 555,370,85,85 });
+	shootingAnimationLeft.PushBack({ 323,366,85,85 });
+	shootingAnimationLeft.PushBack({ 447,366,85,85 });
+	shootingAnimationLeft.PushBack({ 555,366,85,85 });
 	shootingAnimationLeft.speed = 0.07f;
 	shootingAnimationLeft.loop = false;
 
@@ -237,6 +237,7 @@ bool Player::PreUpdate()
 			int offset = 50;
 			if (lookingAt == RIGHT)
 			{
+				currentAnimation = &shootingAnimationRight;
 				Fireball* fireball = new Fireball(METERS_TO_PIXELS(player->body->GetPosition().x) + offset, METERS_TO_PIXELS(player->body->GetPosition().y), lookingAt, fireID);
 				fireballs.Add(fireball);
 				fireball->Start();
@@ -244,6 +245,7 @@ bool Player::PreUpdate()
 			}
 			if (lookingAt == LEFT)
 			{
+				currentAnimation = &shootingAnimationLeft;
 				Fireball* fireball = new Fireball(METERS_TO_PIXELS(player->body->GetPosition().x) - offset, METERS_TO_PIXELS(player->body->GetPosition().y), lookingAt, fireID);
 				fireballs.Add(fireball);
 				fireball->Start();

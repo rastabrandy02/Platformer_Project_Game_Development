@@ -3,16 +3,7 @@
 
 Star::Star()
 {
-	starAnimation.PushBack({ 10,9,40,49 });
-	starAnimation.PushBack({ 50,9,33,49 });
-	starAnimation.PushBack({ 83,9,27,49 });
-	starAnimation.PushBack({ 110,9,20,49 });
-	starAnimation.PushBack({ 130,9,28,49 });
-	starAnimation.PushBack({ 158,9,32,49 });
-	starAnimation.PushBack({ 190,9,40,49 });
-	starAnimation.loop = true;
-	starAnimation.speed = 0.04f;
-	currentAnimation = &starAnimation;
+	
 }
 Star::~Star()
 {
@@ -74,7 +65,6 @@ void Star::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 }
 bool Star::PreUpdate()
 {
-	currentAnimation = &starAnimation;
 	if (setToDestroy) Die();
 	return true;
 }
@@ -86,9 +76,7 @@ bool Star::PostUpdate()
 {
 	if (app->currentScene == SCENE_LEVEL_1 && draw)
 	{
-		SDL_Rect section = currentAnimation->GetCurrentFrame();
 		app->render->DrawTexture(starTexture, position.x - 20, position.y - 20);
-		//app->render->DrawRectangle({ position.x -20, position.y -20, 40,40 }, 150, 150, 0, 255);
 	}
 
 	return true;

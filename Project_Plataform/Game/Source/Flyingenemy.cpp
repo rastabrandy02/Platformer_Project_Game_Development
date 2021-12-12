@@ -11,50 +11,56 @@
 
 FlyingEnemy::FlyingEnemy(int x, int y)
 {
-
-	idleAnimationRight.PushBack({ 60, 12, 130, 95 });
-	idleAnimationRight.PushBack({ 200,12,130,95 });
-	idleAnimationRight.PushBack({ 330,12,130,95 });
-	idleAnimationRight.PushBack({ 462,12,130,95 });
-	idleAnimationRight.PushBack({ 610,12,130,95 });
+	
+	idleAnimationRight.PushBack({ 60, 15, 130, 95 });
+	idleAnimationRight.PushBack({ 205,15,130,95 });
+	idleAnimationRight.PushBack({ 333,15,130,95 });
+	idleAnimationRight.PushBack({ 468,15,130,95 });
+	idleAnimationRight.PushBack({ 620,15,130,95 });
 	idleAnimationRight.loop = true;
 	idleAnimationRight.speed = 0.04f;
 	currentAnimation = &idleAnimationRight;
-	//to finish
-	idleAnimationLeft.PushBack({ 330,6,130,95 });
-	idleAnimationLeft.PushBack({ 405,6,130,95 });
-	idleAnimationLeft.PushBack({ 485,6,130,95 });
-	idleAnimationLeft.PushBack({ 566,6,130,95 });
+
+	
+	idleAnimationLeft.PushBack({ 60,350,130,95 });
+	idleAnimationLeft.PushBack({ 205,350,130,95 });
+	idleAnimationLeft.PushBack({ 360,350,130,95 });
+	idleAnimationLeft.PushBack({ 490,350,130,95 });
+	idleAnimationLeft.PushBack({ 620,350,130,95 });
 	idleAnimationLeft.speed = 0.04f;
 	idleAnimationLeft.loop = true;
 
-	//to finish
-	dieAnimationRight.PushBack({ 20, 280, 130, 95 });
-	dieAnimationRight.PushBack({ 110,280,130,95 });
-	dieAnimationRight.PushBack({ 200,280,130,95 });
-	dieAnimationRight.PushBack({ 290,280,130,95 });
+	
+	dieAnimationRight.PushBack({ 60, 232, 130, 95 });
+	dieAnimationRight.PushBack({ 203,232,130,95 });
+	dieAnimationRight.PushBack({ 335,232,130,95 });
+	dieAnimationRight.PushBack({ 470,232,130,95 });
+	dieAnimationRight.PushBack({ 620,232,130,95 });
 	dieAnimationRight.speed = 0.07f;
 	dieAnimationRight.loop = false;
-	//to finish
-	dieAnimationLeft.PushBack({ 625,280,130,95 });
-	dieAnimationLeft.PushBack({ 535,280,130,95 });
-	dieAnimationLeft.PushBack({ 440,280,130,95 });
-	dieAnimationLeft.PushBack({ 365,280,130,95 });
+	
+	dieAnimationLeft.PushBack({ 60,587,130,95 });
+	dieAnimationLeft.PushBack({ 205,587,130,95 });
+	dieAnimationLeft.PushBack({ 362,587,130,95 });
+	dieAnimationLeft.PushBack({ 492,587,130,95 });
+	dieAnimationLeft.PushBack({ 620,587,130,95 });
 	dieAnimationLeft.speed = 0.07f;
 	dieAnimationLeft.loop = false;
 
-
-	flyAnimationRight.PushBack({ 60, 12, 130, 95 });
-	flyAnimationRight.PushBack({ 200, 12, 130, 95 });
-	flyAnimationRight.PushBack({ 330, 12, 130, 95 });
-	flyAnimationRight.PushBack({ 462, 12, 130, 95 });
+	
+	flyAnimationRight.PushBack({ 60, 15, 130, 95 });
+	flyAnimationRight.PushBack({ 205, 15, 130, 95 });
+	flyAnimationRight.PushBack({ 333, 15, 130, 95 });
+	flyAnimationRight.PushBack({ 468, 15, 130, 95 });
+	flyAnimationRight.PushBack({ 620, 15, 130, 95 });
 	flyAnimationRight.speed = 0.04f;
 	flyAnimationRight.loop = true;
-
-	flyAnimationLeft.PushBack({ 60, 470, 130, 95});
-	flyAnimationLeft.PushBack({ 200, 470, 130, 95 });
-	flyAnimationLeft.PushBack({ 330, 470, 130, 95 });
-	flyAnimationLeft.PushBack({ 462, 470, 130, 95 });
+	
+	flyAnimationLeft.PushBack({ 60, 350, 130, 95});
+	flyAnimationLeft.PushBack({ 205, 350, 130, 95 });
+	flyAnimationLeft.PushBack({ 360, 350, 130, 95 });
+	flyAnimationLeft.PushBack({ 490, 350, 130, 95 });
+	flyAnimationLeft.PushBack({ 620, 350, 130, 95 });
 	flyAnimationLeft.speed = 0.04f;
 	flyAnimationLeft.loop = true;
 
@@ -143,6 +149,7 @@ bool FlyingEnemy::Update(float dt)
 	{
 		enemy->body->SetLinearVelocity({0, 0});
 	}
+	currentAnimation->Update();
 	return true;
 }
 
@@ -152,7 +159,7 @@ bool FlyingEnemy::PostUpdate()
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
 
-		app->render->DrawTexture(flyingEnemy, METERS_TO_PIXELS(enemy->body->GetPosition().x) - 35, METERS_TO_PIXELS(enemy->body->GetPosition().y) - 50, &section);
+		app->render->DrawTexture(flyingEnemy, METERS_TO_PIXELS(enemy->body->GetPosition().x) - 60, METERS_TO_PIXELS(enemy->body->GetPosition().y) - 60, &section);
 		
 		if (aggro && app->physics->debug)
 		{
@@ -191,10 +198,12 @@ void FlyingEnemy::Move()
 	if (posX >= nextStep.x)
 	{
 		enemy->body->SetLinearVelocity({ -speed.x ,enemy->body->GetLinearVelocity().y });
+		currentAnimation = &flyAnimationLeft;
 	}
 	if (posX < nextStep.x)
 	{
 		enemy->body->SetLinearVelocity({ speed.x,enemy->body->GetLinearVelocity().y });
+		currentAnimation = &flyAnimationRight;
 	}
 
 	

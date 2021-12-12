@@ -38,9 +38,6 @@ private:
 
 	SDL_Texture* starTexture;
 
-	Animation* currentAnimation;
-
-	Animation starAnimation;
 };
 
 //#endif 

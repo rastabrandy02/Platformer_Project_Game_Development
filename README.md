@@ -9,6 +9,7 @@ The platformer project made during the Game Development subject - Second year of
 - A: Move left
 - D: Move right
 - SPACE: Jump
+- RIGHT CLICK: attack
 
 ## Debug Keys
 - F5: Load the current game state

@@ -54,8 +54,9 @@ private:
 
 
 
-	SDL_Texture* fireBallTex;
-	
+	SDL_Texture* fireBallTexRight;
+	SDL_Texture* fireBallTexLeft;
+
 };
 
 #endif 

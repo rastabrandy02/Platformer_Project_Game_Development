@@ -34,7 +34,9 @@ bool Fireball::Start()
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		fireball = app->physics->CreateCircle(position.x, position.y, 20);
-		fireBallTex = app->tex->Load("Assets/sprites/fireball.png");
+		fireBallTexRight = app->tex->Load("Assets/sprites/fireballRight.png");
+		fireBallTexLeft = app->tex->Load("Assets/sprites/fireballLeft.png");
+
 
 		fireball->body->SetFixedRotation(true);
 		fireball->body->SetType(b2_dynamicBody);
@@ -98,9 +100,16 @@ bool Fireball::PostUpdate()
 {
 	if (app->currentScene == SCENE_LEVEL_1 && isAlive)
 	{
-		//app->render->DrawTexture(fireBallTex, METERS_TO_PIXELS(fireball->body->GetPosition().x) - 15, METERS_TO_PIXELS(fireball->body->GetPosition().y) - 15, &section);
-		app->render->DrawCircle(METERS_TO_PIXELS(fireball->body->GetPosition().x), METERS_TO_PIXELS(fireball->body->GetPosition().y), 10, 255, 0, 0, 255);
-		app->render->DrawTexture(fireBallTex, METERS_TO_PIXELS(fireball->body->GetPosition().x) - 35, METERS_TO_PIXELS(fireball->body->GetPosition().y) - 50);
+		//app->render->DrawCircle(METERS_TO_PIXELS(fireball->body->GetPosition().x), METERS_TO_PIXELS(fireball->body->GetPosition().y), 10, 255, 0, 0, 255);
+
+		if (direction == RIGHT)
+			{
+			app->render->DrawTexture(fireBallTexRight, METERS_TO_PIXELS(fireball->body->GetPosition().x - 65), METERS_TO_PIXELS(fireball->body->GetPosition().y) - 20);
+			}
+		if (direction == LEFT)
+		{
+			app->render->DrawTexture(fireBallTexLeft, METERS_TO_PIXELS(fireball->body->GetPosition().x - 40), METERS_TO_PIXELS(fireball->body->GetPosition().y) - 20);
+		}
 		
 		
 	}

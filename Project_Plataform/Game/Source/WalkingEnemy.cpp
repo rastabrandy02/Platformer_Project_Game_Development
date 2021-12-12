@@ -11,67 +11,70 @@
 
 WalkingEnemy::WalkingEnemy(int x, int y)
 {
-	idleAnimationRight.PushBack({ 10, 6, 85, 95 });
-	idleAnimationRight.PushBack({ 95,6,85,95 });
-	idleAnimationRight.PushBack({ 188,6,85,95 });
-	idleAnimationRight.PushBack({ 282,6,85,95 });
+	idleAnimationRight.PushBack({ 12, 7, 80, 95 });
+	idleAnimationRight.PushBack({ 102,7,80,95 });
+	idleAnimationRight.PushBack({ 195,7,80,95 });
+	idleAnimationRight.PushBack({ 276,7,80,95 });
 	idleAnimationRight.loop = true;
 	idleAnimationRight.speed = 0.04f;
 	currentAnimation = &idleAnimationRight;
 
-	idleAnimationLeft.PushBack({ 374,6,85,95 });
-	idleAnimationLeft.PushBack({ 463,6,85,95 });
-	idleAnimationLeft.PushBack({ 553,6,85,95 });
-	idleAnimationLeft.PushBack({ 647,6,85,95 });
+	idleAnimationLeft.PushBack({ 366,7,80,95 });
+	idleAnimationLeft.PushBack({ 454,7,80,95 });
+	idleAnimationLeft.PushBack({ 545,7,80,95 });
+	idleAnimationLeft.PushBack({ 637,7,80,95 });
 	idleAnimationLeft.speed = 0.04f;
 	idleAnimationLeft.loop = true;
 
 
-	runAnimationRight.PushBack({ 10, 192, 85, 95 });
-	runAnimationRight.PushBack({ 95,192,85,95 });
-	runAnimationRight.PushBack({ 188,192,85,95 });
-	runAnimationRight.PushBack({ 282,192,85,95 });
+	runAnimationRight.PushBack({ 12, 7, 80, 95 });
+	runAnimationRight.PushBack({ 102,7,80,95 });
+	runAnimationRight.PushBack({ 195,7,80,95 });
+	runAnimationRight.PushBack({ 276,7,80,95 });
 	runAnimationRight.speed = 0.09f;
 	runAnimationRight.loop = true;
 
-	runAnimationLeft.PushBack({ 374,192,85,95 });
-	runAnimationLeft.PushBack({ 463,192,85,95 });
-	runAnimationLeft.PushBack({ 553,192,85,95 });
-	runAnimationLeft.PushBack({ 647,192,85,95 });
+	runAnimationLeft.PushBack({ 366,7,80,95 });
+	runAnimationLeft.PushBack({ 454,7,80,95 });
+	runAnimationLeft.PushBack({ 545,7,80,95 });
+	runAnimationLeft.PushBack({ 637,7,80,95 });
 	runAnimationLeft.speed = 0.09f;
 	runAnimationLeft.loop = true;
 
 
-	jumpAnimationRight.PushBack({ 10, 100, 85, 95 });
-	jumpAnimationRight.PushBack({ 100, 100, 85, 95 });
+	jumpAnimationRight.PushBack({ 12, 192, 80, 95 });
+	jumpAnimationRight.PushBack({ 104, 192, 80, 95 });
+	jumpAnimationRight.PushBack({ 195, 192, 80, 95 });
+	jumpAnimationRight.PushBack({ 277, 192, 80, 95 });
 	jumpAnimationRight.speed = 0.09f;
 	jumpAnimationRight.loop = true;
 
-	jumpAnimationLeft.PushBack({ 568,100,85,95 });
-	jumpAnimationLeft.PushBack({ 637,100,85,95 });
-	jumpAnimationLeft.speed = 0.09f;
+	jumpAnimationLeft.PushBack({ 366,192,80,95 });
+	jumpAnimationLeft.PushBack({ 455,192,80,95 });
+	jumpAnimationLeft.PushBack({ 547,192,80,95 });
+	jumpAnimationLeft.PushBack({ 636,192,80,95 });
 	jumpAnimationLeft.loop = true;
 
-	landAnimationRight.PushBack({ 10, 105, 85, 85 });
+	landAnimationRight.PushBack({ 12, 95, 80, 85 });
 	landAnimationRight.speed = 0.00009f;
 	landAnimationRight.loop = false;
 
-	landAnimationLeft.PushBack({ 556,105,85,85 });
+	landAnimationLeft.PushBack({ 546,95,80,85 });
 	landAnimationLeft.speed = 0.09f;
 	landAnimationLeft.loop = false;
 
 
-	dieAnimationRight.PushBack({ 15,280,85,85 });
-	dieAnimationRight.PushBack({ 110,280,85,85 });
-	dieAnimationRight.PushBack({ 200,280,85,85 });
-	dieAnimationRight.PushBack({ 290,280,75,85 });
+	dieAnimationRight.PushBack({ 15,280,80,85 });
+	dieAnimationRight.PushBack({ 110,280,80,85 });
+	dieAnimationRight.PushBack({ 200,280,80,85 });
+	dieAnimationRight.PushBack({ 290,280,80,85 });
 	dieAnimationRight.speed = 0.07f;
 	dieAnimationRight.loop = false;
 
-	dieAnimationLeft.PushBack({ 372,280,85,85 });
-	dieAnimationLeft.PushBack({ 450,280,85,85 });
-	dieAnimationLeft.PushBack({ 542,280,85,85 });
-	dieAnimationLeft.PushBack({ 640,280,75,85 });
+	dieAnimationLeft.PushBack({ 370,280,80,85 });
+	dieAnimationLeft.PushBack({ 405,280,80,85 });
+	dieAnimationLeft.PushBack({ 542,280,80,85 });
+	dieAnimationLeft.PushBack({ 637,280,80,85 });
 	dieAnimationLeft.speed = 0.07f;
 	dieAnimationLeft.loop = false;
 	position.x = x;
@@ -145,24 +148,7 @@ bool WalkingEnemy::Start()
 }
 bool WalkingEnemy::PreUpdate()
 {
-	if (setToDestroy) Die();
-
-
-	if (app->currentScene == SCENE_LEVEL_1)
-	{
-		if (lookingAt = RIGHT)
-		{
-			if (!onTheAir)currentAnimation = &runAnimationRight;
-			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationRight;
-		}
-		if (lookingAt = LEFT)
-		{
-			if (!onTheAir)currentAnimation = &runAnimationLeft;
-			if (onTheAir && !countLanding) currentAnimation = &jumpAnimationLeft;
-		}
-	}
-
-
+	if (setToDestroy)Die();
 	aggro = CheckAggro();
 
 	return true;
@@ -179,6 +165,7 @@ bool WalkingEnemy::Update(float dt)
 	{
 		enemy->body->SetLinearVelocity({ 0, 0 });
 	}
+	currentAnimation->Update();
 	return true;
 }
 
@@ -227,17 +214,33 @@ void WalkingEnemy::Move()
 	if (enemy->body->GetPosition().x >= nextStep.x)
 	{
 		enemy->body->SetLinearVelocity({ -speed.x ,enemy->body->GetLinearVelocity().y });
+		currentAnimation = &runAnimationLeft;
 	}
 	if (enemy->body->GetPosition().x < nextStep.x)
 	{
 		enemy->body->SetLinearVelocity({ speed.x,enemy->body->GetLinearVelocity().y });
+		currentAnimation = &runAnimationRight;
 	}
 	if (canJump)
 	{
 		if (enemy->body->GetPosition().y > nextStep.y + 1)
 		{
 			enemy->body->SetLinearVelocity({ enemy->body->GetLinearVelocity().x , speed.y });
-			canJump = false;
+			switch (lookingAt)
+			{
+			case RIGHT:
+			{
+				currentAnimation = &jumpAnimationRight;
+			}break;
+			case LEFT:
+			{
+				currentAnimation = &jumpAnimationLeft;
+			}
+			default:
+				break;
+
+				canJump = false;
+			}
 		}
 	}
 	
@@ -266,6 +269,20 @@ void WalkingEnemy::OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 		LOG("Walking Enemy Collision With Fireball----------");
 		health -= 2;
 		if (health <= 0) setToDestroy = true;
+
+		if (isDead)
+		{
+			if (enemy->body->GetPosition().x)
+			{
+				enemy->body->SetLinearVelocity({ -speed.x ,enemy->body->GetLinearVelocity().y });
+				currentAnimation = &dieAnimationLeft;
+			}
+			if (enemy->body->GetPosition().x)
+			{
+				enemy->body->SetLinearVelocity({ speed.x,enemy->body->GetLinearVelocity().y });
+				currentAnimation = &dieAnimationRight;
+			}
+		}
 	}
 }
 bool WalkingEnemy::CheckAggro()
@@ -323,7 +340,6 @@ bool WalkingEnemy::CleanUp()
 void WalkingEnemy::Die()
 {
 	app->physics->world->DestroyBody(enemy->body);
-	currentAnimation = &dieAnimationRight;
 	setToDestroy = false;
 	isAlive = false;
 }
