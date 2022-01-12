@@ -27,6 +27,7 @@
     <ClCompile Include="Source\Fireball.cpp" />
     <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\Checkpoint.cpp" />
+    <ClCompile Include="Source\EntityManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -75,6 +76,8 @@
     <ClInclude Include="Source\Fireball.h" />
     <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\Checkpoint.h" />
+    <ClInclude Include="Source\Entity.h" />
+    <ClInclude Include="Source\EntityManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

@@ -3,7 +3,7 @@
 //#define __HEARTCONTAINER_H__
 
 #include "Physics.h"
-#include "Module.h"
+#include "Entity.h"
 #include "App.h"
 #include "p2Point.h"
 #include "Animation.h"
@@ -11,7 +11,7 @@
 
 class PhysBody;
 
-class HeartContainer : public Module, public b2ContactListener
+class HeartContainer : public Entity, public b2ContactListener
 {
 public:
 	HeartContainer();

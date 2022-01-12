@@ -1,6 +1,6 @@
 #pragma once
 #include "Physics.h"
-#include "Module.h"
+#include "Entity.h"
 #include "App.h"
 #include "p2Point.h"
 #include "Animation.h"
@@ -8,7 +8,7 @@
 
 class PhysBody;
 
-class Star : public Module, public b2ContactListener
+class Star : public Entity, public b2ContactListener
 {
 public:
 	Star();

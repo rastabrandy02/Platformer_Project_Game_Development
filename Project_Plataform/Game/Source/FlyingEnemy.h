@@ -3,17 +3,17 @@
 #define __FLYING_ENEMY_H__
 
 #include "Physics.h"
-#include "Module.h"
 #include "App.h"
 #include "p2Point.h"
 #include "Animation.h"
 #include "Pathfinding.h"
+#include "Entity.h"
 
 class PathFinding;
 class PhysBody;
 struct b2MassData;
 
-class FlyingEnemy : public Module, public b2ContactListener
+class FlyingEnemy : public Entity, public b2ContactListener
 {
 public:
 	FlyingEnemy();

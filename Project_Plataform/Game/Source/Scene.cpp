@@ -41,22 +41,13 @@ bool Scene::Start()
 	
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		WalkingEnemy* walkingEnemy = new WalkingEnemy(400,200);
-		FlyingEnemy* flyingEnemy = new FlyingEnemy(600, 100);
-		enemies.Add(walkingEnemy);
-		enemies.Add(flyingEnemy);
-		for (ListItem<Module*>* item = enemies.start; item; item = item->next)
-		{
-			
-			//item->data->Awake();
-			item->data->Start();
-		}
+		app->entityManager->CreateEntity(PLAYER, NULL, NULL);
+		app->entityManager->CreateEntity(WALKING_ENEMY, 400, 200);
+		app->entityManager->CreateEntity(FLYING_ENEMY, 600, 100);
+		
 
 		if (app->map->Load("WizardMap.tmx") == true)
 		{
-			
-
-			
 		}
 		app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 
@@ -75,10 +66,7 @@ bool Scene::PreUpdate()
 {
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		for (ListItem<Module*>* item = enemies.start; item; item = item->next)
-		{
-			item->data->PreUpdate();
-		}
+		
 	}
 	
 	return true;
@@ -137,10 +125,7 @@ bool Scene::Update(float dt)
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		app->map->Draw();
-		for (ListItem<Module*>* item = enemies.start; item; item = item->next)
-		{
-			item->data->Update(dt);
-		}
+		
 		
 	}
 	if (app->currentScene == SCENE_DEATH)
@@ -161,13 +146,6 @@ bool Scene::PostUpdate()
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		
-		for (ListItem<Module*>* item = enemies.start; item; item = item->next)
-		{
-			item->data->PostUpdate();
-		}
-		
-		
-		
 	}
 	
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
@@ -179,11 +157,7 @@ bool Scene::PostUpdate()
 // Called before quitting
 bool Scene::CleanUp()
 {
-	for (ListItem<Module*>* item = enemies.start; item; item = item->next)
-	{
-		item->data->CleanUp();
-	}
-	enemies.Clear();
+	
 	LOG("Freeing scene");
 
 	return true;

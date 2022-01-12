@@ -19,6 +19,8 @@
 #include "FlyingEnemy.h"
 #include "Star.h"
 #include "Checkpoint.h"
+#include "Entity.h"
+#include "EntityManager.h"
 
 
 #include "Defs.h"
@@ -45,6 +47,7 @@ class FlyingEnemy;
 class HeartContainer;
 class Star;
 class Checkpoint;
+class EntityManager;
 
 
 
@@ -137,6 +140,7 @@ public:
 	HeartContainer* heartcontainer;
 	Star* star;
 	Checkpoint* checkpoint;
+	EntityManager* entityManager;
 
 	sceneEnum currentScene = SCENE_TITLE;
 #define SCREEN_HEIGHT 758

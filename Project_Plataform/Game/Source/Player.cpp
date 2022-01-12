@@ -7,7 +7,7 @@
 #include "Window.h"
 #include "Physics.h"
 
-Player::Player() :  Module()
+Player::Player() :  Entity()
 {
 	idleAnimationRight.PushBack({ 10, 6, 85, 95 });
 	idleAnimationRight.PushBack({ 85,6,85,95 });
@@ -121,9 +121,7 @@ bool Player::Start()
 
 		playerSensor = player->body->CreateFixture(&sensorFixture);
 		playerSensor->SetUserData((void*)DATA_PLAYER);
-		player->listener = app->player;
-		
-
+		player->listener = this;
 		
 	}
 	

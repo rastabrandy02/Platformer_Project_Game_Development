@@ -92,6 +92,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Checkpoint.cpp" />
+    <ClCompile Include="Source\EntityManager.cpp" />
     <ClCompile Include="Source\Fireball.cpp" />
     <ClCompile Include="Source\Flyingenemy.cpp" />
     <ClCompile Include="Source\HeartContainer.cpp" />
@@ -113,6 +114,8 @@
     <ClCompile Include="Source\Window.cpp" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Source\Checkpoint.h" />
+    <ClInclude Include="Source\Entity.h" />
+    <ClInclude Include="Source\EntityManager.h" />
     <ClInclude Include="Source\Fireball.h" />
     <ClInclude Include="Source\FlyingEnemy.h" />
     <ClInclude Include="Source\HeartContainer.h" />

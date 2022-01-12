@@ -27,13 +27,14 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio();
 	scene = new Scene();
 	map = new Map();
-	player = new Player();
+	//player = new Player();
 	physics = new Physics();
 	//walkingenemy = new WalkingEnemy();
 	//flyingenemy = new FlyingEnemy();
 	heartcontainer = new HeartContainer();
 	star = new Star();
 	checkpoint = new Checkpoint();
+	entityManager = new EntityManager();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -42,14 +43,19 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(physics);
+	AddModule(entityManager);
 	AddModule(scene);
+	
 	AddModule(map);
 
 	AddModule(heartcontainer);
 	AddModule(star);
 	AddModule(checkpoint);
 
-	AddModule(player);
+	
+
+	//AddModule(player);
+	
 	// Render last to swap buffer
 	AddModule(render);
 

@@ -5,21 +5,24 @@
 	<textures />
 	<audio />
 	<physics />
-	<scene />
+	<entity_manager />
+	<player>
+		<position x="34.6875" y="6.46375179" />
+	</player>
 	<walking_enemy>
-		<is_alive value="false" />
+		<is_alive value="true" />
+		<position x="4.03066063" y="8.16567039" />
 	</walking_enemy>
 	<flying_enemy>
-		<is_alive value="false" />
+		<is_alive value="true" />
+		<position x="21.2685642" y="11" />
 	</flying_enemy>
+	<scene />
 	<map />
 	<:anonymous />
 	<:anonymous />
 	<:anonymous />
-	<player>
-		<position x="45.2199554" y="10.2097063" />
-	</player>
 	<renderer>
-		<camera x="-1122" y="0" />
+		<camera x="-785" y="0" />
 	</renderer>
 </game_state>

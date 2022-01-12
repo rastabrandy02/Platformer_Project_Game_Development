@@ -8,10 +8,12 @@
 #include "p2Point.h"
 #include "Animation.h"
 #include "Fireball.h"
+#include "Entity.h"
 
 class Fireball;
 class PhysBody;
 struct b2MassData;
+
 enum directionOfView
 {
 	RIGHT = 0,
@@ -27,7 +29,7 @@ struct Object
 	{}
 };
 
-class Player : public Module, public b2ContactListener
+class Player : public Entity, public b2ContactListener
 {
 public:
 	Player();
