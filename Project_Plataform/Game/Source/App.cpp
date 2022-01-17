@@ -27,12 +27,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio();
 	scene = new Scene();
 	map = new Map();
-	//player = new Player();
 	physics = new Physics();
-	//walkingenemy = new WalkingEnemy();
-	//flyingenemy = new FlyingEnemy();
-	heartcontainer = new HeartContainer();
-	star = new Star();
 	checkpoint = new Checkpoint();
 	entityManager = new EntityManager();
 
@@ -45,17 +40,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(physics);
 	AddModule(entityManager);
 	AddModule(scene);
-	
 	AddModule(map);
-
-	AddModule(heartcontainer);
-	AddModule(star);
 	AddModule(checkpoint);
 
-	
-
-	//AddModule(player);
-	
 	// Render last to swap buffer
 	AddModule(render);
 

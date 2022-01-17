@@ -2,7 +2,7 @@
 #include "HeartContainer.h"
 
 
-HeartContainer::HeartContainer()
+HeartContainer::HeartContainer(int x, int y)
 {
 	heartAnimation.PushBack({ 37,30,38,38 });
 	heartAnimation.PushBack({ 75,30,38,38 });
@@ -10,6 +10,9 @@ HeartContainer::HeartContainer()
 	heartAnimation.loop = true;
 	heartAnimation.speed = 0.04f;
 	currentAnimation = &heartAnimation;
+	position.x = x;
+	position.y = y;
+	name.Create("heart_container");
 }
 HeartContainer::~HeartContainer()
 {
@@ -19,8 +22,7 @@ HeartContainer::~HeartContainer()
 bool HeartContainer::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Hearts");
-	position.x = 800;
-	position.y = 200;
+	
 
 	return true;
 }
@@ -50,6 +52,9 @@ bool HeartContainer::Start()
 		heartSensor->SetUserData((void*)DATA_HEART);
 		heartTexture = app->tex->Load("Assets/sprites/heart.png");
 		heartPb->listener = this;
+
+		setToDestroy = false;
+		isAlive = true;
 	}
 
 
@@ -80,9 +85,9 @@ bool HeartContainer::Update(float dt)
 }
 bool HeartContainer::PostUpdate()
 {
-	if (app->currentScene == SCENE_LEVEL_1 && draw)
+	if (app->currentScene == SCENE_LEVEL_1 && isAlive)
 	{
-		app->render->DrawTexture(heartTexture, position.x - 30, position.y + 70);
+		app->render->DrawTexture(heartTexture, METERS_TO_PIXELS(heartPb->body->GetPosition().x) -30, METERS_TO_PIXELS(heartPb->body->GetPosition().y) -30);
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
 	}
 
@@ -92,18 +97,52 @@ void HeartContainer::Die()
 {
 	app->physics->world->DestroyBody(heartPb->body);
 	setToDestroy = false;
-	draw = false;
+	isAlive = false;
 }
 bool HeartContainer::CleanUp()
 {
 	return true;
 }
-bool HeartContainer::LoadState(pugi::xml_node&)
+bool HeartContainer::LoadState(pugi::xml_node& node)
 {
+	if (isAlive)
+	{
+		position.x = node.child("position").attribute("x").as_int();
+		position.y = node.child("position").attribute("y").as_int();
+		
+		heartPb->body->SetTransform({ (float)position.x,(float)position.y }, 0);
+		
+		
+	}
+	else
+	{
+		isAlive = node.child("is_alive").attribute("value").as_bool();
+		if (isAlive)
+		{
+
+			position.x = node.child("position").attribute("x").as_int();
+			position.y = node.child("position").attribute("y").as_int();
+
+			Start();
+			heartPb->body->SetTransform({ (float)position.x,(float)position.y }, 0);
+			
+			
+		}
+	}
 	return true;
 }
-bool HeartContainer::SaveState(pugi::xml_node&)
+bool HeartContainer::SaveState(pugi::xml_node& node)
 {
+	pugi::xml_node alive = node.append_child("is_alive");
+	alive.append_attribute("value").set_value(isAlive);
+	if (isAlive)
+	{
+		pugi::xml_node pos = node.append_child("position");
+		
+		pos.append_attribute("x").set_value(heartPb->body->GetPosition().x);
+		pos.append_attribute("y").set_value(heartPb->body->GetPosition().y);
+	}
+	
 	return true;
 }
 void HeartContainer::Destroy()

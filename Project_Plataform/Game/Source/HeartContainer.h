@@ -14,7 +14,7 @@ class PhysBody;
 class HeartContainer : public Entity, public b2ContactListener
 {
 public:
-	HeartContainer();
+	HeartContainer(int x, int y);
 	~HeartContainer();
 
 	
@@ -34,7 +34,8 @@ public:
 	void Destroy();
 private:
 	bool setToDestroy = false;
-	bool draw = true;
+	bool isAlive = true;
+	
 	p2Point <int> position;
 	PhysBody* heartPb;
 	b2Fixture* heartSensor;

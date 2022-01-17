@@ -11,7 +11,7 @@ class PhysBody;
 class Star : public Entity, public b2ContactListener
 {
 public:
-	Star();
+	Star(int x, int y);
 	~Star();
 
 
@@ -31,7 +31,7 @@ public:
 	void Destroy();
 private:
 	bool setToDestroy = false;
-	bool draw = true;
+	bool isAlive = true;
 	p2Point <int> position;
 	PhysBody* starPb;
 	b2Fixture* starSensor;

@@ -3,7 +3,7 @@
 
 Checkpoint::Checkpoint()
 {
-
+	name.Create("checkpoint");
 }
 Checkpoint::~Checkpoint()
 {

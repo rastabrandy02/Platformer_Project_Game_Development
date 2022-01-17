@@ -123,14 +123,14 @@ void EntityManager::CreateEntity(EntityType type, int x, int y)
 		break;
 	case HEART:
 	{
-		HeartContainer* item = new HeartContainer();
+		HeartContainer* item = new HeartContainer(x, y);
 		item->Start();
 		entities.Add(item);
 	}
 		break;
 	case STAR:
 	{
-		Star* item = new Star();
+		Star* item = new Star(x, y);
 		item->Start();
 		entities.Add(item);
 	}
