@@ -47,8 +47,10 @@ public:
 
 	void TakeDamage(int dmg);
 	void Heal(int heal);
+	int GetHealth();
 
 	void CollectStar();
+	int GetStars();
 
 	//void BeginContact(b2Contact* contact);
 	void OnCollision(PhysBody* bodyA, PhysBody* bodyB) override;

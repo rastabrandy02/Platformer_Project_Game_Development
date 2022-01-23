@@ -36,15 +36,21 @@ public:
 	bool LoadState(pugi::xml_node&) override;
 	bool SaveState(pugi::xml_node&) override;
 
+	void UpdateHealthBar(int x, int y);
+
 private:
 	SDL_Texture* titlleBackground;
 	SDL_Texture* deathBackground;
 	
 	List <Module*> enemies;
-	/*PhysBody* enemy;
-	b2Fixture* enemySensor;*/
 	
-	/*SDL_Rect enemyRec;*/
+	
+	SDL_Rect healthBar;
+	SDL_Rect healthBarBackground;
+	SDL_Rect emptyBar;
+
+	SDL_Texture* starTex;
+	SDL_Texture* emptyStarTex;
 };
 
 #endif // __SCENE_H__

@@ -341,13 +341,19 @@ bool Player::PostUpdate()
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		SDL_Rect section = currentAnimation->GetCurrentFrame();
-		//app->render->DrawTexture(wizard, position.x,position.y, &section);
 		app->render->DrawTexture(wizard, METERS_TO_PIXELS(player->body->GetPosition().x) - 35, METERS_TO_PIXELS(player->body->GetPosition().y) - 50, &section);
+		if (stars > 3) stars = 3;
+		
 
 		int playerPosX;
 		int playerPosY;
 		player->GetPosition(playerPosX, playerPosY);
-		if (playerPosX > app->render->camera.x + 300) app->render->camera.x = -playerPosX + 300;
+
+		if (playerPosX >= app->render->camera.x + 300)
+		{
+			app->render->camera.x = -playerPosX + 300;
+			app->scene->UpdateHealthBar(playerPosX -290, 10);
+		}
 
 		if (fireballZero == false)
 		{
@@ -369,6 +375,20 @@ bool Player::LoadState(pugi::xml_node& node)
 	position.x = node.child("position").attribute("x").as_int();
 	position.y = node.child("position").attribute("y").as_int();
 	player->body->SetTransform({ (float)position.x,(float)position.y }, 0);
+
+	health = node.child("health").attribute("value").as_int();
+	stars = node.child("stars").attribute("value").as_int();
+
+
+	int playerPosX;
+	int playerPosY;
+	player->GetPosition(playerPosX, playerPosY);
+	if (playerPosX >= app->render->camera.x + 300)
+	{
+		app->render->camera.x = -playerPosX + 300;
+		app->scene->UpdateHealthBar(playerPosX - 290, 10);
+	}
+	else app->scene->UpdateHealthBar(app->render->camera.x, 10);
 	return true;
 }
 bool Player::SaveState(pugi::xml_node& node)
@@ -376,6 +396,12 @@ bool Player::SaveState(pugi::xml_node& node)
 	pugi::xml_node pos = node.append_child("position");
 	pos.append_attribute("x").set_value(player->body->GetPosition().x);
 	pos.append_attribute("y").set_value(player->body->GetPosition().y +1);
+
+	pugi::xml_node health = node.append_child("health");
+	health.append_attribute("value").set_value(health);
+
+	pugi::xml_node stars = node.append_child("stars");
+	stars.append_attribute("value").set_value(stars);
 	
 	return true;
 }
@@ -440,6 +466,7 @@ void Player::TakeDamage(int damage)
 	if (godMode) return;
 	health -= damage;
 	if (health < 0) isDead = true;
+	
 }
 void Player::Heal(int heal)
 {
@@ -454,4 +481,12 @@ void Player::CollectStar()
 void Player::Die()
 {
 	app->ChangeScene(SCENE_DEATH);
+}
+int Player::GetHealth()
+{
+	return health;
+}
+int Player::GetStars()
+{
+	return stars;
 }

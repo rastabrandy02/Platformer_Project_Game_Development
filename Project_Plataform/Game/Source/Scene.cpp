@@ -46,6 +46,8 @@ bool Scene::Start()
 		app->entityManager->CreateEntity(FLYING_ENEMY, 600, 100);
 		app->entityManager->CreateEntity(HEART, 800, 200);
 		app->entityManager->CreateEntity(STAR, 1090, 200);
+		app->entityManager->CreateEntity(STAR, 2090, 200);
+		app->entityManager->CreateEntity(STAR, 1590, 200);
 		
 
 		if (app->map->Load("WizardMap.tmx") == true)
@@ -53,7 +55,16 @@ bool Scene::Start()
 		}
 		app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 
+		healthBar = { app->render->camera.x + 10, app->render->camera.y + 10, app->player->GetHealth() * 30, 25 };
+		healthBar.w = app->player->GetHealth() * 30;
+		emptyBar = { healthBar.x, healthBar.y, healthBar.w, healthBar.h };
+		healthBarBackground.x = healthBar.x - 10;
+		healthBarBackground.y = healthBar.y - 10;
+		healthBarBackground.w = healthBar.w + 20;
+		healthBarBackground.h = healthBar.h +20;
 		
+		starTex = app->tex->Load("Assets/Sprites/star.png");
+		emptyStarTex = app->tex->Load("Assets/Sprites/empty_star.png");
 
 	}
 	if (app->currentScene == SCENE_DEATH)
@@ -127,6 +138,7 @@ bool Scene::Update(float dt)
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
 		app->map->Draw();
+		healthBar.w = app->player->GetHealth() * 30;
 		
 		
 	}
@@ -147,7 +159,39 @@ bool Scene::PostUpdate()
 	
 	if (app->currentScene == SCENE_LEVEL_1)
 	{
-		
+		app->render->DrawRectangle(healthBarBackground, 0, 0, 0, 255);
+		app->render->DrawRectangle(emptyBar, 100, 100, 100, 255);
+		app->render->DrawRectangle(healthBar, 255, 0, 0, 255);
+
+		int collectedStars = app->player->GetStars();
+		switch (collectedStars)
+		{
+		case 0:
+		{
+			app->render->DrawTexture(emptyStarTex, healthBar.x , 50);
+			app->render->DrawTexture(emptyStarTex, healthBar.x + 40, 50);
+			app->render->DrawTexture(emptyStarTex, healthBar.x + 80, 50);
+			
+		}break;
+		case 1:
+		{
+			app->render->DrawTexture(starTex, healthBar.x, 50);
+			app->render->DrawTexture(emptyStarTex, healthBar.x + 40, 50);
+			app->render->DrawTexture(emptyStarTex, healthBar.x + 80, 50);
+		}break;
+		case 2:
+		{
+			app->render->DrawTexture(starTex, healthBar.x, 50);
+			app->render->DrawTexture(starTex, healthBar.x + 40, 50);
+			app->render->DrawTexture(emptyStarTex, healthBar.x + 80, 50);
+		}break;
+		default:
+			app->render->DrawTexture(starTex, healthBar.x, 50);
+			app->render->DrawTexture(starTex, healthBar.x + 40, 50);
+			app->render->DrawTexture(starTex, healthBar.x + 80, 50);
+			break;
+		}
+
 	}
 	
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
@@ -183,4 +227,17 @@ bool Scene::LoadState(pugi::xml_node& node)
 		item->data->LoadState(node.parent().child(name.GetString()));
 	}
 	return true;
+}
+void Scene::UpdateHealthBar(int x, int y)
+{
+	healthBar.w = app->player->GetHealth() * 30;
+	healthBar.x = x;
+	healthBar.y = y;
+
+	healthBarBackground.x = healthBar.x - 10;
+	healthBarBackground.y = healthBar.y - 10;
+
+	emptyBar.x = x;
+	emptyBar.y = y;
+
 }
