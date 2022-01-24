@@ -1,10 +1,11 @@
 #include "App.h"
 #include "Star.h"
 
-Star::Star(int x, int y)
+Star::Star(int x, int y, int id)
 {
 	position.x = x;
 	position.y = y;
+	this->id = id;
 	name.Create("star");
 }
 Star::~Star()
@@ -94,26 +95,27 @@ bool Star::CleanUp()
 }
 bool Star::LoadState(pugi::xml_node& node)
 {
+	int loadId = node.child("id").attribute("value").as_int();
 	if (isAlive)
 	{
-		position.x = node.child("position").attribute("x").as_int();
+		/*position.x = node.child("position").attribute("x").as_int();
 		position.y = node.child("position").attribute("y").as_int();
 
-		starPb->body->SetTransform({ (float)position.x,(float)position.y }, 0);
+		starPb->body->SetTransform({ (float)position.x,(float)position.y }, 0);*/
 
 
 	}
 	else
 	{
 		isAlive = node.child("is_alive").attribute("value").as_bool();
-		if (isAlive)
+		if (isAlive && loadId == id)
 		{
 
-			position.x = node.child("position").attribute("x").as_int();
-			position.y = node.child("position").attribute("y").as_int();
+			/*position.x = node.child("position").attribute("x").as_int();
+			position.y = node.child("position").attribute("y").as_int();*/
 
 			Start();
-			starPb->body->SetTransform({ (float)position.x,(float)position.y }, 0);
+			//starPb->body->SetTransform({ (float)position.x,(float)position.y }, 0);
 
 
 		}
@@ -130,6 +132,9 @@ bool Star::SaveState(pugi::xml_node& node)
 
 		pos.append_attribute("x").set_value(starPb->body->GetPosition().x);
 		pos.append_attribute("y").set_value(starPb->body->GetPosition().y);
+
+		pugi::xml_node idNode = node.append_child("id");
+		idNode.append_attribute("value").set_value(id);
 	}
 	return true;
 }

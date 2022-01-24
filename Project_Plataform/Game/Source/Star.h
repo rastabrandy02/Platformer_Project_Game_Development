@@ -11,7 +11,7 @@ class PhysBody;
 class Star : public Entity, public b2ContactListener
 {
 public:
-	Star(int x, int y);
+	Star(int x, int y, int id);
 	~Star();
 
 

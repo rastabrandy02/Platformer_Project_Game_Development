@@ -32,9 +32,10 @@ public:
 	bool LoadState(pugi::xml_node&) override;
 	bool SaveState(pugi::xml_node&) override;
 
-	void CreateEntity(EntityType type, int x, int y);
+	void CreateEntity(EntityType type, int x, int y, int id = -1);
 
 	p2Point <int> position;
 
 	List <Entity*> entities;
+	List <Star*> stars;
 };

@@ -45,9 +45,9 @@ bool Scene::Start()
 		app->entityManager->CreateEntity(WALKING_ENEMY, 400, 200);
 		app->entityManager->CreateEntity(FLYING_ENEMY, 600, 100);
 		app->entityManager->CreateEntity(HEART, 800, 200);
-		app->entityManager->CreateEntity(STAR, 1090, 200);
-		app->entityManager->CreateEntity(STAR, 2090, 200);
-		app->entityManager->CreateEntity(STAR, 1590, 200);
+		app->entityManager->CreateEntity(STAR, 1090, 200, 0);
+		app->entityManager->CreateEntity(STAR, 2090, 200, 1);
+		app->entityManager->CreateEntity(STAR, 1590, 200, 2);
 		
 
 		if (app->map->Load("WizardMap.tmx") == true)

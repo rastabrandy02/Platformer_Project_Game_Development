@@ -50,6 +50,7 @@ class Entity : public Module
 	virtual void Die(){}
 
 	p2Point <int> position;
+	int id = -1;
 };
 
 #endif

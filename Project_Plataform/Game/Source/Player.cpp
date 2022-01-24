@@ -398,10 +398,10 @@ bool Player::SaveState(pugi::xml_node& node)
 	pos.append_attribute("y").set_value(player->body->GetPosition().y +1);
 
 	pugi::xml_node health = node.append_child("health");
-	health.append_attribute("value").set_value(health);
+	health.append_attribute("value").set_value(GetHealth());
 
 	pugi::xml_node stars = node.append_child("stars");
-	stars.append_attribute("value").set_value(stars);
+	stars.append_attribute("value").set_value(GetStars());
 	
 	return true;
 }

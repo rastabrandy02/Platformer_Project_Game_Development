@@ -5,40 +5,37 @@
 	<textures />
 	<audio />
 	<physics />
-	<entity_manager />
-	<player>
-		<position x="45.2165146" y="10.1969433" />
-		<health value="true" />
-		<stars value="true" />
-	</player>
-	<walking_enemy>
-		<is_alive value="true" />
-		<position x="6" y="11" />
-	</walking_enemy>
-	<flying_enemy>
-		<is_alive value="true" />
-		<position x="19.0022774" y="7" />
-	</flying_enemy>
-	<heart_container>
-		<is_alive value="true" />
-		<position x="0" y="0" />
-	</heart_container>
-	<star>
-		<is_alive value="true" />
-		<position x="34" y="4.66696644" />
-	</star>
-	<star>
-		<is_alive value="true" />
-		<position x="34" y="6.21560621" />
-	</star>
-	<star>
-		<is_alive value="true" />
-		<position x="34" y="3.11517358" />
-	</star>
+	<entity_manager>
+		<player>
+			<position x="56.4586639" y="6.01954079" />
+			<health value="10" />
+			<stars value="3" />
+		</player>
+		<walking_enemy>
+			<is_alive value="true" />
+			<position x="9" y="10" />
+		</walking_enemy>
+		<flying_enemy>
+			<is_alive value="true" />
+			<position x="23" y="7" />
+		</flying_enemy>
+		<heart_container>
+			<is_alive value="false" />
+		</heart_container>
+		<star>
+			<is_alive value="false" />
+		</star>
+		<star>
+			<is_alive value="false" />
+		</star>
+		<star>
+			<is_alive value="false" />
+		</star>
+	</entity_manager>
 	<scene />
 	<map />
 	<checkpoint />
 	<renderer>
-		<camera x="-1121" y="0" />
+		<camera x="-1481" y="0" />
 	</renderer>
 </game_state>
