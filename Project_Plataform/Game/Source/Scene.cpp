@@ -210,22 +210,20 @@ bool Scene::CleanUp()
 }
 bool Scene::SaveState(pugi::xml_node& node)
 {
-	for (ListItem<Module*>* item = enemies.start; item; item = item->next)
-	{
-		SString name = item->data->name.GetString();
-		item->data->SaveState(node.parent().append_child(name.GetString()));
-	}
+	pugi::xml_node ui = node.append_child("UI");
+	ui.append_attribute("x").set_value(healthBar.x);
+	ui.append_attribute("y").set_value(healthBar.y);
+
+	
 	
 
 	return true;
 }
 bool Scene::LoadState(pugi::xml_node& node)
 {
-	for (ListItem<Module*>* item = enemies.start; item; item = item->next)
-	{
-		SString name = item->data->name.GetString();
-		item->data->LoadState(node.parent().child(name.GetString()));
-	}
+	int uiX = node.child("UI").attribute("x").as_int();
+	int uiY = node.child("UI").attribute("y").as_int();
+	UpdateHealthBar(uiX, uiY);
 	return true;
 }
 void Scene::UpdateHealthBar(int x, int y)

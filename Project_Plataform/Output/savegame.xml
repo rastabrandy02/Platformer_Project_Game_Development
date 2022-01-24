@@ -7,17 +7,17 @@
 	<physics />
 	<entity_manager>
 		<player>
-			<position x="56.4586639" y="6.01954079" />
+			<position x="58.7008858" y="7.28645229" />
 			<health value="10" />
 			<stars value="3" />
 		</player>
 		<walking_enemy>
 			<is_alive value="true" />
-			<position x="9" y="10" />
+			<position x="10.7195835" y="10.2137499" />
 		</walking_enemy>
 		<flying_enemy>
 			<is_alive value="true" />
-			<position x="23" y="7" />
+			<position x="22" y="10" />
 		</flying_enemy>
 		<heart_container>
 			<is_alive value="false" />
@@ -32,10 +32,12 @@
 			<is_alive value="false" />
 		</star>
 	</entity_manager>
-	<scene />
+	<scene>
+		<UI x="1563" y="10" />
+	</scene>
 	<map />
 	<checkpoint />
 	<renderer>
-		<camera x="-1481" y="0" />
+		<camera x="-1553" y="0" />
 	</renderer>
 </game_state>
