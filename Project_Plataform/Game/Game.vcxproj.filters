@@ -28,6 +28,7 @@
     <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\Checkpoint.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
+    <ClCompile Include="Source\GUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -78,6 +79,7 @@
     <ClInclude Include="Source\Checkpoint.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
+    <ClInclude Include="Source\GUI.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

@@ -95,6 +95,7 @@
     <ClCompile Include="Source\EntityManager.cpp" />
     <ClCompile Include="Source\Fireball.cpp" />
     <ClCompile Include="Source\Flyingenemy.cpp" />
+    <ClCompile Include="Source\GUI.cpp" />
     <ClCompile Include="Source\HeartContainer.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\App.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="Source\EntityManager.h" />
     <ClInclude Include="Source\Fireball.h" />
     <ClInclude Include="Source\FlyingEnemy.h" />
+    <ClInclude Include="Source\GUI.h" />
     <ClInclude Include="Source\HeartContainer.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Pathfinding.h" />
