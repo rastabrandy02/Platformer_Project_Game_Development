@@ -48,6 +48,11 @@ class HeartContainer;
 class Star;
 class Checkpoint;
 class EntityManager;
+class SceneManager;
+class TitleScreen;
+class ModuleInitialScreen;
+
+
 
 
 
@@ -141,6 +146,11 @@ public:
 	Star* star;
 	Checkpoint* checkpoint;
 	EntityManager* entityManager;
+	SceneManager* sceneManager;
+
+	TitleScreen* titleScreen;
+	ModuleInitialScreen* initialScreen;
+
 
 	sceneEnum currentScene = SCENE_TITLE;
 #define SCREEN_HEIGHT 758
