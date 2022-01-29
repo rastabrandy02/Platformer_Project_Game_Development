@@ -93,6 +93,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Checkpoint.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
+    <ClCompile Include="Source\External\SettingsScene.cpp" />
     <ClCompile Include="Source\Fireball.cpp" />
     <ClCompile Include="Source\Flyingenemy.cpp" />
     <ClCompile Include="Source\GuiButton.cpp" />
@@ -110,7 +111,6 @@
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Scene.cpp" />
     <ClCompile Include="Source\Render.cpp" />
-    <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
@@ -120,6 +120,7 @@
     <ClInclude Include="Source\Checkpoint.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
+    <ClInclude Include="Source\External\SettingsScene.h" />
     <ClInclude Include="Source\Fireball.h" />
     <ClInclude Include="Source\FlyingEnemy.h" />
     <ClInclude Include="Source\GuiButton.h" />
@@ -139,7 +140,6 @@
     <ClInclude Include="Source\App.h" />
     <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\Render.h" />
-    <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\SCENES.h" />
     <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\Textures.h" />

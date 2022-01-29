@@ -28,7 +28,6 @@
     <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\Checkpoint.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
-    <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\GuiButton.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
@@ -38,6 +37,7 @@
     <ClCompile Include="Source\GuiSlider.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Source\External\SettingsScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -88,7 +88,6 @@
     <ClInclude Include="Source\Checkpoint.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
-    <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\GuiButton.h">
       <Filter>GUI</Filter>
     </ClInclude>
@@ -104,6 +103,7 @@
     <ClInclude Include="Source\SCENES.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="Source\External\SettingsScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

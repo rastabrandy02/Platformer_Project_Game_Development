@@ -56,6 +56,7 @@ class ModuleInitialScreen;
 
 
 
+
 enum sceneEnum
 {
 	SCENE_TITLE,
@@ -150,6 +151,7 @@ public:
 
 	TitleScreen* titleScreen;
 	ModuleInitialScreen* initialScreen;
+
 
 
 	sceneEnum currentScene = SCENE_TITLE;

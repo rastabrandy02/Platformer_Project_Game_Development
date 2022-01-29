@@ -39,7 +39,7 @@ bool GuiButton::Update(Input* input, float dt)
             {
                 app->audio->PlayFx(fxClick);
                 NotifyObserver();
-            };
+            }
         }
         else state = GuiControlState::NORMAL;
     }

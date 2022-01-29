@@ -1,12 +1,8 @@
 #include "SceneManager.h"
 #include "App.h"
 
-#include "ModuleInitialScreen.h"
-#include "TitleScreen.h"
 #include "SCENES.h"
 #include "Scene.h"
-#include "SettingsScene.h"
-#include "PauseMenu.h"
 #include "CreditsScene.h"
 
 #include "Input.h"
@@ -14,7 +10,7 @@
 #include "Textures.h"
 #include "Audio.h"
 #include "Window.h"
-//#include "GuiButton.h"
+#include "GuiButton.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -53,18 +49,7 @@ bool SceneManager::Awake()
 // Called before the first frame
 bool SceneManager::Start()
 {
-	//previousScene = new ModuleInitialScreen();
-	current = new ModuleInitialScreen();
-
-	current->previousScene = SceneType::LOGO;
-	current->currentScene = SceneType::LOGO;
-
-	current->Load(tex);
-
-	next = nullptr;
-
-	// For volume getters purposes
-	app->audio->LoadFx("Assets/Audio/Fx/player_shot.wav");
+	//app->audio->LoadFx("Assets/Audio/Fx/.wav");
 	return true;
 }
 
@@ -80,11 +65,6 @@ bool SceneManager::Update(float dt)
 {
 	if (!onTransition)
 	{
-		//if (input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT) render->camera.y -= 1;
-		//if (input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT) render->camera.y += 1;
-		//if (input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT) render->camera.x -= 1;
-		//if (input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT) render->camera.x += 1;
-
 		current->Update(input, dt);
 	}
 	else
@@ -145,47 +125,23 @@ bool SceneManager::Update(float dt)
 		switch (current->nextScene)
 		{
 			//case SceneType::LOGO: next = new SceneLogo(); break;
-		case SceneType::TITLE:
-		{
-			next = new TitleScreen();
-			break;
-		}
-		//case SceneType::GAMEPLAY: next = new SceneGameplay(); break;
-		case SceneType::SETTINGS:
-		{
-			next = new SettingsScene(app->win->fullScreen, app->vSync);
-			break;
+		
 		}
 		case SceneType::GAMEPLAY:
 		{
-			next = new LevelScene(false);
+			next = new Scene(false);
 			break;
 		}
 		case SceneType::LOAD_GAMEPLAY:
 		{
-			next = new LevelScene(true);
-			break;
+			next = new Scene
 		}
 		case SceneType::PAUSE:
 		{
-			next = new PauseScene();
+			next = new Scene();
 			break;
 		}
-		case SceneType::WIN:
-		{
-			next = new WinScreen();
-			break;
-		}
-		case SceneType::DEATH:
-		{
-			next = new DeathScene();
-			break;
-		}
-		case SceneType::CREDITS:
-		{
-			next = new CreditsScene();
-			break;
-		}
+
 		default: break;
 		}
 		current->previousScene = current->currentScene;
