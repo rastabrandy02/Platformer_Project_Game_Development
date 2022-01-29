@@ -27,11 +27,11 @@ The platformer project made during the Game Development subject - Second year of
 - Game's movement normalized using dt (deltaTime).
 - Entity System: All the elements in the game (Player, Enemies, Props, Coins / Collectibles) must hereby from a base Entity class and an EntityManager class must manage them (Initialize, include in a list, Update, Draw, CleanUp…)
 - GUI: Title Screen Main Menu: It includes the following GuiButtons:
-- - PLAY: Smooth transition to the gameplay screen.
-- - CONTINUE: Only enabled if there is a saved game. It must transition to the last saved game. Use a different visible state for disabled!
-- - SETTINGS: Open options menu. Including the following options:
-- - - Adjust music volume, with a GuiSlider.
-- - - Adjust fx volume, with a GuiSlider.
+  - PLAY: Smooth transition to the gameplay screen.
+  - CONTINUE: Only enabled if there is a saved game. It must transition to the last saved game. Use a different visible state for disabled!
+  - SETTINGS: Open options menu. Including the following options:
+    - Adjust music volume, with a GuiSlider.
+    - Adjust fx volume, with a GuiSlider.
 - - - Toggle fullscreen mode, with a GuiCheckBox.
 - - - Toggle VSync, with a GuiCheckBox.
 - - CREDITS: Open a credits panel where you can read the authors and the license.
