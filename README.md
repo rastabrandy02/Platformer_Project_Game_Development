@@ -32,25 +32,25 @@ The platformer project made during the Game Development subject - Second year of
   - SETTINGS: Open options menu. Including the following options:
     - Adjust music volume, with a GuiSlider.
     - Adjust fx volume, with a GuiSlider.
-- - - Toggle fullscreen mode, with a GuiCheckBox.
-- - - Toggle VSync, with a GuiCheckBox.
-- - CREDITS: Open a credits panel where you can read the authors and the license.
-- - EXIT: Quit the game.
-- - NOTE: Buttons must be responsive and include:
-- - - Visible state change on mouse-hover (FOCUSED)
-- - - Visible state change on mouse-pressed (PRESSED)
-- - - Generate an OnMouseClick event to be processed
-- - - Audio feedback on mouse-hover and mouse-click.
+    - Toggle fullscreen mode, with a GuiCheckBox.
+    - Toggle VSync, with a GuiCheckBox.
+  - CREDITS: Open a credits panel where you can read the authors and the license.
+  - EXIT: Quit the game.
+  - NOTE: Buttons must be responsive and include:
+    - Visible state change on mouse-hover (FOCUSED)
+    - Visible state change on mouse-pressed (PRESSED)
+    - Generate an OnMouseClick event to be processed
+    - Audio feedback on mouse-hover and mouse-click.
 - GUI: Gameplay Screen Pause Menu: Pressing ESCAPE triggers an in-game Pause Menu with the following options GuiButtons:
--  - RESUME: Continue playing the game after displaying the menu.
-- - SETTINGS: Shows settings menu (same one from Title Screen).
-- - BACK to TITLE: Returns to title screen. ○ EXIT: Quits the game.
+  - RESUME: Continue playing the game after displaying the menu.
+  - SETTINGS: Shows settings menu (same one from Title Screen). 
+  - BACK to TITLE: Returns to title screen. ○ EXIT: Quits the game.
 
 ## Controller:
 - A: Move left
 - D: Move right
 - SPACE: Jump
-- RIGHT CLICK: attack
+- LEFT CLICK: attack
 
 ## Debug Keys
 - F5: Load the current game state
