@@ -48,9 +48,10 @@ bool GuiCheckBox::Update(Input* input, float dt)
     return false;
 }
 
+// COMMENETD BECAUSE OF ERRORS
+/*
 bool GuiCheckBox::DrawDebug(Render* render)
 {
-    // DrawDebug the right button depending on state
     switch (state)
     {
     case GuiControlState::DISABLED:
@@ -74,7 +75,8 @@ bool GuiCheckBox::DrawDebug(Render* render)
     }
 
     return false;
-}
+   
+}*/
 
 bool GuiCheckBox::DrawTexture(Render* render)
 {

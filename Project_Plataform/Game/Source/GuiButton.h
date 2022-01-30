@@ -18,5 +18,6 @@ public:
     bool DrawTexture(Render* render);
 private:
 
+};
 
-#endif //__GUIBUTTON_H__
+#endif // __GUIBUTTON_H__

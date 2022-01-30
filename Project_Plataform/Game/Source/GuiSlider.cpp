@@ -65,7 +65,8 @@ bool GuiSlider::Update(Input* input, float dt)
 
 bool GuiSlider::DrawDebug(Render* render)
 {
-    // DrawDebug the right button depending on state
+    // COMENTED BECAUSE OF ERRORS
+    /*
     switch (state)
     {
     case GuiControlState::DISABLED: render->DrawRectangle(bounds, { 100, 100, 100, 255 });
@@ -82,7 +83,9 @@ bool GuiSlider::DrawDebug(Render* render)
         break;
     }
     render->DrawRectangle(slider, { 255, 0, 0, 255 });
+    */
     return false;
+    
 }
 
 bool GuiSlider::DrawTexture(Render* render)

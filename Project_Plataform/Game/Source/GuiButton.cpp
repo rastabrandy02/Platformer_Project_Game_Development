@@ -45,8 +45,10 @@ bool GuiButton::Update(Input* input, float dt)
     }
 
     return false;
-}
+};
 
+// COMENTED BECAUSE OF ERRORS
+  /*
 bool GuiButton::DrawDebug(Render* render)
 {
     switch (state)
@@ -64,9 +66,10 @@ bool GuiButton::DrawDebug(Render* render)
     default:
         break;
     }
-
+ 
     return false;
-}
+};
+*/
 
 bool GuiButton::DrawTexture(Render* render)
 {
@@ -91,3 +94,4 @@ bool GuiButton::DrawTexture(Render* render)
         break;
     }
     return false;
+}

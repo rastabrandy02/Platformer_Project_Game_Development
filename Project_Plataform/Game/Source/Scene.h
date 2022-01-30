@@ -27,7 +27,7 @@ public:
 	// Called each loop iteration
 	bool Update(float dt);
 
-	bool Draw(Render* render);
+	//bool Draw(Render* render);
 
 	bool Unload();
 

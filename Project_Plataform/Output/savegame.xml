@@ -7,9 +7,9 @@
 	<physics />
 	<entity_manager>
 		<player>
-			<position x="45.2357559" y="10.1989794" />
+			<position x="44" y="6.24350023" />
 			<health value="10" />
-			<stars value="1" />
+			<stars value="3" />
 		</player>
 		<walking_enemy>
 			<is_alive value="false" />
@@ -24,22 +24,18 @@
 			<is_alive value="false" />
 		</star>
 		<star>
-			<is_alive value="true" />
-			<position x="65.4804077" y="5.21374989" />
-			<id value="1" />
+			<is_alive value="false" />
 		</star>
 		<star>
-			<is_alive value="true" />
-			<position x="49.6875" y="13.2137518" />
-			<id value="2" />
+			<is_alive value="false" />
 		</star>
 	</entity_manager>
 	<scene>
-		<UI x="1132" y="10" />
+		<UI x="1093" y="10" />
 	</scene>
 	<map />
 	<checkpoint />
 	<renderer>
-		<camera x="-1122" y="0" />
+		<camera x="-1083" y="0" />
 	</renderer>
 </game_state>
