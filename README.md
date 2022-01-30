@@ -46,6 +46,8 @@ The platformer project made during the Game Development subject - Second year of
   - SETTINGS: Shows settings menu (same one from Title Screen). 
   - BACK to TITLE: Returns to title screen. ○ EXIT: Quits the game.
 
+**We had some difficulties implementing the different screens. The GUI are implemented in code.
+
 ## Controller:
 - A: Move left
 - D: Move right
